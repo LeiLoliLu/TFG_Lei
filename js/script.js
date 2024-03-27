@@ -17,29 +17,36 @@
     const botonRec = bRecetario.addEventListener("click", function() { changeScreen(4); });
     const botonAju = bAjustes.addEventListener("click", function() { changeScreen(5); });
 
-
+    changeScreen(2);
 
 function changeScreen(option){
     switch(option){
         case 1:
             title.innerHTML="Jardin";
+            clearBackground();
+            screen.classList.add("jardin");
             toggleTextbox("ON");
-            
             break;
         case 2:
             title.innerHTML="Mostrador";
+            clearBackground();
+            screen.classList.add("mostrador");
             toggleTextbox("ON");
             break;
         case 3:
             title.innerHTML="Trastienda";
+            clearBackground();
+            screen.classList.add("trastienda");
             toggleTextbox("ON");
             break;
         case 4:
             title.innerHTML="Recetario";
+            clearBackground();
             toggleTextbox("ON");
             break; 
         case 5:
             title.innerHTML="Ajustes";
+            clearBackground();
             toggleTextbox("OFF");
             break;   
     }
@@ -55,4 +62,10 @@ function toggleTextbox(option){
             textbox.classList.add("hidden");
             screen.classList.add("long");
     }
+}
+
+function clearBackground(){
+    screen.classList.remove("jardin");
+    screen.classList.remove("mostrador");
+    screen.classList.remove("trastienda");
 }

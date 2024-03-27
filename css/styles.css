@@ -68,3 +68,16 @@ aside {
 .hidden{
   display:none;
 }
+
+.jardin{
+  background-image:url("../assets/bgs/jardin.jpg");
+  background-size: 100% 100%;
+}
+.mostrador{
+  background-image:url("../assets/bgs/shop.jpg");
+  background-size: 100% 100%;
+}
+.trastienda{
+  background-image:url("../assets/bgs/trastienda.jpg");
+  background-size: 100% 100%;
+}
