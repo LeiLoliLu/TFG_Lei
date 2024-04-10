@@ -47,7 +47,6 @@ aside {
 .texttitle{
   background-color: #aaaaaa;
   padding:15px;
-
 }
 .box{
   min-height: 150px;
@@ -58,9 +57,13 @@ aside {
   padding:50px;
   margin:0;
 }
-.clickeable{
+.screen{
   height: 75%;
   background-color: #dadada;
+  display:flex;
+  justify-content: center;
+  align-items: center;
+
 }
 .long{
   height: 95% !important;
@@ -80,4 +83,21 @@ aside {
 .trastienda{
   background-image:url("../assets/bgs/trastienda.jpg");
   background-size: 100% 100%;
+}
+.client{
+  width: 70px;
+  height: 100px;
+  margin:0;
+  background-color: aqua;
+}
+.alert{
+  animation: alert 500ms infinite;
+}
+
+@keyframes alert {
+  0% { background: #aaaaaa; }
+  25% { background: #b1b1b1; }
+  50% { background: #aaaaaa; }
+  75% { background: #b1b1b1; }
+  100% { background: #aaaaaa; }
 }
