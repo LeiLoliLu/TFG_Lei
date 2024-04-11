@@ -93,6 +93,9 @@ aside {
 .alert{
   animation: alert 500ms infinite;
 }
+.pulsing{
+  animation: pulsing 1s infinite;
+}
 
 @keyframes alert {
   0% { background: #aaaaaa; }
@@ -100,4 +103,12 @@ aside {
   50% { background: #aaaaaa; }
   75% { background: #b1b1b1; }
   100% { background: #aaaaaa; }
+}
+
+@keyframes pulsing{
+  0% { opacity: 100%; }
+  25% { opacity: 50%; }
+  50% { opacity: 100%; }
+  75% { opacity: 50%; }
+  100% { opacity: 100%; }
 }
