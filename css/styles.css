@@ -15,9 +15,14 @@ aside {
     grid-column: span 1;
 }
 
-.content {
-    background-color: #f0f0f0;
+.contentscreen {
+    background-color: #000000;
     padding: 10px;
+    min-width: 800px;
+}
+.content {
+  background-color: #f0f0f0;
+  padding: 10px;
 }
 .button{
     background-color: #c5c5c5;
@@ -43,14 +48,15 @@ aside {
   right:10px;
   left:10px;
   text-align: center;
+
 }
 .texttitle{
   background-color: #aaaaaa;
   padding:15px;
 }
 .box{
-  min-height: 150px;
-  max-height: 150px;
+  min-height: 200px;
+  max-height: 200px;
 }
 .box p{
   font-size: larger;
@@ -58,7 +64,8 @@ aside {
   margin:0;
 }
 .screen{
-  height: 75%;
+  height: 600px;
+  width: 800px;
   background-color: #dadada;
   display:flex;
   justify-content: center;
@@ -73,14 +80,17 @@ aside {
 }
 
 .jardin{
+  margin:auto;
   background-image:url("../assets/bgs/jardin.jpg");
   background-size: 100% 100%;
 }
 .mostrador{
-  background-image:url("../assets/bgs/shop.jpg");
+  margin:auto;
+  background-image:url("../assets/bgs/shop.png");
   background-size: 100% 100%;
 }
 .trastienda{
+  margin:auto;
   background-image:url("../assets/bgs/trastienda.jpg");
   background-size: 100% 100%;
 }
