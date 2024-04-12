@@ -1,16 +1,6 @@
-const townsfolk = [ 
-    {"name":"Shyam", "greeting":"Hola, Soy Shyam"},  
-    {"name":"Bob", "greeting":"Hola, Soy Bob"},  
-    {"name":"Jai", "greeting":"Hola, Soy Jai"},
-    {"name":"Miriam", "greeting":"Hola, Soy Miriam"},
-    {"name":"Reuben", "greeting":"Hola, Soy Reuben"},  
-    {"name":"Macie", "greeting":"Hola, Soy Macie"},  
-    {"name":"Zackery", "greeting":"Hola, Soy Zackery"},
-    {"name":"Brielle", "greeting":"Hola, Soy Brielle"},
-    {"name":"Cale", "greeting":"Hola, Soy Cale"},  
-    {"name":"Angelique", "greeting":"Hola, Soy Angelique"}];
 var hasClient = false;
 var lastClient = 10;
+var clientObj;
 
 //declaración de variables
 var title = document.getElementById("title");
@@ -42,8 +32,8 @@ function summonClient(){
         console.log("Trying to summon Client...");
         if (Math.random() > 0.5) {
             console.log("Summon Success!");
-            var client = createClient(); 
-            screen.appendChild(client);
+            var clientElement = createClient(); 
+            screen.appendChild(clientElement);
             hasClient=true;
             texttitle.innerHTML="Hay alguien en tu tienda";
             texttitle.classList.add("alert");
@@ -59,39 +49,40 @@ function summonClient(){
 }
 function createClient(){
     //crear elemento
-    var client = document.createElement("Client");
+    var clientElement = document.createElement("Client");
 
     //classlist
-    client.classList.add("client");
+    clientElement.classList.add("client");
     if(title.innerHTML!="Mostrador"){
-        client.classList.add("hidden");
+        clientElement.classList.add("hidden");
     }
     //attributes
-    client.setAttribute("id","currentClient");
-    client.setAttribute("onclick","showClient()");
+    clientElement.setAttribute("id","currentClient");
+    clientElement.setAttribute("onclick","showClient()");
 
     var randomint=lastClient;
     while(randomint==lastClient){
         randomint = Math.floor(Math.random()*10);
     }
-    client.setAttribute("name",townsfolk[randomint].name);
-    client.setAttribute("greeting",townsfolk[randomint].greeting);
-            
-    return client;
+    clientObj = townsfolk[randomint];
+    lastClient=randomint;
+    return clientElement;
 }
 function showClient(){
-    var client = document.getElementById("currentClient");
-    texttitle.innerHTML=client.getAttribute("name");
-    box.firstChild.innerHTML=client.getAttribute("greeting");
-    clickToContinue("Delete Client");
+    texttitle.innerHTML=clientObj.name;
+    box.firstChild.innerHTML=clientObj.greeting;
+    clickToContinue("Client Petition");
 }
-function deleteClient(){
+
+function deleteClient(afterclick=null){
     var client = document.getElementById("currentClient");
     client.remove();
     hasClient=false;
     texttitle.innerHTML="No hay nadie en tu tienda";
     box.firstChild.innerHTML="...";
-    box.removeEventListener("click",clickToDeleteClient);
+    if(afterclick){
+        box.removeEventListener("click",clickToDeleteClient);
+    }
 }
 
 //Click TO
@@ -99,8 +90,11 @@ function clickToContinue(action){
     box.lastChild.classList.remove("hidden");
     box.lastChild.classList.add("pulsing");
     switch(action){
-        case "Delete Client": //Comes from "Show Client"
+        case "Delete Client": //Comes from "ClickToClientPetition"
             clickevent = box.addEventListener("click",clickToDeleteClient);
+            break;
+        case "Client Petition": //Comes from "ShowClient"
+            clickevent = box.addEventListener("click",clickToClientPetition);
             break;
         default: 
             console.log("Click to Default");
@@ -110,8 +104,12 @@ function clickToContinue(action){
     }
 
 }
+function clickToClientPetition(){
+    box.firstChild.innerHTML="Esta es mi petición:";
+    clickToContinue("Delete Client");
+}
 function clickToDeleteClient(){
-    deleteClient();
+    deleteClient(true);
     box.lastChild.classList.remove("pulsing");
     box.lastChild.classList.add("hidden");
 }
