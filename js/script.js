@@ -47,6 +47,7 @@ function summonClient(){
         console.log("There is a Client already.");
     }
 }
+
 function createClient(){
     //crear elemento
     var clientElement = document.createElement("Client");
@@ -58,60 +59,54 @@ function createClient(){
     }
     //attributes
     clientElement.setAttribute("id","currentClient");
-    clientElement.setAttribute("onclick","showClient()");
+    clientElement.setAttribute("onclick","clientActions()");
 
     var randomint=lastClient;
     while(randomint==lastClient){
-        randomint = Math.floor(Math.random()*10);
+        randomint = Math.floor(Math.random()*20);
+        console.log(randomint);
     }
     clientObj = townsfolk[randomint];
     lastClient=randomint;
     return clientElement;
 }
-function showClient(){
+
+async function clientActions(){
+    var client = document.getElementById("currentClient");
+    client.removeAttribute("onclick");
+
     texttitle.innerHTML=clientObj.name;
     box.firstChild.innerHTML=clientObj.greeting;
-    clickToContinue("Client Petition");
+
+    await waitForClick();
+
+    box.firstChild.innerHTML="Esto es mi petición:";
+
+    await waitForClick();
+
+    deleteClient();
 }
 
-function deleteClient(afterclick=null){
+function waitForClick() {
+    return new Promise(resolve => {
+      function boxClicked() {
+        box.removeEventListener('click', boxClicked)
+        box.lastChild.classList.remove("pulsing");
+        box.lastChild.classList.add("hidden");
+        resolve();
+      }
+        box.lastChild.classList.remove("hidden");
+        box.lastChild.classList.add("pulsing");
+      box.addEventListener('click', boxClicked);
+    });
+}
+
+function deleteClient(){
     var client = document.getElementById("currentClient");
     client.remove();
     hasClient=false;
     texttitle.innerHTML="No hay nadie en tu tienda";
     box.firstChild.innerHTML="...";
-    if(afterclick){
-        box.removeEventListener("click",clickToDeleteClient);
-    }
-}
-
-//Click TO
-function clickToContinue(action){
-    box.lastChild.classList.remove("hidden");
-    box.lastChild.classList.add("pulsing");
-    switch(action){
-        case "Delete Client": //Comes from "ClickToClientPetition"
-            clickevent = box.addEventListener("click",clickToDeleteClient);
-            break;
-        case "Client Petition": //Comes from "ShowClient"
-            clickevent = box.addEventListener("click",clickToClientPetition);
-            break;
-        default: 
-            console.log("Click to Default");
-            box.lastChild.classList.remove("hidden");
-            box.lastChild.classList.add("pulsing");
-            break;
-    }
-
-}
-function clickToClientPetition(){
-    box.firstChild.innerHTML="Esta es mi petición:";
-    clickToContinue("Delete Client");
-}
-function clickToDeleteClient(){
-    deleteClient(true);
-    box.lastChild.classList.remove("pulsing");
-    box.lastChild.classList.add("hidden");
 }
 
 
