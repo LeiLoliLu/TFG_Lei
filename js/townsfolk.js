@@ -22,5 +22,5 @@ const townsfolk = [
 ];
 
 const globalPetitions = [
-    {"petition":"","acceptedAnswers":""}
+     {"petition":"","acceptedAnswers":""}
 ]
