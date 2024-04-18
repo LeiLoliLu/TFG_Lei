@@ -80,12 +80,17 @@ async function clientActions(){
 
     await waitForClick();
 
-    box.firstChild.innerHTML="Esto es mi petición:";
+    clientPetition();
 
     await waitForClick();
 
     deleteClient();
 }
+
+function clientPetition(){
+    
+}
+
 
 function waitForClick() {
     return new Promise(resolve => {
