@@ -37,6 +37,28 @@ aside {
 .button:hover{
   background-color: #d4a074;
 }
+.boxbutton{
+  background-color: #c58d5f;
+  text-align: center;
+  min-width: 200px;
+  max-width: 200px;
+  padding: 30px;
+  margin-top: 10px;
+  font-size: larger;
+  transition: 0.3s;
+}
+.boxbutton:hover{
+background-color: #d4a074;
+}
+
+.boxbuttons{
+  display:flex;
+  flex-direction: row;
+  align-items: center;
+  width: 100%;
+  justify-content: space-around;
+}
+
 .title{
   background-color: #bb8559;
   text-align: center;
@@ -100,12 +122,22 @@ aside {
   background-image:url("../assets/bgs/trastienda.jpg");
   background-size: 100% 100%;
 }
+
+.almacen{
+  margin:auto;
+  background-image:url("../assets/bgs/almacen.png");
+  background-size: 100% 100%;
+}
+
 .client{
   width: 70px;
   height: 100px;
   margin:0;
   background-color: aqua;
 }
+
+
+
 .alert{
   animation: alert 500ms infinite;
 }

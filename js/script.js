@@ -1,19 +1,26 @@
 var hasClient = false;
 var lastClient = 10;
 var clientObj;
+var matchingItems;
 
 //declaración de variables
 var title = document.getElementById("title");
 var texttitle = document.getElementById("texttitle");
 var box = document.getElementById("box");
+var boxP = box.firstChild;
+var boxContinueText = document.getElementById("continuetext");
 var textbox = document.getElementById("textbox");
 var screen = document.getElementById("screen");
+var boxButtons = document.getElementById("boxButtons")
 
 var bJardin = document.getElementById("bJardin");
 var bMostrador = document.getElementById("bMostrador");
 var bTrastienda = document.getElementById("bTrastienda");
 var bRecetario = document.getElementById("bRecetario");
 var bAjustes = document.getElementById("bAjustes");
+var opt1button = document.getElementById("opt1");
+var opt2button = document.getElementById("opt2");
+var opt3button = document.getElementById("opt3");
 
 //declaración de eventos
 const botonJar = bJardin.addEventListener("click", function () { changeScreen(1); });
@@ -76,7 +83,7 @@ async function clientActions(){
     client.removeAttribute("onclick");
 
     texttitle.innerHTML=clientObj.name;
-    box.firstChild.innerHTML=clientObj.greeting;
+    boxP.innerHTML=clientObj.greeting;
 
     await waitForClick();
 
@@ -84,34 +91,77 @@ async function clientActions(){
 
     await waitForClick();
 
-    deleteClient();
+    displayClientOptions();
 }
 
 function clientPetition(){
+    //ver que objetos puede pedir por su tipo
+    var objetosPedibles = items.filter(item => item.archetype.includes(clientObj.type));
+    //
+    objetosPedibles.forEach(element => {
+        console.log("Objetos pedibles: "+element.item)
+    });
+
+    //pick random item
+    var targetItem = objetosPedibles[Math.floor(Math.random() * objetosPedibles.length)];
+    //
+    console.log("Objeto seleccionado: "+targetItem.item);
+
+
+    targetItem.petitions.forEach(element => {
+        console.log("Peticiones: "+element)
+    });
+
+    //pick random petition
+    var targetPetition = targetItem.petitions[Math.floor(Math.random() * targetItem.petitions.length)];
+    boxP.innerHTML=targetPetition;
     
+    //filter objects that can be given to client with that petition too
+    matchingItems = items.filter(item => item.petitions.includes(targetPetition)).filter(item=>item.archetype.includes(clientObj.type));
+    matchingItems.forEach(element => {
+        console.log("Objetos posibles: "+element.item)
+    });
 }
 
+function displayClientOptions(){
+    boxP.classList.add("hidden");
+    boxButtons.classList.remove("hidden");
+
+    listenOpt1 = opt1button.addEventListener("click", function () { openInv(); });
+    listenOpt2 = opt2button.addEventListener("click", function () { talkToClient(); });
+    listenOpt3 = opt3button.addEventListener("click", function () { deleteClient(); });
+}
 
 function waitForClick() {
     return new Promise(resolve => {
       function boxClicked() {
         box.removeEventListener('click', boxClicked)
-        box.lastChild.classList.remove("pulsing");
-        box.lastChild.classList.add("hidden");
+        boxContinueText.classList.remove("pulsing");
+        boxContinueText.classList.add("hidden");
         resolve();
       }
-        box.lastChild.classList.remove("hidden");
-        box.lastChild.classList.add("pulsing");
-      box.addEventListener('click', boxClicked);
+        boxContinueText.classList.remove("hidden");
+        boxContinueText.classList.add("pulsing");
+        box.addEventListener('click', boxClicked);
     });
+}
+
+function openInv(){
+    changeScreen(6);
+    boxP.innerHTML="...";
+    boxP.innerHTML="...";
+
 }
 
 function deleteClient(){
     var client = document.getElementById("currentClient");
     client.remove();
     hasClient=false;
+
+    boxP.classList.remove("hidden");
+    boxButtons.classList.add("hidden");
     texttitle.innerHTML="No hay nadie en tu tienda";
-    box.firstChild.innerHTML="...";
+    boxP.innerHTML="...";
 }
 
 
@@ -151,12 +201,20 @@ function changeScreen(option) {
             toggleTextbox("ON");
             toggleClient("OFF");
             break;
+        case 6:
+            title.innerHTML = "Almacén";
+            clearBackground();
+            screen.classList.add("almacen");
+            toggleTextbox("ON");
+            toggleClient("OFF");
+            break;
     }
 }
 function clearBackground() {
     screen.classList.remove("jardin");
     screen.classList.remove("mostrador");
     screen.classList.remove("trastienda");
+    screen.classList.remove("almacen");
 }
 function toggleTextbox(option) {
     switch (option) {

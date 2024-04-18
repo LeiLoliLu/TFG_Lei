@@ -4,7 +4,7 @@ const townsfolk = [
     {"name": "Gin - Pícaro Kobold", "greeting": "Pssst. ¡Hola! Necesito una cosita.", "type":"adventurer"},
     {"name": "Longrim Wymberforged - Druida Viajero", "greeting": "Buenas tardes, rapaz. Hoy hace un día mágico, ¿No le parece?", "type":"adventurer"},
     {"name": "Maccon Iceblood - Cazador del pueblo", "greeting": "¿Tienes mucho lío? Intentaré pedir rápido.", "type":"adventurer"},
-    {"name": "Ignatius Centelleante - Mago Elemental en Prácticas", "greeting": "Ho-hola. Necesito una cosa para clase.", "type":"mage"},
+    {"name": "Witchette Aeterna - El sombrero es la bruja", "greeting": "Hola, ¿Me puedes ayudar? Necesito unas cositas.", "type":"mage"},
     {"name": "Maeve Silvermoon - Oráculo Lunar", "greeting": "Muy buen dia, Herborista. ¿Saldrás por la noche? La luna va a estar preciosa.", "type":"mage"},
     {"name": "Palmeadus Pico de Rubí - Gran Archimago", "greeting": "Saludos, joven mortal. Requiero tus servicios una vez más.", "type":"mage"},
     {"name": "Stretch y Stitches - Gemelos Ilusionistas", "greeting": "(ambos a la vez) ¡Hola, hola!", "type":"mage"},
@@ -23,8 +23,9 @@ const townsfolk = [
 
 const items = [
     {
-      "item": "Curación Menor",
-      "archetype": ["townsfolk","mage","adventurer"],
+      "id":"1",
+      "item": "Poción de Curación Menor",
+      "archetype": ["town","mage","adventurer","merchant"],
       "desc": "Ayuda a calmar heridas pequeñas y malestar general.",
       "petitions": [
         "Me he levantado con un dolor de cabeza, ¿tienes algo que me pueda ayudar?",
@@ -36,8 +37,9 @@ const items = [
       ]
     },
     {
-      "item": "Contra Pesadillas",
-      "archetype": ["townsfolk","mage","adventurer"],
+      "id":"2",
+      "item": "Poción Contra Pesadillas",
+      "archetype": ["town","mage","adventurer","merchant"],
       "desc": "Sus propiedades consiguen mantener una mente calmada mientras se duerme.",
       "petitions": [
         "Ultimamente no puedo dormir bien. ¿Puedes darme algo que ayude?",
@@ -45,8 +47,9 @@ const items = [
       ]
     },
     {
-      "item": "Contra Resfriado",
-      "archetype": ["townsfolk","mage","adventurer"],
+      "id":"3",
+      "item": "Poción Contra Resfriado",
+      "archetype": ["town","mage","adventurer","merchant"],
       "desc": "Una poción muy eficaz contra resfriados comunes.",
       "petitions": [
         "Me he levantado con un dolor de cabeza, ¿tienes algo que me pueda ayudar?",
@@ -54,8 +57,9 @@ const items = [
       ]
     },
     {
-      "item": "Contra Fiebre",
-      "archetype": ["townsfolk","mage","adventurer"],
+      "id":"4",
+      "item": "Poción Contra Fiebre",
+      "archetype": ["town","mage","adventurer","merchant"],
       "desc": "Una poción muy eficaz contra fiebre común.",
       "petitions": [
         "Me he levantado con un dolor de cabeza, ¿tienes algo que me pueda ayudar?",
@@ -63,8 +67,9 @@ const items = [
       ]
     },
     {
-      "item": "Contra Miopia",
-      "archetype": ["townsfolk","mage","adventurer"],
+      "id":"5",
+      "item": "Poción Contra Miopia",
+      "archetype": ["town","mage","adventurer","merchant"],
       "desc": "Mejora la vista del usuario de forma moderada.",
       "petitions": [
         "Creo que me está empeorando la vista, ¿Hay algo que pueda ayudar con eso?",
@@ -72,8 +77,9 @@ const items = [
       ]
     },
     {
-      "item": "Contra Maldiciones",
-      "archetype": ["mage"],
+      "id":"6",
+      "item": "Poción Contra Maldiciones",
+      "archetype": ["mage","merchant"],
       "desc": "Envuelve en un resplandor etéreo que actúa como escudo protector contra maldiciones y maleficios a quien lo bebe.",
       "petitions": [
         "Me han hechado un mal de ojo.",
@@ -83,8 +89,9 @@ const items = [
       ]
     },
     {
-      "item": "Somnifero",
-      "archetype": ["townsfolk","mage","adventurer"],
+      "id":"7",
+      "item": "Poción Somnifera",
+      "archetype": ["town","mage","adventurer","merchant"],
       "desc": "Sume a el consumidor en un sueño muy profundo. Usar de forma moderada.",
       "petitions": [
         "Ultimamente no puedo dormir bien. ¿Puedes darme algo que ayude?",
@@ -94,8 +101,9 @@ const items = [
       ]
     },
     {
-      "item": "Contra Insomnio",
-      "archetype": ["townsfolk","mage","adventurer"],
+      "id":"8",
+      "item": "Poción Contra Insomnio",
+      "archetype": ["town","mage","adventurer","merchant"],
       "desc": "Ayuda al consumidor a dormirse y regular su reloj de sueño.",
       "petitions": [
         "Ultimamente no puedo dormir bien. ¿Puedes darme algo que ayude?",
@@ -104,8 +112,9 @@ const items = [
       ]
     },
     {
-      "item": "Resistencia a sueño",
-      "archetype": ["townsfolk","mage","adventurer"],
+      "id":"9",
+      "item": "Poción de Resistencia a Sueño",
+      "archetype": ["town","mage","adventurer","merchant"],
       "desc": "El usuario que tome esta poción podrá quedarse despierto una noche entera. Usar de forma moderada.",
       "petitions": [
         "Necesito quedarme una noche sin dormir, tengo muchas cosas que hacer y me falta tiempo.",
@@ -114,8 +123,9 @@ const items = [
       ]
     },
     {
-      "item": "Ver en la oscuridad",
-      "archetype": ["mage","adventurer"],
+      "id":"10",
+      "item": "Poción de visión en la oscuridad",
+      "archetype": ["mage","adventurer","merchant"],
       "desc": "Los ojos del usuario se cubrirán de una capa purpura semitransparente que cede visión nocturna.",
       "petitions": [
         "Hoy voy de misión a un lugar muy oscuro. No se si voy a poder ver de forma correcta.",
@@ -124,8 +134,9 @@ const items = [
       ]
     },
     {
-      "item": "Sueños Lúcidos",
-      "archetype": ["townsfolk","mage","adventurer"],
+      "id":"11",
+      "item": "Poción de Sueños Lúcidos",
+      "archetype": ["town","mage","adventurer","merchant"],
       "desc": "El usuario que beba esta poción tendrá mas conexión con su subconsciente a la hora de soñar.",
       "petitions": [
         "Me gustaría poder controlar lo que hago en mis sueños.",
@@ -133,8 +144,9 @@ const items = [
       ]
     },
     {
-      "item": "Endurecimiento",
-      "archetype": ["adventurer"],
+      "id":"12",
+      "item": "Poción de Endurecimiento",
+      "archetype": ["adventurer","merchant"],
       "desc": "Vuelve la piel de quien la beba muy dura durante varias horas.",
       "petitions": [
         "¿Tienes algo que me de mas armadura o protección?",
@@ -143,8 +155,9 @@ const items = [
       ]
     },
     {
+      "id":"13",
       "item": "Antidoto de veneno",
-      "archetype": ["townsfolk","mage","adventurer"],
+      "archetype": ["town","mage","adventurer","merchant"],
       "desc": "Cura casi todos los envenenamientos e intoxicaciones conocidos en el reino.",
       "petitions": [
         "Me han envenenado y necesito algo para contrarrestar los efectos lo antes posible.",
@@ -153,8 +166,9 @@ const items = [
       ]
     },
     {
-      "item": "Resistencia al Frio",
-      "archetype": ["townsfolk","mage","adventurer"],
+      "id":"14",
+      "item": "Poción de Resistencia al Frio",
+      "archetype": ["town","mage","adventurer","merchant"],
       "desc": "El usuario no tendrá frio general mientras que el efecto de esta poción dure.",
       "petitions": [
         "El invierno se acerca y mi casa es muy fria. ¿Tienes algo que pueda remediarlo?",
@@ -162,8 +176,9 @@ const items = [
       ]
     },
     {
-      "item": "Resistencia al Calor",
-      "archetype": ["townsfolk","mage","adventurer"],
+      "id":"15",
+      "item": "Poción de Resistencia al Calor",
+      "archetype": ["town","mage","adventurer","merchant"],
       "desc": "El usuario no tendrá calor general mientras que el efecto de esta poción dure.",
       "petitions": [
         "Se acerca una ola de calor, y mi casa va a ser un horno.",
@@ -171,8 +186,9 @@ const items = [
       ]
     },
     {
-      "item": "Agudeza Visual",
-      "archetype": ["mage","adventurer"],
+      "id":"16",
+      "item": "Poción de Agudeza Visual",
+      "archetype": ["mage","adventurer","merchant"],
       "desc": "Beber esta poción permite al usuario ver mas allá de lo que usualmente puede ver.",
       "petitions": [
         "Hoy voy de misión a un lugar muy oscuro. No se si voy a poder ver de forma correcta.",
@@ -181,8 +197,9 @@ const items = [
       ]
     },
     {
-      "item": "Burbuja negativa",
-      "archetype": ["mage","adventurer"],
+      "id":"17",
+      "item": "Poción de Burbuja Negativa",
+      "archetype": ["mage","adventurer","merchant"],
       "desc": "Esta poción envuelve a quien la bebe en una burbuja resistente a ataques mágicos.",
       "petitions": [
         "¿Tienes algo que me de más armadura o protección mágica?",
@@ -190,8 +207,9 @@ const items = [
       ]
     },
     {
-      "item": "Area de Calor",
-      "archetype": ["townsfolk","mage","adventurer"],
+      "id":"18",
+      "item": "Poción de Area de Calor",
+      "archetype": ["town","mage","adventurer","merchant"],
       "desc": "Al verter esta poción, emana calor en area.",
       "petitions": [
         "Estamos planeando una reunión al aire libre en una noche fría. ¿Tienes una poción que pueda proporcionar un poco de calor para todos?",
@@ -200,8 +218,9 @@ const items = [
       ]
     },
     {
-      "item": "Area de Frio",
-      "archetype": ["townsfolk","mage","adventurer"],
+      "id":"19",
+      "item": "Poción de Area de Frio",
+      "archetype": ["town","mage","adventurer","merchant"],
       "desc": "Al verter esta poción, emana frio en area.",
       "petitions": [
         "Estamos organizando un evento al aire libre en pleno verano y necesitamos una manera de mantener a todos frescos.",
@@ -210,8 +229,9 @@ const items = [
       ]
     },
     {
-      "item": "Amor",
-      "archetype": ["townsfolk","mage","adventurer"],
+      "id":"20",
+      "item": "Poción de Amor",
+      "archetype": ["town","mage","adventurer","merchant"],
       "desc": "El calor de esta poción es capaz de convertir una cena normal en una cena romantica.",
       "petitions": [
         "Quiero sorprender a mi pareja con una cena romántica, ¿tienes algo que pueda ayudarme a crear una atmósfera más amorosa?",
@@ -219,8 +239,9 @@ const items = [
       ]
     },
     {
-      "item": "Desamor",
-      "archetype": ["townsfolk","mage","adventurer"],
+      "id":"21",
+      "item": "Poción de Desamor",
+      "archetype": ["town","mage","adventurer","merchant"],
       "desc": "El frio de esta poción es capaz de convertir un indicio de interes en una quedada incomoda.",
       "petitions": [
         "Recientemente terminé una relación y necesito algo que me ayude a disipar cualquier rastro de amor residual.",
@@ -228,40 +249,45 @@ const items = [
       ]
     },
     {
-      "item": "Resistencia a Frio Extremo",
-      "archetype": ["mage","adventurer"],
+      "id":"22",
+      "item": "Poción de Resistencia a Frio Extremo",
+      "archetype": ["mage","adventurer","merchant"],
       "desc": "La poción permite que el usuario resista temperaturas frias extremas",
       "petitions": [
         "Voy a emprender un viaje a las regiones más heladas del reino y necesito protegerme del frío extremo."
       ]
     },
     {
-      "item": "Resistencia a Calor Extremo",
-      "archetype": ["mage","adventurer"],
+      "id":"23",
+      "item": "Poción de Resistencia a Calor Extremo",
+      "archetype": ["mage","adventurer","merchant"],
       "desc": "La poción permite que el usuario resista temperaturas calientes extremas",
       "petitions": [
         "Me aventuraré en el desierto durante días y necesito algo que me proteja del calor abrasador"
       ]
     },
     {
-      "item": "Contra Congelación",
-      "archetype": ["townsfolk","mage","adventurer"],
+      "id":"24",
+      "item": "Poción Contra Congelación",
+      "archetype": ["town","mage","adventurer","merchant"],
       "desc": "Remedio muy efectivo contra congelaciones",
       "petitions": [
         "He tocado algo muy frio y me ha salido una quemadura por congelación."
       ]
     },
     {
-      "item": "Contra Quemaduras",
-      "archetype": ["townsfolk","mage","adventurer"],
+      "id":"25",
+      "item": "Poción Contra Quemaduras",
+      "archetype": ["town","mage","adventurer","merchant"],
       "desc": "Remedio muy efectivo contra quemaduras",
       "petitions": [
         "Me he hecho una quemadura mientras cocinaba. ¿Tienes algún remedio?"
       ]
     },
     {
-      "item": "Visión Termica",
-      "archetype": ["adventurer"],
+      "id":"26",
+      "item": "Poción de Visión Termica",
+      "archetype": ["adventurer","merchant"],
       "desc": "Los ojos del usuario se cubrirán de una capa naranja semitransparente que permite distinguir temperatura por colores",
       "petitions": [
         "Hoy voy de misión a un lugar muy oscuro. No se si voy a poder ver de forma correcta.",
@@ -269,8 +295,9 @@ const items = [
       ]
     },
     {
-      "item": "Invisibilidad",
-      "archetype": ["adventurer"],
+      "id":"27",
+      "item": "Poción de Invisibilidad",
+      "archetype": ["adventurer","merchant"],
       "desc": "Esparcido sobre la piel, hace que la luz no se refleje sobre el afectado, volviendolo invisible temporalmente.",
       "petitions": [
         "Voy a colarme en un sitio y no quiero que nadie me vea.",
@@ -278,8 +305,9 @@ const items = [
       ]
     },
     {
-      "item": "Ver invisibilidad",
-      "archetype": ["mage","adventurer"],
+      "id":"28",
+      "item": "Poción de Ver Invisibilidad",
+      "archetype": ["mage","adventurer","merchant"],
       "desc": "Los ojos del usuario se cubrirán de una capa azul semitransparente que permite ver siluetas de objetos o criaturas invisibles",
       "petitions": [
         "Necesito una poción para poder ver fantasmas.",
@@ -287,8 +315,9 @@ const items = [
       ]
     },
     {
-      "item": "Capa protectora Ocular",
-      "archetype": ["townsfolk","mage","adventurer"],
+      "id":"29",
+      "item": "Poción Protectora Ocular",
+      "archetype": ["town","mage","adventurer","merchant"],
       "desc": "Esta poción endurece los ojos de quien la beba, permitiendo que no reciban daño.",
       "petitions": [
         "Hoy voy a ver un eclipse, es posible que mis ojos reciban daño.",
@@ -296,16 +325,18 @@ const items = [
       ]
     },
     {
-      "item": "Contra Ceguera",
-      "archetype": ["townsfolk","mage","adventurer"],
+      "id":"30",
+      "item": "Poción Contra Ceguera",
+      "archetype": ["town","mage","adventurer","merchant"],
       "desc": "Esta poción milagrosa puede llegar a curar ceguera si se aplica de forma correcta.",
       "petitions": [
         "He sufrido un accidente que ha dañado gravemente mis ojos y ahora tengo problemas de visión."
       ]
     },
     {
-      "item": "Provoca Alucinaciones",
-      "archetype": ["mage"],
+      "id":"31",
+      "item": "Poción Alucinatoria",
+      "archetype": ["mage","merchant"],
       "desc": "Cuando alguien se toma está poción, entra en un estado de trance donde se suelen tener alucinaciones.",
       "petitions": [
         "Estoy buscando una experiencia espiritual más profunda y me preguntaba si tienes alguna poción que pueda inducir alucinaciones controladas",
@@ -313,24 +344,27 @@ const items = [
       ]
     },
     {
-      "item": "Restauración Vital",
-      "archetype": ["mage"],
+      "id":"32",
+      "item": "Poción de Restauración Vital",
+      "archetype": ["mage","merchant"],
       "desc": "Envuelve y restaura la energía del ánima del usuario que bebe la poción.",
       "petitions": [
         "He perdido muchisima energía magica. ¿Tienes algo que pueda reponerla?"
       ]
     },
     {
-      "item": "Sueños Premonitorios",
-      "archetype": ["mage","adventurer"],
+      "id":"33",
+      "item": "Poción de Sueños Premonitorios",
+      "archetype": ["mage","adventurer","merchant"],
       "desc": "Se ha registrado que tomar esta poción invoca tener sueños premonitorios,",
       "petitions": [
         "Estoy tratando de obtener información sobre un posible peligro futuro."
       ]
     },
     {
-      "item": "Rejuvenización Vegetal",
-      "archetype": ["mage","adventurer"],
+      "id":"34",
+      "item": "Poción de Rejuvenización Vegetal",
+      "archetype": ["mage","adventurer","merchant"],
       "desc": "Esta poción es un excelente abono, y revive la mayoria de las plantas que se marchitan.",
       "petitions": [
         "Algunas de mis plantas están marchitándose y necesito revivirlas.",
@@ -338,8 +372,9 @@ const items = [
       ]
     },
     {
-      "item": "Aliento de Fuego",
-      "archetype": ["mage","adventurer"],
+      "id":"35",
+      "item": "Poción de Aliento de Fuego",
+      "archetype": ["mage","adventurer","merchant"],
       "desc": "En cuanto esta poción se bebe, el consumidor escupirá una rafaga de fuego por la boca.",
       "petitions": [
         "Estoy preparándome para una batalla épica y me gustaría poder lanzar fuego como un dragón.",
@@ -347,16 +382,18 @@ const items = [
       ]
     },
     {
-      "item": "Aliento de Hielo",
-      "archetype": ["mage","adventurer"],
+      "id":"36",
+      "item": "Poción de Aliento de Hielo",
+      "archetype": ["mage","adventurer","merchant"],
       "desc": "En cuanto esta poción se bebe, el consumidor escupirá una rafaga de hielo por la boca.",
       "petitions": [
         "Quiero añadir un toque gélido a mis habilidades de combate. ¿Tienes alguna poción que me permita lanzar ráfagas de hielo?"
       ]
     },
     {
-      "item": "Detectar Mágia",
-      "archetype": ["mage","adventurer"],
+      "id":"37",
+      "item": "Poción de Detectar Mágia",
+      "archetype": ["mage","adventurer","merchant"],
       "desc": "Una vez tomada esta poción el usuario verá un contorno leve alrededor de todo lo que sea mágico y esté cerca suyo.",
       "petitions": [
         "Sospecho que hay fuerzas mágicas en juego a mi alrededor. ¿Tienes alguna poción que pueda ayudarme a detectar la magia cercana?",
@@ -364,6 +401,7 @@ const items = [
       ]
     },
     {
+      "id":"38",
       "item": "Pocion extraña",
       "archetype": ["wildcard"],
       "desc": "No tienes claro que hace esta poción...pero no te la tomarías.",
