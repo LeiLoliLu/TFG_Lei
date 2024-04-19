@@ -2,7 +2,6 @@ var hasClient = false;
 var lastClient = 10;
 var clientObj;
 var matchingItems;
-var opt4listener;
 var selectedItem;
 
 //declaración de variables
@@ -192,9 +191,6 @@ function openInv() {
 }
 
 function selectItemFromInv(id) {
-    opt4button.removeEventListener("click",opt4listener);
-
-    
     selectedItem = items.find(item => item.id === id);
     boxP.innerHTML = selectedItem.item + " <hr> " + selectedItem.desc;
     if (opt4button.classList.contains("hidden")) {
@@ -210,7 +206,6 @@ function sellItem(item) {
     //quitar botones de todas clases y event listener
     opt4button.classList.add("hidden");
     boxButtons.classList.add("hidden");
-    opt4button.removeEventListener("click", opt4listener);
 
     //quitar items
     itemsquares = document.getElementsByTagName("itemsquare");
