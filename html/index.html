@@ -17,9 +17,9 @@
         <div class="texttitle" id="texttitle">No hay nadie en tu tienda</div>
         <div class="box" id="box"><p>...</p><span id="continuetext" class="hidden">Haz click para continuar...</span>
           <div class="boxbuttons hidden" id="boxButtons">
-            <div class="boxbutton" id="opt1">Abrir Almacén</div>
-            <div class="boxbutton" id="opt2">Hablar</div>
-            <div class="boxbutton" id="opt3">No puedo ayudarte</div>
+            <div class="boxbutton" id="opt1" onclick="openInv()">Abrir Almacén</div>
+            <div class="boxbutton" id="opt2" onclick="talkToClient()">Hablar</div>
+            <div class="boxbutton" id="opt3" onclick="deleteClient()">No puedo ayudarte</div>
             </div>
             <div class="boxbutton hidden" id="opt4" onclick="sellItem(selectedItem)">Confirmar</div>
         </div>

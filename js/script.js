@@ -88,12 +88,9 @@ async function clientActions() {
     boxP.innerHTML = clientObj.greeting;
 
     await waitForClick();
-
     clientPetition();
-
     await waitForClick();
-
-    displayClientOptions();
+    toggleClientOptions();
 }
 
 function clientPetition() {
@@ -125,28 +122,9 @@ function clientPetition() {
     });
 }
 
-function displayClientOptions() {
+function toggleClientOptions() {
     boxP.classList.add("hidden");
     boxButtons.classList.remove("hidden");
-
-    listenOpt1 = opt1button.addEventListener("click", function () {
-        openInv();
-        opt1button.removeEventListener("click",listenOpt1);
-        opt2button.removeEventListener("click",listenOpt2);
-        opt3button.removeEventListener("click",listenOpt3);
-    });
-    listenOpt2 = opt2button.addEventListener("click", function () {
-        talkToClient();
-        opt1button.removeEventListener("click",listenOpt1);
-        opt2button.removeEventListener("click",listenOpt2);
-        opt3button.removeEventListener("click",listenOpt3);
-    });
-    listenOpt3 = opt3button.addEventListener("click", function () {
-        deleteClient();
-        opt1button.removeEventListener("click",listenOpt1);
-        opt2button.removeEventListener("click",listenOpt2);
-        opt3button.removeEventListener("click",listenOpt3);
-    });
 }
 
 function waitForClick() {
@@ -217,13 +195,15 @@ function sellItem(item) {
         deleteClient();
     } else {
         console.log("Incorrecto.");
-        displayClientOptions();
+        toggleClientOptions();
     }
 }
 
 function deleteClient() {
     var client = document.getElementById("currentClient");
-    client.remove();
+    if(client!=null){
+        client.remove();
+    }
     hasClient = false;
     if (!boxButtons.classList.contains("hidden")) {
         boxButtons.classList.add("hidden");
