@@ -123,9 +123,13 @@ background-color: #d4a074;
   background-size: 100% 100%;
 }
 
+hr{
+  border: 1px solid #a5754e;
+}
+
 .almacen{
   margin:auto;
-  background-image:url("../assets/bgs/almacen.png");
+  background-color: #bb8559;
   background-size: 100% 100%;
 }
 
@@ -136,7 +140,21 @@ background-color: #d4a074;
   background-color: aqua;
 }
 
+.itemsquare{
+  width: 100px;
+  height: 100px;
+  background-color: #d4a074;
+  margin: 10px;
+}
 
+.screenalmacen{
+  height: 600px;
+  width: 800px;
+  display:flex;
+  flex-wrap: wrap;
+  overflow: auto;
+  justify-content: space-evenly !important;
+}
 
 .alert{
   animation: alert 500ms infinite;
