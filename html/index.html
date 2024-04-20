@@ -17,13 +17,14 @@
         <div class="texttitle" id="texttitle">No hay nadie en tu tienda</div>
         <div class="box" id="box"><p>...</p><span id="continuetext" class="hidden">Haz click para continuar...</span>
           <div class="boxbuttons hidden" id="boxButtons">
-            <div class="boxbutton" id="opt1" onclick="openInv()">Abrir Almacén</div>
+            <div class="boxbutton" id="opt1" onclick="openInvFromClient()">Abrir Almacén</div>
             <div class="boxbutton" id="opt2" onclick="talkToClient()">Hablar</div>
             <div class="boxbutton" id="opt3" onclick="deleteClient()">No puedo ayudarte</div>
             </div>
             <div class="boxbutton hidden" id="opt4" onclick="sellItem(selectedItem)">Confirmar</div>
         </div>
         </div>
+        
     </main>
     <aside class="content">
       <div class="button" id="bJardin">Jardín</div>
@@ -31,9 +32,13 @@
       <div class="button" id="bTrastienda">Trastienda</div>
       <div class="button" id="bRecetario">Recetario</div>
       <div class="button" id="bAjustes">Ajustes</div>
+      <div class="button" id="goldmeter"></div>
     </aside>
 </body>
+<script src="../js/userdata.js"></script>
+<script src="../js/serverdata.js"></script>
 <script src="../js/script.js"></script>
-<script src="../js/townsfolk.js"></script>
+
+
 </script>
 </html>

@@ -3,8 +3,26 @@ var lastClient = 10;
 var clientObj;
 var matchingItems;
 var selectedItem;
+var gold = progress.gold;
+var polentype = 1; //1 active, 2 dormant
+var aurorapart = 1; //1 hojas, 2 fruto
 
-//declaración de variables
+var listenerjardin = function () {
+    changeScreen(1);
+};
+var listenermostrador = function () {
+    changeScreen(2);
+};
+var listenertrastienda = function () {
+    changeScreen(3);
+};
+var listenerrecetario = function () {
+    changeScreen(4);
+};
+var listenerajustes = function () {
+    changeScreen(5);
+};
+
 var title = document.getElementById("title");
 var texttitle = document.getElementById("texttitle");
 var box = document.getElementById("box");
@@ -19,23 +37,21 @@ var bMostrador = document.getElementById("bMostrador");
 var bTrastienda = document.getElementById("bTrastienda");
 var bRecetario = document.getElementById("bRecetario");
 var bAjustes = document.getElementById("bAjustes");
+var goldmeter = document.getElementById("goldmeter");
 var opt1button = document.getElementById("opt1");
 var opt2button = document.getElementById("opt2");
 var opt3button = document.getElementById("opt3");
 var opt4button = document.getElementById("opt4");
 
 //declaración de eventos
-const botonJar = bJardin.addEventListener("click", function () { changeScreen(1); });
-const botonMos = bMostrador.addEventListener("click", function () { changeScreen(2); });
-const botonTra = bTrastienda.addEventListener("click", function () { changeScreen(3); });
-const botonRec = bRecetario.addEventListener("click", function () { changeScreen(4); });
-const botonAju = bAjustes.addEventListener("click", function () { changeScreen(5); });
 const clientela = setInterval(summonClient, 5000);
 
 //Start
 changeScreen(2);
+activarMenuLateral();
+goldmeter.innerHTML = "Oro: " + gold;
 
-//Clientela
+//CLIENT FUNCTIONS - TODO TALKING AND DIALOGUE
 function summonClient() {
     if (!hasClient) {
         console.log("Trying to summon Client...");
@@ -81,6 +97,8 @@ function createClient() {
 }
 
 async function clientActions() {
+
+    desactivarMenuLateral();
     var client = document.getElementById("currentClient");
     client.removeAttribute("onclick");
 
@@ -96,20 +114,9 @@ async function clientActions() {
 function clientPetition() {
     //ver que objetos puede pedir por su tipo
     var objetosPedibles = items.filter(item => item.archetype.includes(clientObj.type));
-    //
-    objetosPedibles.forEach(element => {
-        console.log("Objetos pedibles: " + element.item)
-    });
 
     //pick random item
     var targetItem = objetosPedibles[Math.floor(Math.random() * objetosPedibles.length)];
-    //
-    console.log("Objeto seleccionado: " + targetItem.item);
-
-
-    targetItem.petitions.forEach(element => {
-        console.log("Peticiones: " + element)
-    });
 
     //pick random petition
     var targetPetition = targetItem.petitions[Math.floor(Math.random() * targetItem.petitions.length)];
@@ -117,9 +124,7 @@ function clientPetition() {
 
     //filter objects that can be given to client with that petition too
     matchingItems = items.filter(item => item.petitions.includes(targetPetition)).filter(item => item.archetype.includes(clientObj.type));
-    matchingItems.forEach(element => {
-        console.log("Objetos posibles: " + element.item)
-    });
+
 }
 
 function toggleClientOptions() {
@@ -127,21 +132,7 @@ function toggleClientOptions() {
     boxButtons.classList.remove("hidden");
 }
 
-function waitForClick() {
-    return new Promise(resolve => {
-        function boxClicked() {
-            box.removeEventListener('click', boxClicked)
-            boxContinueText.classList.remove("pulsing");
-            boxContinueText.classList.add("hidden");
-            resolve();
-        }
-        boxContinueText.classList.remove("hidden");
-        boxContinueText.classList.add("pulsing");
-        box.addEventListener('click', boxClicked);
-    });
-}
-
-function openInv() {
+function openInvFromClient() {
     changeScreen(6);
     boxP.classList.remove("hidden");
     boxP.innerHTML = "...";
@@ -149,118 +140,199 @@ function openInv() {
     screen.classList.add("screenalmacen");
 
     inventory = items.filter(item => {
-        invItem = currentInv.find(invItem => invItem["item-id"] === item.id);
-        return invItem && parseInt(invItem.quantity) > 0;
+        //invItem = currentInv.find(invItem => invItem["item-id"] === item.id);
+        //return invItem && parseInt(invItem.quantity) > 0;
+        if(currentInv[item.id]>0){
+            return item;
+        }
     });
 
     inventory.forEach(item => {
         var square = document.createElement('itemsquare');
         square.classList.add('itemsquare');
         square.setAttribute('item-id', item.id);
+        square.innerHTML = item.item + "<br> Cantidad: " + currentInv[item.id];
         //var squareimg = document.createElement('img');
         //squareimg.setAttribute('src',item.imgroute);
         //square.appendChild(squareimg);
         square.addEventListener('click', function () {
-            selectItemFromInv(item.id);
+            selectItemFromInvClient(item.id);
         });
         screen.appendChild(square);
     });
 
 }
 
-function selectItemFromInv(id) {
+function selectItemFromInvClient(id) {
     selectedItem = items.find(item => item.id === id);
-    boxP.innerHTML = selectedItem.item + " <hr> " + selectedItem.desc;
+    boxP.innerHTML = selectedItem.item + " - Precio: " + selectedItem.price + " de oro." + " <hr> " + selectedItem.desc;
     if (opt4button.classList.contains("hidden")) {
         opt4button.classList.remove("hidden");
     }
 }
 
-
-function sellItem(item) {
-    //cambia a mostrador
+async function sellItem(item) {
+    // Cambia a mostrador
     changeScreen(2);
 
-    //quitar botones de todas clases y event listener
+    // Quitar botones de todas clases y event listener
     opt4button.classList.add("hidden");
     boxButtons.classList.add("hidden");
 
-    //quitar items
+    // Quitar items
     itemsquares = document.getElementsByTagName("itemsquare");
     while (itemsquares[0]) itemsquares[0].parentNode.removeChild(itemsquares[0]);
 
-    //comprobar si esta bien
-    if (matchingItems.includes(item)) {
-        console.log("Correcto.");
-        deleteClient();
-    } else {
-        console.log("Incorrecto.");
-        toggleClientOptions();
+    if (boxP.classList.contains("hidden")) {
+        boxP.classList.remove("hidden");
     }
+
+    // Comprobar si está bien
+    if (matchingItems.includes(item)) {
+        // Sumar oro
+        gold += item.price;
+        goldmeter.innerHTML = "Oro: " + gold;
+
+        //Eliminar poción del inventario
+        currentInv[item.id]-=1;
+
+        // Responder
+        respuestas = [
+            "¡Perfecto! Justo lo que necesito. ¡Hasta luego!",
+            "¡Muchas gracias! Ya nos veremos.",
+            "Muchas gracias, nos vemos pronto.",
+            "¡Genial! Aquí tienes tu pago. ¡Adiós!",
+            "¡Estupendo! Es lo que buscaba. ¡Ten un buen día!"
+        ];
+        int = indiceAleatorio = Math.floor(Math.random() * respuestas.length);
+        boxP.innerHTML = respuestas[int];
+
+        await waitForClick();
+    } else {
+        // Responder
+        respuestas = [
+            "Creo que esto no me sirve... Ya volveré en otro momento.",
+            "No, creo que no es lo que te he pedido. Bueno, pasa un buen día.",
+            "¿Esto? Pero esto no sirve... Me voy, hasta más ver.",
+            "Creo que te has equivocado... Lo siento, tengo que irme.",
+            "Es una broma, ¿no? Tengo prisa, ya volveré."
+        ];
+        int = indiceAleatorio = Math.floor(Math.random() * respuestas.length);
+        boxP.innerHTML = respuestas[int];
+
+        await waitForClick();
+    }
+
+    await waitForClick();
+    // Se va
+    deleteClient();
 }
 
 function deleteClient() {
     var client = document.getElementById("currentClient");
-    if(client!=null){
+    if (client != null) {
         client.remove();
     }
     hasClient = false;
     if (!boxButtons.classList.contains("hidden")) {
         boxButtons.classList.add("hidden");
     }
-    if (texttitle.classList.contains("hidden")) {
-        texttitle.classList.remove("hidden");
-    }
     if (boxP.classList.contains("hidden")) {
         boxP.classList.remove("hidden");
     }
     texttitle.innerHTML = "No hay nadie en tu tienda";
     boxP.innerHTML = "...";
+    activarMenuLateral();
+}
+
+//GARDEN FUNCTIONS
+/*
+TODO:
+- Load Plants based on if they are unlocked or not
+- Onclick -> Collect crop -> quantity +1
+- Figure out cooldowns?
+- aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+- polen polarity
+- aurora switch hojas/fruto
+*/
+function loadGarden() {
+    var crop1 = document.createElement('crop');
+    crop1.classList.add('crop');
+    crop1.setAttribute('onclick', "harvest('i1')");
+    screen.appendChild(crop1);
+    if (progress.hasPetalos) {
+        var crop = document.createElement('crop');
+        crop.classList.add('crop');
+        crop.setAttribute('onclick', "harvest('i2')");
+        screen.appendChild(crop);
+    }
+    if (progress.hasRaices) {
+        var crop = document.createElement('crop');
+        crop.classList.add('crop');
+        crop.setAttribute('onclick', "harvest('i3')");
+        screen.appendChild(crop);
+    }
+    if (progress.hasPolen) {
+        var crop = document.createElement('crop');
+        crop.classList.add('crop');
+        if (polentype == 1) {
+            crop.setAttribute('onclick', "harvest('i4a')");
+        } else {
+            crop.setAttribute('onclick', "harvest('i4b')");
+        }
+        screen.appendChild(crop);
+    }
+    if (progress.hasAurora) {
+        var crop = document.createElement('crop');
+        crop.classList.add('crop');
+        if (aurorapart == 1) {
+            crop.setAttribute('onclick', "harvest('i5')");
+        } else {
+            crop.setAttribute('onclick', "harvest('i6')");
+        }
+        screen.appendChild(crop);
+    }
+}
+
+function clearGarden() {
+    crops = document.getElementsByTagName("crop");
+    while (crops[0]) crops[0].parentNode.removeChild(crops[0]);
+}
+
+function harvest(id) {
+    currentInv[id]++;
 }
 
 
-//CHANGE SCREEN
+//CHANGE SCREEN FUNCTIONS
 function changeScreen(option) {
+    clearGarden();
+    clearBackground();
+    toggleClient("OFF");
     switch (option) {
         case 1:
             title.innerHTML = "Jardin";
-            clearBackground();
             screen.classList.add("jardin");
-            toggleTextbox("ON");
-            toggleClient("OFF");
+            loadGarden();
             break;
         case 2:
             title.innerHTML = "Mostrador";
-            clearBackground();
             screen.classList.add("mostrador");
-            toggleTextbox("ON");
             toggleClient("ON");
             break;
         case 3:
             title.innerHTML = "Trastienda";
-            clearBackground();
             screen.classList.add("trastienda");
-            toggleTextbox("ON");
-            toggleClient("OFF");
             break;
         case 4:
             title.innerHTML = "Recetario";
-            clearBackground();
-            toggleTextbox("ON");
-            toggleClient("OFF");
             break;
         case 5:
             title.innerHTML = "Ajustes";
-            clearBackground();
-            toggleTextbox("ON");
-            toggleClient("OFF");
             break;
         case 6:
             title.innerHTML = "Almacén";
-            clearBackground();
             screen.classList.add("almacen");
-            toggleTextbox("ON");
-            toggleClient("OFF");
             break;
     }
 }
@@ -270,17 +342,6 @@ function clearBackground() {
     screen.classList.remove("trastienda");
     screen.classList.remove("almacen");
     screen.classList.remove("screenalmacen");
-}
-function toggleTextbox(option) {
-    switch (option) {
-        case "ON":
-            textbox.classList.remove("hidden");
-            screen.classList.remove("long");
-            break;
-        case "OFF":
-            textbox.classList.add("hidden");
-            screen.classList.add("long");
-    }
 }
 function toggleClient(option) {
     if (hasClient) {
@@ -296,3 +357,33 @@ function toggleClient(option) {
     }
 }
 
+//UTILITY FUNCTIONS
+function waitForClick() {
+    return new Promise(resolve => {
+        function boxClicked() {
+            box.removeEventListener('click', boxClicked)
+            boxContinueText.classList.remove("pulsing");
+            boxContinueText.classList.add("hidden");
+            resolve();
+        }
+        boxContinueText.classList.remove("hidden");
+        boxContinueText.classList.add("pulsing");
+        box.addEventListener('click', boxClicked);
+    });
+}
+
+function desactivarMenuLateral() {
+    bJardin.removeEventListener("click", listenerjardin);
+    bMostrador.removeEventListener("click", listenermostrador);
+    bTrastienda.removeEventListener("click", listenertrastienda);
+    bRecetario.removeEventListener("click", listenerrecetario);
+    bAjustes.removeEventListener("click", listenerajustes);
+}
+
+function activarMenuLateral() {
+    bJardin.addEventListener("click", listenerjardin);
+    bMostrador.addEventListener("click", listenermostrador);
+    bTrastienda.addEventListener("click", listenertrastienda);
+    bRecetario.addEventListener("click", listenerrecetario);
+    bAjustes.addEventListener("click", listenerajustes);
+}

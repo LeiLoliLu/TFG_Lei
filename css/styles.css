@@ -109,7 +109,7 @@ background-color: #d4a074;
 
 .jardin{
   margin:auto;
-  background-image:url("../assets/bgs/jardin.jpg");
+  background-image:url("../assets/bgs/jardin.png");
   background-size: 100% 100%;
 }
 .mostrador{
@@ -144,6 +144,13 @@ hr{
   width: 100px;
   height: 100px;
   background-color: #d4a074;
+  margin: 10px;
+}
+
+.crop{
+  width: 150px;
+  height: 150px;
+  background-color: #86cc7c;
   margin: 10px;
 }
 
