@@ -12,7 +12,13 @@
 <body>
     <main class="contentscreen">
       <div class="title" id="title"></div>
-      <div class="screen" id="screen"></div>
+      <div class="screen" id="screen">
+        <crop class="crop" id="i1"></crop>
+        <crop class="crop" id="i2"></crop>
+        <crop class="crop" id="i3"></crop>
+        <crop class="crop" id="i4"></crop>
+        <crop class="crop" id="i56"></crop>
+      </div>
       <div class="textbox" id="textbox">
         <div class="texttitle" id="texttitle">No hay nadie en tu tienda</div>
         <div class="box" id="box"><p>...</p><span id="continuetext" class="hidden">Haz click para continuar...</span>
@@ -33,6 +39,9 @@
       <div class="button" id="bRecetario">Recetario</div>
       <div class="button" id="bAjustes">Ajustes</div>
       <div class="button" id="goldmeter"></div>
+      <div class="button toggler" id="togglerpolen" onclick="togglePolen()">Recogiendo Polen Vulcano Activo</div>
+      <div class="button toggler" id="toggleraurora" onclick="toggleAurora()">Recogiendo Hojas de Aurora</div>
+      
     </aside>
 </body>
 <script src="../js/userdata.js"></script>

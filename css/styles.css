@@ -138,6 +138,7 @@ hr{
   height: 100px;
   margin:0;
   background-color: aqua;
+  position: absolute;
 }
 
 .itemsquare{
@@ -152,6 +153,10 @@ hr{
   height: 150px;
   background-color: #86cc7c;
   margin: 10px;
+  visibility: visible;
+}
+.hiddencrops{
+  visibility: hidden;
 }
 
 .screenalmacen{
@@ -184,4 +189,35 @@ hr{
   50% { opacity: 100%; }
   75% { opacity: 50%; }
   100% { opacity: 100%; }
+}
+
+.cooldown {
+  animation-name: cooldownAnimation;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+}
+
+@keyframes cooldownAnimation {
+  0% {
+    transform: scale(0);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.toggler{
+  transition: background-position 1 ease-in;
+}
+
+#togglerpolen {
+  background-image: linear-gradient(to right, #fda241, #4e9efa);
+  background-size: 200% 100%;
+  background-position: left;
+}
+
+#toggleraurora {
+  background-image: linear-gradient(to right, #82fde3, #ff85e5);
+  background-size: 200% 100%;
+  background-position: left;
 }

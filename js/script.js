@@ -3,9 +3,20 @@ var lastClient = 10;
 var clientObj;
 var matchingItems;
 var selectedItem;
-var gold = progress.gold;
 var polentype = 1; //1 active, 2 dormant
+var cooldownPolen=false;
+var cooldownAurora=false;
 var aurorapart = 1; //1 hojas, 2 fruto
+var lastHarvestTime = {};
+const cooldowns = {
+    'i1': 0,  // No cooldown for i1
+    'i2': 5,
+    'i3': 15,
+    'i4a': 30,
+    'i4b': 30,
+    'i5': 45,
+    'i6': 60
+};
 
 var listenerjardin = function () {
     changeScreen(1);
@@ -38,6 +49,13 @@ var bTrastienda = document.getElementById("bTrastienda");
 var bRecetario = document.getElementById("bRecetario");
 var bAjustes = document.getElementById("bAjustes");
 var goldmeter = document.getElementById("goldmeter");
+var togglerPolen = document.getElementById("togglerpolen");
+var togglerAurora = document.getElementById("toggleraurora");
+var crop1 = document.getElementById("i1");
+var crop2 = document.getElementById("i2");
+var crop3 = document.getElementById("i3");
+var crop4 = document.getElementById("i4");
+var crop56 = document.getElementById("i56");
 var opt1button = document.getElementById("opt1");
 var opt2button = document.getElementById("opt2");
 var opt3button = document.getElementById("opt3");
@@ -246,63 +264,127 @@ function deleteClient() {
 }
 
 //GARDEN FUNCTIONS
-/*
-TODO:
-- Load Plants based on if they are unlocked or not
-- Onclick -> Collect crop -> quantity +1
-- Figure out cooldowns?
-- aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-- polen polarity
-- aurora switch hojas/fruto
-*/
 function loadGarden() {
-    var crop1 = document.createElement('crop');
-    crop1.classList.add('crop');
-    crop1.setAttribute('onclick', "harvest('i1')");
-    screen.appendChild(crop1);
+    if(progress.hasPolen){togglerPolen.classList.remove("hidden");}
+    if(progress.hasAurora){togglerAurora.classList.remove("hidden");}
+    
+    crop1.classList.remove("hiddencrops");
     if (progress.hasPetalos) {
-        var crop = document.createElement('crop');
-        crop.classList.add('crop');
-        crop.setAttribute('onclick', "harvest('i2')");
-        screen.appendChild(crop);
+        crop2.classList.remove("hiddencrops");
+        crop2.setAttribute('onclick', "harvest('i2','i2')");
     }
     if (progress.hasRaices) {
-        var crop = document.createElement('crop');
-        crop.classList.add('crop');
-        crop.setAttribute('onclick', "harvest('i3')");
-        screen.appendChild(crop);
+        crop3.classList.remove("hiddencrops");
+        crop3.setAttribute('onclick', "harvest('i3','i3')");
     }
     if (progress.hasPolen) {
-        var crop = document.createElement('crop');
-        crop.classList.add('crop');
+        crop4.classList.remove("hiddencrops");
         if (polentype == 1) {
-            crop.setAttribute('onclick', "harvest('i4a')");
+            crop4.setAttribute('onclick', "harvest('i4a','i4')");
         } else {
-            crop.setAttribute('onclick', "harvest('i4b')");
+            crop4.setAttribute('onclick', "harvest('i4b','i4')");
         }
-        screen.appendChild(crop);
     }
     if (progress.hasAurora) {
-        var crop = document.createElement('crop');
-        crop.classList.add('crop');
+        crop56.classList.remove("hiddencrops");
         if (aurorapart == 1) {
-            crop.setAttribute('onclick', "harvest('i5')");
+            crop56.setAttribute('onclick', "harvest('i5','i56')");
         } else {
-            crop.setAttribute('onclick', "harvest('i6')");
+            crop56.setAttribute('onclick', "harvest('i6','i56')");
         }
-        screen.appendChild(crop);
     }
 }
 
-function clearGarden() {
-    crops = document.getElementsByTagName("crop");
-    while (crops[0]) crops[0].parentNode.removeChild(crops[0]);
-}
 
-function harvest(id) {
+function harvest(id,elemid) {
+    var currentTime = new Date().getTime();
+    var cooldown = cooldowns[id];
+    
+    // Check if the item is still on cooldown
+    if (cooldown && lastHarvestTime[id] && (currentTime - lastHarvestTime[id]) < cooldown * 1000) {
+        console.log("This item is still on cooldown. Please wait before harvesting again.");
+        return; // Exit the function early if the item is on cooldown
+    }
+
+    if(elemid=="i4"){
+        cooldownPolen=true;
+    }
+    if(elemid=="i56"){
+        cooldownAurora=true;
+    }
+
+    // Harvest the item
     currentInv[id]++;
+    lastHarvestTime[id] = currentTime;
+
+    // Add the cooldown class to visually indicate the cooldown
+    var cropElement = document.getElementById(elemid);
+    cropElement.classList.add('cooldown');
+    cropElement.style.animationDuration = cooldown + 's';
+    cropElement.classList.add('cooldown');
+    var elemClick=cropElement.getAttribute('onclick');
+    cropElement.removeAttribute('onclick');
+
+    // Remove the cooldown class after the cooldown duration
+    setTimeout(() => {
+        if(elemid=="i4"){
+            cooldownPolen=false;
+        }
+        if(elemid=="i56"){
+            cooldownAurora=false;
+        }
+        cropElement.classList.remove('cooldown');
+        cropElement.setAttribute('onclick',elemClick);
+    }, cooldown * 1000);
 }
 
+function togglePolen(){
+    if(cooldownPolen){
+        return;
+    }
+    if (polentype === 1) {
+        polentype = 2;
+        togglerPolen.style.backgroundPosition = 'right';
+        togglerPolen.innerHTML="Recogiendo Polen Vulcano Durmiente"
+        crop4.removeAttribute('onclick');
+        crop4.setAttribute('onclick', "harvest('i4b','i4')");
+      } else {
+        polentype = 1;
+        togglerPolen.style.backgroundPosition = 'left';
+        togglerPolen.innerHTML="Recogiendo Polen Vulcano Activo"
+        crop4.removeAttribute('onclick');
+        crop4.setAttribute('onclick', "harvest('i4a','i4')");
+      }
+}
+
+function toggleAurora(){
+    if(cooldownAurora){
+        return;
+    }
+    if (aurorapart === 1) {
+        aurorapart = 2;
+        togglerAurora.style.backgroundPosition = 'right';
+        togglerAurora.innerHTML="Recogiendo Frutos de Aurora";
+        crop56.removeAttribute('onclick');
+        crop56.setAttribute('onclick', "harvest('i6','i56')");
+      } else {
+        aurorapart = 1;
+        togglerAurora.style.backgroundPosition = 'left';
+        togglerAurora.innerHTML="Recogiendo Hojas de Aurora"
+        crop56.removeAttribute('onclick');
+        crop56.setAttribute('onclick', "harvest('i5','i56')");
+      }
+    }
+
+function clearGarden() {
+    togglerAurora.classList.add("hidden");
+    togglerPolen.classList.add("hidden");
+    crop1.classList.add('hiddencrops');
+    crop2.classList.add('hiddencrops');
+    crop3.classList.add('hiddencrops');
+    crop4.classList.add('hiddencrops');
+    crop56.classList.add('hiddencrops');
+}
 
 //CHANGE SCREEN FUNCTIONS
 function changeScreen(option) {
@@ -387,3 +469,4 @@ function activarMenuLateral() {
     bRecetario.addEventListener("click", listenerrecetario);
     bAjustes.addEventListener("click", listenerajustes);
 }
+
