@@ -1,3 +1,4 @@
+//#region VARIABLES
 var hasClient = false;
 var lastClient = 10;
 var clientObj;
@@ -42,7 +43,6 @@ var boxContinueText = document.getElementById("continuetext");
 var textbox = document.getElementById("textbox");
 var screen = document.getElementById("screen");
 var boxButtons = document.getElementById("boxButtons")
-
 var bJardin = document.getElementById("bJardin");
 var bMostrador = document.getElementById("bMostrador");
 var bTrastienda = document.getElementById("bTrastienda");
@@ -61,15 +61,37 @@ var opt2button = document.getElementById("opt2");
 var opt3button = document.getElementById("opt3");
 var opt4button = document.getElementById("opt4");
 
-//declaración de eventos
 const clientela = setInterval(summonClient, 5000);
 
-//Start
 changeScreen(2);
 activarMenuLateral();
 goldmeter.innerHTML = "Oro: " + gold;
+//#endregion
 
-//CLIENT FUNCTIONS - TODO TALKING AND DIALOGUE
+//#region CLIENT FUNCTIONS
+/** 
+ * summonClient : Si no hay un cliente ya, tiene un 50% de posibilidades de generar un cliente. Si se genera, se redirige a CreateClient y se aplica el efecto de alarma.
+ * createClient : Crea y devuelve un elemento client con la clase Client, id "currentClient" y onclick que lleva a clientActions.
+ *                Si el jugador no está en el mostrador se muestra oculto. Se le da el id "CurrentClient".
+ *                Se selecciona un número aleatorio para dar la información de la lista de townsfolk mientras no sea el último que ha venido.
+ * clientActions : Llama a desactivarMenuLateral y elimina el onclick del cliente, carga el nombre de el cliente y su saludo.
+ *                 Espera a que el usuario haga click para continuar.
+ *                 Llama a clientPetition y vuelve a esperar, para luego llamar a toggleClientOptions.
+ * clientPetition: Obtiene que objetos puede pedir un cliente por su tipo de cliente en la lista items.
+ *                 Selecciona de forma aleatoria uno de esos objetos.
+ *                 Selecciona de forma aleatoria una de las posibles formas de pedir dicho objeto.
+ *                 Guarda en matching items los items que pueden responder a la petición seleccionada.
+ * toggleClientOptions: Oculta BoxP y muestra los botones de acción, que llevan a openInvFromClient, TalkToClient y deleteClient respectivamente.
+ * openInvFromClient: Cambia la pantalla usando changeScreen a el almacen, muestra BoxP de nuevo y oculta los botones de toggleClientOptions. Se le añade la clase screenalmacen a la pantalla.
+ *                    Se filtran los Items cuya cantidad sea mayor que cero.
+ *                    Se crea un cuadrado con la info de cada item que se ha filtrado y se acopla a la pantalla.
+ *                    Cada cuadrado manda a selectItemFromInvClient.
+ * selectItemFromInvClient: Muestra la información del objeto seleccionado en la caja de texto y muestra el botón que va a sellItem.
+ * sellItem: Cambia al mostrador, oculta botones de cliente y de continuar, y elimina los elementos square creados en openInvFromClient.
+ *           Comprueba si el item seleccionado se encuentra en los matchingitems de clientPetition. Si está, se suma el oro al jugador y se resta el objeto del inventario.
+ *           Si no, no se suma el oro ni se resta. Llamada a DeleteItem despues de esperar a click.
+ * deleteClient: Elimina el cliente de la tienda y reinicia la caja de texto.
+*/
 function summonClient() {
     if (!hasClient) {
         console.log("Trying to summon Client...");
@@ -158,8 +180,6 @@ function openInvFromClient() {
     screen.classList.add("screenalmacen");
 
     inventory = items.filter(item => {
-        //invItem = currentInv.find(invItem => invItem["item-id"] === item.id);
-        //return invItem && parseInt(invItem.quantity) > 0;
         if(currentInv[item.id]>0){
             return item;
         }
@@ -262,8 +282,9 @@ function deleteClient() {
     boxP.innerHTML = "...";
     activarMenuLateral();
 }
+//#endregion
 
-//GARDEN FUNCTIONS
+//#region GARDEN FUNCTIONS
 function loadGarden() {
     if(progress.hasPolen){togglerPolen.classList.remove("hidden");}
     if(progress.hasAurora){togglerAurora.classList.remove("hidden");}
@@ -301,12 +322,10 @@ function harvest(id,elemid) {
     var currentTime = new Date().getTime();
     var cooldown = cooldowns[id];
     
-    // Check if the item is still on cooldown
     if (cooldown && lastHarvestTime[id] && (currentTime - lastHarvestTime[id]) < cooldown * 1000) {
         console.log("This item is still on cooldown. Please wait before harvesting again.");
-        return; // Exit the function early if the item is on cooldown
+        return; 
     }
-
     if(elemid=="i4"){
         cooldownPolen=true;
     }
@@ -314,11 +333,10 @@ function harvest(id,elemid) {
         cooldownAurora=true;
     }
 
-    // Harvest the item
+
     currentInv[id]++;
     lastHarvestTime[id] = currentTime;
 
-    // Add the cooldown class to visually indicate the cooldown
     var cropElement = document.getElementById(elemid);
     if(elemid=="i1"){
         cropElement.classList.add('cooldown1');
@@ -330,8 +348,6 @@ function harvest(id,elemid) {
     
     var elemClick=cropElement.getAttribute('onclick');
     cropElement.removeAttribute('onclick');
-
-    // Remove the cooldown class after the cooldown duration
     setTimeout(() => {
         
         if(elemid=="i4"){
@@ -393,8 +409,27 @@ function clearGarden() {
     crop4.classList.add('hiddencrops');
     crop56.classList.add('hiddencrops');
 }
+//#endregion
 
-//CHANGE SCREEN FUNCTIONS
+//#region BACKSHOP FUNCTIONS
+/**TODO:
+ * Set ChangeScreen
+ * Create elements of almacen, upgradeboard, magicpot
+ * almacen -> OpenInv pero sin select
+ * upgradeboard -> vista nueva, listado de mejoras, modificar progress 
+ * magicpot-> vista nueva, mostrar solo ingredientes, seleccionar 3 ingredientes, crear pocion por esos ingredientes, sumar pocion a inv, restar ingredientes
+ *          Si receta no descubierta, descubrir recetas.
+ * 
+ * recetario: listar recetas descubiertas, if click -> instant potion at magic pot
+ */
+function loadBackshop(){
+    
+}
+
+
+//#endregion
+
+//#region CHANGE SCREEN FUNCTIONS
 function changeScreen(option) {
     clearGarden();
     clearBackground();
@@ -446,8 +481,9 @@ function toggleClient(option) {
         }
     }
 }
+//#endregion
 
-//UTILITY FUNCTIONS
+//#region UTILITY FUNCTIONS
 function waitForClick() {
     return new Promise(resolve => {
         function boxClicked() {
@@ -477,4 +513,4 @@ function activarMenuLateral() {
     bRecetario.addEventListener("click", listenerrecetario);
     bAjustes.addEventListener("click", listenerajustes);
 }
-
+//#endregion
