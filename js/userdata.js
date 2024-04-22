@@ -48,9 +48,9 @@ var currentInv = {
 
 var progress = {
   "hasPetalos": true,
-  "hasRaices": true,
-  "hasPolen": true,
-  "hasAurora": true,
+  "hasRaices": false,
+  "hasPolen": false,
+  "hasAurora": false,
   "gold":50
 };
 

@@ -9,7 +9,7 @@ var cooldownAurora=false;
 var aurorapart = 1; //1 hojas, 2 fruto
 var lastHarvestTime = {};
 const cooldowns = {
-    'i1': 0,  // No cooldown for i1
+    'i1': 0.1,  // No cooldown for i1
     'i2': 5,
     'i3': 15,
     'i4a': 30,
@@ -269,6 +269,7 @@ function loadGarden() {
     if(progress.hasAurora){togglerAurora.classList.remove("hidden");}
     
     crop1.classList.remove("hiddencrops");
+    crop1.setAttribute('onclick', "harvest('i1','i1')");
     if (progress.hasPetalos) {
         crop2.classList.remove("hiddencrops");
         crop2.setAttribute('onclick', "harvest('i2','i2')");
@@ -319,20 +320,27 @@ function harvest(id,elemid) {
 
     // Add the cooldown class to visually indicate the cooldown
     var cropElement = document.getElementById(elemid);
-    cropElement.classList.add('cooldown');
-    cropElement.style.animationDuration = cooldown + 's';
-    cropElement.classList.add('cooldown');
+    if(elemid=="i1"){
+        cropElement.classList.add('cooldown1');
+        cropElement.style.animationDuration = 0.5 + 's';
+    }else{
+        cropElement.classList.add('cooldown');
+        cropElement.style.animationDuration = cooldown + 's';
+    }  
+    
     var elemClick=cropElement.getAttribute('onclick');
     cropElement.removeAttribute('onclick');
 
     // Remove the cooldown class after the cooldown duration
     setTimeout(() => {
+        
         if(elemid=="i4"){
             cooldownPolen=false;
         }
         if(elemid=="i56"){
             cooldownAurora=false;
         }
+        cropElement.classList.remove('cooldown1');
         cropElement.classList.remove('cooldown');
         cropElement.setAttribute('onclick',elemClick);
     }, cooldown * 1000);

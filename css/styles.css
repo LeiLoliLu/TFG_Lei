@@ -198,12 +198,30 @@ hr{
   animation-iteration-count: infinite;
 }
 
+.cooldown1 {
+  animation-name: cooldownAnimation1;
+  animation-timing-function: ease;
+  animation-iteration-count: infinite;
+}
+
 @keyframes cooldownAnimation {
   0% {
+    background-color: #53854b;
     transform: scale(0);
   }
   100% {
     transform: scale(1);
+    background-color: #86cc7c;
+  }
+}
+
+@keyframes cooldownAnimation1 {
+  0% {
+    background-color: #53854b;
+    
+  }
+  100% {
+    background-color: #86cc7c;
   }
 }
 
