@@ -157,6 +157,7 @@ hr{
 }
 .hiddencrops{
   visibility: hidden;
+  position:absolute;
 }
 
 .screenalmacen{
