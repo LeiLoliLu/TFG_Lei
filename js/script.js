@@ -5,8 +5,8 @@ var clientObj;
 var matchingItems;
 var selectedItem;
 var polentype = 1; //1 active, 2 dormant
-var cooldownPolen=false;
-var cooldownAurora=false;
+var cooldownPolen = false;
+var cooldownAurora = false;
 var aurorapart = 1; //1 hojas, 2 fruto
 var lastHarvestTime = {};
 const cooldowns = {
@@ -56,6 +56,9 @@ var crop2 = document.getElementById("i2");
 var crop3 = document.getElementById("i3");
 var crop4 = document.getElementById("i4");
 var crop56 = document.getElementById("i56");
+var backshop1 = document.getElementById("backshop1");
+var backshop2 = document.getElementById("backshop2");
+var backshop3 = document.getElementById("backshop3");
 var opt1button = document.getElementById("opt1");
 var opt2button = document.getElementById("opt2");
 var opt3button = document.getElementById("opt3");
@@ -180,7 +183,7 @@ function openInvFromClient() {
     screen.classList.add("screenalmacen");
 
     inventory = items.filter(item => {
-        if(currentInv[item.id]>0){
+        if (currentInv[item.id] > 0) {
             return item;
         }
     });
@@ -232,7 +235,7 @@ async function sellItem(item) {
         goldmeter.innerHTML = "Oro: " + gold;
 
         //Eliminar poción del inventario
-        currentInv[item.id]-=1;
+        currentInv[item.id] -= 1;
 
         // Responder
         respuestas = [
@@ -286,9 +289,9 @@ function deleteClient() {
 
 //#region GARDEN FUNCTIONS
 function loadGarden() {
-    if(progress.hasPolen){togglerPolen.classList.remove("hidden");}
-    if(progress.hasAurora){togglerAurora.classList.remove("hidden");}
-    
+    if (progress.hasPolen) { togglerPolen.classList.remove("hidden"); }
+    if (progress.hasAurora) { togglerAurora.classList.remove("hidden"); }
+
     crop1.classList.remove("hiddencrops");
     crop1.setAttribute('onclick', "harvest('i1','i1')");
     if (progress.hasPetalos) {
@@ -318,19 +321,19 @@ function loadGarden() {
 }
 
 
-function harvest(id,elemid) {
+function harvest(id, elemid) {
     var currentTime = new Date().getTime();
     var cooldown = cooldowns[id];
-    
+
     if (cooldown && lastHarvestTime[id] && (currentTime - lastHarvestTime[id]) < cooldown * 1000) {
         console.log("This item is still on cooldown. Please wait before harvesting again.");
-        return; 
+        return;
     }
-    if(elemid=="i4"){
-        cooldownPolen=true;
+    if (elemid == "i4") {
+        cooldownPolen = true;
     }
-    if(elemid=="i56"){
-        cooldownAurora=true;
+    if (elemid == "i56") {
+        cooldownAurora = true;
     }
 
 
@@ -338,67 +341,67 @@ function harvest(id,elemid) {
     lastHarvestTime[id] = currentTime;
 
     var cropElement = document.getElementById(elemid);
-    if(elemid=="i1"){
+    if (elemid == "i1") {
         cropElement.classList.add('cooldown1');
         cropElement.style.animationDuration = 0.5 + 's';
-    }else{
+    } else {
         cropElement.classList.add('cooldown');
         cropElement.style.animationDuration = cooldown + 's';
-    }  
-    
-    var elemClick=cropElement.getAttribute('onclick');
+    }
+
+    var elemClick = cropElement.getAttribute('onclick');
     cropElement.removeAttribute('onclick');
     setTimeout(() => {
-        
-        if(elemid=="i4"){
-            cooldownPolen=false;
+
+        if (elemid == "i4") {
+            cooldownPolen = false;
         }
-        if(elemid=="i56"){
-            cooldownAurora=false;
+        if (elemid == "i56") {
+            cooldownAurora = false;
         }
         cropElement.classList.remove('cooldown1');
         cropElement.classList.remove('cooldown');
-        cropElement.setAttribute('onclick',elemClick);
+        cropElement.setAttribute('onclick', elemClick);
     }, cooldown * 1000);
 }
 
-function togglePolen(){
-    if(cooldownPolen){
+function togglePolen() {
+    if (cooldownPolen) {
         return;
     }
     if (polentype === 1) {
         polentype = 2;
         togglerPolen.style.backgroundPosition = 'right';
-        togglerPolen.innerHTML="Recogiendo Polen Vulcano Durmiente"
+        togglerPolen.innerHTML = "Recogiendo Polen Vulcano Durmiente"
         crop4.removeAttribute('onclick');
         crop4.setAttribute('onclick', "harvest('i4b','i4')");
-      } else {
+    } else {
         polentype = 1;
         togglerPolen.style.backgroundPosition = 'left';
-        togglerPolen.innerHTML="Recogiendo Polen Vulcano Activo"
+        togglerPolen.innerHTML = "Recogiendo Polen Vulcano Activo"
         crop4.removeAttribute('onclick');
         crop4.setAttribute('onclick', "harvest('i4a','i4')");
-      }
+    }
 }
 
-function toggleAurora(){
-    if(cooldownAurora){
+function toggleAurora() {
+    if (cooldownAurora) {
         return;
     }
     if (aurorapart === 1) {
         aurorapart = 2;
         togglerAurora.style.backgroundPosition = 'right';
-        togglerAurora.innerHTML="Recogiendo Frutos de Aurora";
+        togglerAurora.innerHTML = "Recogiendo Frutos de Aurora";
         crop56.removeAttribute('onclick');
         crop56.setAttribute('onclick', "harvest('i6','i56')");
-      } else {
+    } else {
         aurorapart = 1;
         togglerAurora.style.backgroundPosition = 'left';
-        togglerAurora.innerHTML="Recogiendo Hojas de Aurora"
+        togglerAurora.innerHTML = "Recogiendo Hojas de Aurora"
         crop56.removeAttribute('onclick');
         crop56.setAttribute('onclick', "harvest('i5','i56')");
-      }
     }
+}
 
 function clearGarden() {
     togglerAurora.classList.add("hidden");
@@ -413,24 +416,63 @@ function clearGarden() {
 
 //#region BACKSHOP FUNCTIONS
 /**TODO:
- * Set ChangeScreen
- * Create elements of almacen, upgradeboard, magicpot
- * almacen -> OpenInv pero sin select
- * upgradeboard -> vista nueva, listado de mejoras, modificar progress 
- * magicpot-> vista nueva, mostrar solo ingredientes, seleccionar 3 ingredientes, crear pocion por esos ingredientes, sumar pocion a inv, restar ingredientes
+ * backshop1 - almacen -> openInvFromBackshop() -> openInvFromClient() sin select
+ * backshop2 - upgradeboard -> openUpgrades() -> vista nueva, listado de mejoras, modificar progress 
+ * backshop3 - magicpot-> openMagicPot() -> vista nueva, mostrar solo ingredientes, seleccionar 3 ingredientes, crear pocion por esos ingredientes, sumar pocion a inv, restar ingredientes
  *          Si receta no descubierta, descubrir recetas.
  * 
  * recetario: listar recetas descubiertas, if click -> instant potion at magic pot
  */
-function loadBackshop(){
-    
+function loadBackshop() {
+    backshop1.classList.remove("hidden");
+    backshop2.classList.remove("hidden");
+    backshop3.classList.remove("hidden");
+    backshop3.parentElement.classList.remove("hidden");
 }
+function clearBackshop() {
+    backshop1.classList.add("hidden");
+    backshop2.classList.add("hidden");
+    backshop3.classList.add("hidden");
+    backshop3.parentElement.classList.add("hidden");
+}
+
+function openInvFromBackshop() {
+    changeScreen(6);
+    screen.classList.add("screenalmacen");
+
+    inventory = items.filter(item => {
+        if (currentInv[item.id] > 0) {
+            return item;
+        }
+    });
+
+    inventory.forEach(item => {
+        var square = document.createElement('itemsquare');
+        square.classList.add('itemsquare');
+        square.setAttribute('item-id', item.id);
+        square.innerHTML = item.item + "<br> Cantidad: " + currentInv[item.id];
+        //var squareimg = document.createElement('img');
+        //squareimg.setAttribute('src',item.imgroute);
+        //square.appendChild(squareimg);
+        square.addEventListener('click', function () {
+            selectItemFromInvBackdrop(item.id);
+        });
+        screen.appendChild(square);
+    });
+}
+
+function selectItemFromInvBackdrop(id) {
+    selectedItem = items.find(item => item.id === id);
+    boxP.innerHTML = selectedItem.item + " - Precio: " + selectedItem.price + " de oro." + " <hr> " + selectedItem.desc;
+}
+
 
 
 //#endregion
 
 //#region CHANGE SCREEN FUNCTIONS
 function changeScreen(option) {
+    clearBackshop();
     clearGarden();
     clearBackground();
     toggleClient("OFF");
@@ -448,6 +490,7 @@ function changeScreen(option) {
         case 3:
             title.innerHTML = "Trastienda";
             screen.classList.add("trastienda");
+            loadBackshop();
             break;
         case 4:
             title.innerHTML = "Recetario";
