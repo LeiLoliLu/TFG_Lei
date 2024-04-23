@@ -532,3 +532,10 @@ const items = [
       ]
     }
   ]
+
+var upgradesData = [
+  { id: 'hasPetalos', imgroute: 'ruta1.jpg', title: 'Flor de Luna', text:'Se dice que sus petalos fueron bendecidos por la diosa de los sueños. <br> Comprar este ingrediente lo añade al jardín. Tarda 5 segundos en crecer una vez se recoge.', price: 10 },
+  { id: 'hasRaices', imgroute: 'ruta2.jpg', title: 'Raices de Piedra', text:'Pequeñas raices conocidas por sus propiedades de endurecimiento. <br> Comprar este ingrediente lo añade al jardín. Tarda 15 segundos en crecer una vez se recoge.', price: 20 },
+  { id: 'hasPolen', imgroute: 'ruta3.jpg', title: 'Flores Vulcano', text:'Una flor que produce polen de dos tipos, relacionado de forma común con la temperatura. <br> Comprar este ingrediente lo añade al jardín. Tarda 30 segundos en crecer una vez se recoge. Se añade un interruptor para cosechar un polen u otro.',price: 30 },
+  { id: 'hasAurora', imgroute: 'ruta4.jpg', title: 'Frutos de Aurora', text:'Un fruto escaso por su dificil y costosa germinación. Podras cosechar sus hojas o el fruto entero. <br> Comprar este ingrediente lo añade al jardín. Las hojas tardan 45 segundos en crecer una vez se recogen, y si se recoge el fruto entero, 60 segundos. Se añade un interruptor para cosechar un las hojas o los frutos enteros.',price: 40 }
+];

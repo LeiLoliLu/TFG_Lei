@@ -416,7 +416,6 @@ function clearGarden() {
 
 //#region BACKSHOP FUNCTIONS
 /**TODO:
- * backshop1 - almacen -> openInvFromBackshop() -> openInvFromClient() sin select
  * backshop2 - upgradeboard -> openUpgrades() -> vista nueva, listado de mejoras, modificar progress 
  * backshop3 - magicpot-> openMagicPot() -> vista nueva, mostrar solo ingredientes, seleccionar 3 ingredientes, crear pocion por esos ingredientes, sumar pocion a inv, restar ingredientes
  *          Si receta no descubierta, descubrir recetas.
@@ -438,7 +437,6 @@ function clearBackshop() {
 
 function openInvFromBackshop() {
     changeScreen(6);
-    screen.classList.add("screenalmacen");
 
     inventory = items.filter(item => {
         if (currentInv[item.id] > 0) {
@@ -466,19 +464,59 @@ function selectItemFromInvBackdrop(id) {
     boxP.innerHTML = selectedItem.item + " - Precio: " + selectedItem.price + " de oro." + " <hr> " + selectedItem.desc;
 }
 
+function openUpgrades(){
+    changeScreen(7);
+    upgradesData.forEach(function(upgrade) {
+        if (!progress[upgrade.id]) {
+          var upgradesquare = document.createElement('upgradesquare');
+          upgradesquare.classList.add('upgrade');
+  
+          var squareimg = document.createElement('img');
+          squareimg.setAttribute('src', upgrade.imgroute);
+          upgradesquare.appendChild(squareimg);
+  
+          var textDiv = document.createElement('div');
+
+          var pTitulo = document.createElement('p');
+          pTitulo.innerHTML = upgrade.title;
+          pTitulo.classList.add("upgradeTitle");
+
+          var pText = document.createElement('p');
+          pText.innerHTML = upgrade.text;
+
+          textDiv.appendChild(pTitulo);
+          textDiv.appendChild(pText);
+          textDiv.classList.add('upgradeText');
+          upgradesquare.appendChild(textDiv);
+  
+          var pPrice = document.createElement('p');
+          pPrice.innerHTML = 'Price: ' + upgrade.price;
+          upgradesquare.appendChild(pPrice);
+  
+          screen.appendChild(upgradesquare);
+        }
+      });
+    
+}
+
 
 
 //#endregion
 
 //#region CHANGE SCREEN FUNCTIONS
 function changeScreen(option) {
+    itemsquares = document.getElementsByTagName("itemsquare");
+    while (itemsquares[0]) itemsquares[0].parentNode.removeChild(itemsquares[0]);
+    upgradesquares = document.getElementsByTagName("upgradesquare");
+    while (upgradesquares[0]) upgradesquares[0].parentNode.removeChild(upgradesquares[0]);
+    boxP.innerHTML="...";
     clearBackshop();
     clearGarden();
     clearBackground();
     toggleClient("OFF");
     switch (option) {
         case 1:
-            title.innerHTML = "Jardin";
+            title.innerHTML = "Jardín";
             screen.classList.add("jardin");
             loadGarden();
             break;
@@ -501,6 +539,12 @@ function changeScreen(option) {
         case 6:
             title.innerHTML = "Almacén";
             screen.classList.add("almacen");
+            screen.classList.add("screenalmacen");
+            break;
+        case 7:
+            title.innerHTML = "Tablón de Mejoras";
+            screen.classList.add("almacen");
+            screen.classList.add("screenalmacen");
             break;
     }
 }

@@ -262,4 +262,29 @@ hr{
   flex-wrap: wrap;
   height: calc(100% - 50px);
 }
+.upgrade{
+  display: flex;
+  flex-direction: row;
+  background-color: #d4a074;
+  width: calc(100% - 50px);
+  min-height: 110px;
+  padding: 10px;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 10px;
+  margin-bottom:10px;
+}
+.upgrade img{
+  width: 100px;
+  height: 100px;
+}
 
+.upgradeTitle{
+  font-size:larger;
+}
+
+.upgradeText{
+  max-width: 450px;
+  left:100px;
+  padding-right: 25px;
+}
