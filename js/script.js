@@ -68,7 +68,7 @@ const clientela = setInterval(summonClient, 5000);
 
 changeScreen(2);
 activarMenuLateral();
-goldmeter.innerHTML = "Oro: " + gold;
+goldmeter.innerHTML = "Oro: " + progress.gold;
 //#endregion
 
 //#region CLIENT FUNCTIONS
@@ -231,8 +231,8 @@ async function sellItem(item) {
     // Comprobar si está bien
     if (matchingItems.includes(item)) {
         // Sumar oro
-        gold += item.price;
-        goldmeter.innerHTML = "Oro: " + gold;
+        progress.gold += item.price;
+        goldmeter.innerHTML = "Oro: " + progress.gold;
 
         //Eliminar poción del inventario
         currentInv[item.id] -= 1;
@@ -416,7 +416,6 @@ function clearGarden() {
 
 //#region BACKSHOP FUNCTIONS
 /**TODO:
- * backshop2 - upgradeboard -> openUpgrades() -> vista nueva, listado de mejoras, modificar progress 
  * backshop3 - magicpot-> openMagicPot() -> vista nueva, mostrar solo ingredientes, seleccionar 3 ingredientes, crear pocion por esos ingredientes, sumar pocion a inv, restar ingredientes
  *          Si receta no descubierta, descubrir recetas.
  * 
@@ -464,41 +463,62 @@ function selectItemFromInvBackdrop(id) {
     boxP.innerHTML = selectedItem.item + " - Precio: " + selectedItem.price + " de oro." + " <hr> " + selectedItem.desc;
 }
 
-function openUpgrades(){
+function openUpgrades() {
     changeScreen(7);
-    upgradesData.forEach(function(upgrade) {
+    upgradesData.forEach(function (upgrade) {
         if (!progress[upgrade.id]) {
-          var upgradesquare = document.createElement('upgradesquare');
-          upgradesquare.classList.add('upgrade');
-  
-          var squareimg = document.createElement('img');
-          squareimg.setAttribute('src', upgrade.imgroute);
-          upgradesquare.appendChild(squareimg);
-  
-          var textDiv = document.createElement('div');
+            var upgradesquare = document.createElement('upgradesquare');
+            upgradesquare.classList.add('upgrade');
 
-          var pTitulo = document.createElement('p');
-          pTitulo.innerHTML = upgrade.title;
-          pTitulo.classList.add("upgradeTitle");
+            var squareimg = document.createElement('img');
+            squareimg.setAttribute('src', upgrade.imgroute);
+            upgradesquare.appendChild(squareimg);
 
-          var pText = document.createElement('p');
-          pText.innerHTML = upgrade.text;
+            var textDiv = document.createElement('div');
 
-          textDiv.appendChild(pTitulo);
-          textDiv.appendChild(pText);
-          textDiv.classList.add('upgradeText');
-          upgradesquare.appendChild(textDiv);
-  
-          var pPrice = document.createElement('p');
-          pPrice.innerHTML = 'Price: ' + upgrade.price;
-          upgradesquare.appendChild(pPrice);
-  
-          screen.appendChild(upgradesquare);
+            var pTitulo = document.createElement('p');
+            pTitulo.innerHTML = upgrade.title;
+            pTitulo.classList.add("upgradeTitle");
+
+            var pText = document.createElement('p');
+            pText.innerHTML = upgrade.text;
+
+            textDiv.appendChild(pTitulo);
+            textDiv.appendChild(pText);
+            textDiv.classList.add('upgradeText');
+
+
+            var dButton = document.createElement('div');
+            dButton.classList.add('upgradediv')
+            var pPrice = document.createElement('p');
+            pPrice.innerHTML = 'Precio: ' + upgrade.price;
+            var button = document.createElement('div');
+            button.innerHTML = "Comprar";
+            button.classList.add('upgradebutton');
+            button.addEventListener('click', function () {
+                buyUpgrade(upgrade.id,upgradesData.indexOf(upgrade));
+            });
+            dButton.appendChild(pPrice);
+            dButton.appendChild(button);
+
+            upgradesquare.appendChild(textDiv);
+            upgradesquare.appendChild(dButton);
+
+            screen.appendChild(upgradesquare);
         }
-      });
-    
+    });
 }
 
+function buyUpgrade(id,index){
+    if(progress.gold>=upgradesData[index].price){
+        progress[id]=true;
+        progress.gold=progress.gold-upgradesData[index].price;
+        goldmeter.innerHTML = "Oro: " + progress.gold;
+        changeScreen(1);
+    }else{
+        alert("No tienes suficiente oro para esta mejora.")
+    }
+}
 
 
 //#endregion
@@ -509,7 +529,7 @@ function changeScreen(option) {
     while (itemsquares[0]) itemsquares[0].parentNode.removeChild(itemsquares[0]);
     upgradesquares = document.getElementsByTagName("upgradesquare");
     while (upgradesquares[0]) upgradesquares[0].parentNode.removeChild(upgradesquares[0]);
-    boxP.innerHTML="...";
+    boxP.innerHTML = "...";
     clearBackshop();
     clearGarden();
     clearBackground();

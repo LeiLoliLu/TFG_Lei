@@ -53,5 +53,3 @@ var progress = {
   "hasAurora": false,
   "gold":50
 };
-
-var gold=progress.gold;

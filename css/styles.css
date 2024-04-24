@@ -59,6 +59,20 @@ background-color: #d4a074;
   justify-content: space-around;
 }
 
+.upgradebutton{
+  background-color: #c58d5f;
+  text-align: center;
+  min-width: fit-content;
+  max-width: fit-content;
+  padding: 20px;
+  margin-top: 10px;
+  font-size: larger;
+  transition: 0.3s;
+}
+.upgradediv{
+  text-align: center;
+}
+
 .title{
   background-color: #bb8559;
   text-align: center;
@@ -245,23 +259,27 @@ hr{
   height: calc(100% - 50px);
   margin-right: 25px;
 }
+
 #backshop2{
   width: 100%;
   background-color: #8a6b52;
   height: 35%;
   margin-bottom: 25px;
 }
+
 #backshop3{
   width: 100%;
   background-color: #e9c4a5;
   height: 60%;
 }
+
 .wrap{
   width: calc(60% - 50px);
   display: flex;
   flex-wrap: wrap;
   height: calc(100% - 50px);
 }
+
 .upgrade{
   display: flex;
   flex-direction: row;
@@ -270,10 +288,11 @@ hr{
   min-height: 110px;
   padding: 10px;
   align-items: center;
-  justify-content: space-between;
+  justify-content: space-around;
   margin-top: 10px;
   margin-bottom:10px;
 }
+
 .upgrade img{
   width: 100px;
   height: 100px;
@@ -285,6 +304,4 @@ hr{
 
 .upgradeText{
   max-width: 450px;
-  left:100px;
-  padding-right: 25px;
 }
