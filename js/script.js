@@ -519,7 +519,9 @@ function buyUpgrade(id,index){
         alert("No tienes suficiente oro para esta mejora.")
     }
 }
-
+function openMagicPot(){
+    changeScreen(8);
+}
 
 //#endregion
 
@@ -565,6 +567,10 @@ function changeScreen(option) {
             title.innerHTML = "Tablón de Mejoras";
             screen.classList.add("almacen");
             screen.classList.add("screenalmacen");
+            break;
+        case 7:
+            title.innerHTML = "Mesa de Alquimia";
+            screen.classList.add("almacen");
             break;
     }
 }
