@@ -51,6 +51,12 @@ var bAjustes = document.getElementById("bAjustes");
 var goldmeter = document.getElementById("goldmeter");
 var togglerPolen = document.getElementById("togglerpolen");
 var togglerAurora = document.getElementById("toggleraurora");
+var tinycupboard = document.getElementById('tinycupboard');
+var chosendiv = document.getElementById("chosen");
+var chosen1 = document.getElementById("chosen1");
+var chosen2 = document.getElementById("chosen2");
+var chosen3 = document.getElementById("chosen3");
+var createPotionButton = document.getElementById("createbutton");
 var crop1 = document.getElementById("i1");
 var crop2 = document.getElementById("i2");
 var crop3 = document.getElementById("i3");
@@ -496,7 +502,7 @@ function openUpgrades() {
             button.innerHTML = "Comprar";
             button.classList.add('upgradebutton');
             button.addEventListener('click', function () {
-                buyUpgrade(upgrade.id,upgradesData.indexOf(upgrade));
+                buyUpgrade(upgrade.id, upgradesData.indexOf(upgrade));
             });
             dButton.appendChild(pPrice);
             dButton.appendChild(button);
@@ -509,29 +515,169 @@ function openUpgrades() {
     });
 }
 
-function buyUpgrade(id,index){
-    if(progress.gold>=upgradesData[index].price){
-        progress[id]=true;
-        progress.gold=progress.gold-upgradesData[index].price;
+function buyUpgrade(id, index) {
+    if (progress.gold >= upgradesData[index].price) {
+        progress[id] = true;
+        progress.gold = progress.gold - upgradesData[index].price;
         goldmeter.innerHTML = "Oro: " + progress.gold;
         changeScreen(1);
-    }else{
+    } else {
         alert("No tienes suficiente oro para esta mejora.")
     }
 }
-function openMagicPot(){
+
+function openMagicPot() {
     changeScreen(8);
+    tinycupboard.classList.remove("hidden");
+    chosendiv.classList.remove("hidden");
+    chosen1.classList.remove("hidden");
+    chosen2.classList.remove("hidden");
+    chosen3.classList.remove("hidden");
+    createPotionButton.classList.remove("hidden");
+
+    var ingredients = ['i1', 'i2', 'i3', 'i4a', 'i4b', 'i5', 'i6'];
+
+    inventory = items.filter(item => {
+        if (ingredients.includes(item.id)) {
+            if (currentInv[item.id] > 0) {
+                return item;
+            }
+        }
+    });
+    inventory.forEach(item => {
+        var square = document.createElement('itemsquare');
+        square.classList.add('itemsquare');
+        square.setAttribute('item-id', item.id);
+        square.setAttribute('quantity', currentInv[item.id]); 
+        square.innerHTML = item.item + "<br> Cantidad: " + currentInv[item.id];
+        //var squareimg = document.createElement('img');
+        //squareimg.setAttribute('src',item.imgroute);
+        //square.appendChild(squareimg);
+        square.addEventListener('click', function () {
+           
+            var clickedItemId = item.id;
+            var clickedItemQuantity = parseInt(square.getAttribute('quantity')); 
+            if (clickedItemQuantity > 0) {
+                if (chosen1.getAttribute('item-id') === null) {
+                    chosen1.innerHTML = item.item;
+                    chosen1.setAttribute('item-id', clickedItemId);
+                    square.setAttribute('quantity', clickedItemQuantity - 1); 
+                    square.innerHTML = item.item + "<br> Cantidad: " + (clickedItemQuantity - 1); 
+                } else if (chosen2.getAttribute('item-id') === null) {
+                    chosen2.innerHTML = item.item;
+                    chosen2.setAttribute('item-id', clickedItemId);
+                    square.setAttribute('quantity', clickedItemQuantity - 1); 
+                    square.innerHTML = item.item + "<br> Cantidad: " + (clickedItemQuantity - 1); 
+                } else if (chosen3.getAttribute('item-id') === null) {
+                    chosen3.innerHTML = item.item;
+                    chosen3.setAttribute('item-id', clickedItemId);
+                    square.setAttribute('quantity', clickedItemQuantity - 1); 
+                    square.innerHTML = item.item + "<br> Cantidad: " + (clickedItemQuantity - 1); 
+                }
+                verificarChosen();
+            }
+        });
+        tinycupboard.appendChild(square);
+    });
+}
+
+function verificarChosen() {
+    if (chosen1.getAttribute('item-id') !== null && chosen2.getAttribute('item-id') !== null && chosen3.getAttribute('item-id') !== null) {
+        createPotionButton.classList.remove("invisible");
+    } else {
+        createPotionButton.classList.add("invisible");
+    }
+}
+
+function resetChosenSquares(opt) {
+    switch (opt) {
+        case 1:
+            if (chosen1.getAttribute('item-id') !== null) {
+                var itemId = chosen1.getAttribute('item-id');
+                var item = items.find(function(item) {
+                    return item.id === itemId;
+                });
+                if (item) {
+                    Array.from(tinycupboard.children).forEach(function(square) {
+                        if (square.getAttribute('item-id') === itemId) {
+                            var quantity = parseInt(square.getAttribute('quantity'));
+                            square.setAttribute('quantity', quantity + 1); 
+                            square.innerHTML = item.item + "<br> Cantidad: " + (quantity + 1); 
+                        }
+                    });
+                }
+                chosen1.innerHTML = "";
+                chosen1.removeAttribute('item-id');
+            }
+            break;
+        case 2:
+            if (chosen2.getAttribute('item-id') !== null) {
+                var itemId = chosen2.getAttribute('item-id');
+                var item = items.find(function(item) {
+                    return item.id === itemId;
+                });
+                if (item) {
+                    Array.from(tinycupboard.children).forEach(function(square) {
+                        if (square.getAttribute('item-id') === itemId) {
+                            var quantity = parseInt(square.getAttribute('quantity'));
+                            square.setAttribute('quantity', quantity + 1); 
+                            square.innerHTML = item.item + "<br> Cantidad: " + (quantity + 1); 
+                        }
+                    });
+                }
+                chosen2.innerHTML = "";
+                chosen2.removeAttribute('item-id');
+            }
+            break;
+        case 3:
+            if (chosen3.getAttribute('item-id') !== null) {
+                var itemId = chosen3.getAttribute('item-id');
+                var item = items.find(function(item) {
+                    return item.id === itemId;
+                });
+                if (item) {
+                    Array.from(tinycupboard.children).forEach(function(square) {
+                        if (square.getAttribute('item-id') === itemId) {
+                            var quantity = parseInt(square.getAttribute('quantity'));
+                            square.setAttribute('quantity', quantity + 1); 
+                            square.innerHTML = item.item + "<br> Cantidad: " + (quantity + 1); 
+                        }
+                    });
+                }
+                chosen3.innerHTML = "";
+                chosen3.removeAttribute('item-id');
+            }
+            break;
+        case 4:
+            resetChosenSquares(1);
+            resetChosenSquares(2);
+            resetChosenSquares(3);
+            break;
+    }
+    verificarChosen();
+}
+
+function clearMagicPot(){
+    tinycupboard.classList.add("hidden");
+    chosendiv.classList.add("hidden");
+    chosen1.classList.add("hidden");
+    chosen2.classList.add("hidden");
+    chosen3.classList.add("hidden");
+    createPotionButton.classList.add("hidden");
+    createPotionButton.classList.add("invisible");
 }
 
 //#endregion
 
 //#region CHANGE SCREEN FUNCTIONS
 function changeScreen(option) {
+    resetChosenSquares(4);
     itemsquares = document.getElementsByTagName("itemsquare");
     while (itemsquares[0]) itemsquares[0].parentNode.removeChild(itemsquares[0]);
     upgradesquares = document.getElementsByTagName("upgradesquare");
     while (upgradesquares[0]) upgradesquares[0].parentNode.removeChild(upgradesquares[0]);
     boxP.innerHTML = "...";
+    clearMagicPot();
     clearBackshop();
     clearGarden();
     clearBackground();
@@ -568,9 +714,9 @@ function changeScreen(option) {
             screen.classList.add("almacen");
             screen.classList.add("screenalmacen");
             break;
-        case 7:
+        case 8:
             title.innerHTML = "Mesa de Alquimia";
-            screen.classList.add("almacen");
+            screen.classList.add("mesa");
             break;
     }
 }
@@ -580,6 +726,7 @@ function clearBackground() {
     screen.classList.remove("trastienda");
     screen.classList.remove("almacen");
     screen.classList.remove("screenalmacen");
+    screen.classList.remove("mesa");
 }
 function toggleClient(option) {
     if (hasClient) {
@@ -596,6 +743,41 @@ function toggleClient(option) {
 }
 //#endregion
 
+
+function createPotion() {
+    chosenIngredients = []; // Restablecer los ingredientes antes de agregar los nuevos
+    
+    // Obtener los ingredientes de los cuadrados chosen y almacenarlos en la variable chosenIngredients
+    if (chosen1.getAttribute('item-id') !== null) {
+        chosenIngredients.push(chosen1.getAttribute('item-id'));
+    }
+    
+    if (chosen2.getAttribute('item-id') !== null) {
+        chosenIngredients.push(chosen2.getAttribute('item-id'));
+    }
+    
+    if (chosen3.getAttribute('item-id') !== null) {
+        chosenIngredients.push(chosen3.getAttribute('item-id'));
+    }
+
+    // Ordenar los ingredientes antes de llamar a la función crearObjeto
+    chosenIngredients.sort();
+    chosenIngredients.forEach(elem => {
+        currentInv[elem]--;
+    });
+
+    combinacionIngredientes = chosenIngredients.join(',');
+    if (recetas.hasOwnProperty(combinacionIngredientes)) {
+        currentInv[recetas[combinacionIngredientes]]++;
+        i = items.find(item => item.id == recetas[combinacionIngredientes]);
+        alert("Has creado una "+i.item);
+    } else {
+        currentInv[38]++;
+        i = items.find(item => item.id == '38')
+        alert("Has creado una "+i.item);
+    }
+    openMagicPot();
+}
 //#region UTILITY FUNCTIONS
 function waitForClick() {
     return new Promise(resolve => {
