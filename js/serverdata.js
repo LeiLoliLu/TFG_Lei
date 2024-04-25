@@ -1,28 +1,28 @@
 const townsfolk = [
   {
     "name": "Caelynn Summersun- Aventurera Escurridiza", "greeting": "Hola, necesito unos suministros.", "type": "adventurer", "dialogs": [
-      "",
-      "",
-      "",
-      "",
-      ""],
+      "placeholder",
+      "placeholder",
+      "placeholder",
+      "placeholder",
+      "placeholder"],
     "specialReq": {
-      "petition": "",
-      "expectedItem": "",
-      "quantity": 0
+      "petition": "placeholder",
+      "expectedItem": "i1",
+      "quantity": 1
     }
   },
   {
     "name": "Cawbett - Cuervo Parlanchín", "greeting": "¡Buen día cawmarada Herborista! Necesito tu ayuda para cawntinuar con mis aventuras.", "type": "adventurer", "dialogs": [
       "Caw buen día hace fuera, te recomiendo ir dar una vuelta, igual incluso podrías encontrar inspiración para nuevas pociones.",
-      "Tienes una cawbaña de lo más agradable, casi me haces replantearme hacerme herbolista si se puede vivir con tanta tranquilidad como tú.",
+      "Tienes una cawbaña de lo más agradable, casi me haces replantearme hacerme herbolista si se puede vivir con tanta tranquilidad cawmo tú.",
       "¿A caw viene esa cawra? ¿Nunca has visto a un pájaro hablar? ... ¿No? Oh, bueno, siempre hay una primera vez para todo.",
       "¿Por algún cawsual no tendrás una planta caw se parezca a un ajo? Es mil veces mejor porcaw cuando lo pones en pan, es cawmo comer un pedazo de gloria... Es una bendición caw exista... Caw rico estaba ese pan, necesito preparar más...",
       "Te ves bien hoy, Herbolista. No caw no te vea bien otros días, pero hoy te ves muy feliz y una sonrisa ilumina cawlquier cawra."],
     "specialReq": {
-      "petition": "",
+      "petition": "Herborista, escawchame bien porque necesito tu ayuda. Voy a preparar la mejor receta caw existe en este mundo; Pan de frutos de aurora. El único problema con esto es caw me falta la parte más esencial de todo esto, caw son 5 frutos de aurora. ¿Crees caw podrías ayudarme?",
       "expectedItem": "i6",
-      "quantity": 0
+      "quantity": 5
     }
   },
   {
@@ -214,11 +214,11 @@ const townsfolk = [
   },
   {
     "name": "Helga Barbafresca - Dueña de la taberna del pueblo", "greeting": "¡Buenos días por la mañana! Espero que hayas desayunado.", "type": "town", "dialogs": [
-      "",
-      "",
-      "",
-      "",
-      ""],
+      "Espero que estés teniendo un día entretenido. Yo tengo que volver rápido a la taberna para ver si Daph me trae un paquete con las mejores sedas del país vecino, luego me pondré a hilarla y tras eso me pondré a coser unas ropas de cama preciosas.",
+      "Si algún día te entra la curiosidad por comer un buen desayuno de la taberna, puedes hacer un pedido el día de antes y estaré encantada de traértelo antes de que abras. Solo por ser tú, te pondré extra de mermelada casera.",
+      "Te voy a contar un secretito, pero que quede entre tú y yo, hay gente que ya ha empezado a hablar muy bien de tí y de tu tienda por la taberna. Así que vengo con unas espectativas altas, pero confío en que estarás más que a la altura.",
+      "He visto a Maeve saliendo más por el día desde que abriste tu tiendita. ¿Has tenido la oportunidad de conocerla ya? Es una persona muy enigmática pero es agradable, de hecho es tan agradable que incluso parece iluminarle los ojos a Maccon cuando coinciden a la luz de la luna.",
+      "Ay, estos aventureros son tan increíbles, estaría a todas horas escuchando todas sus historias y a todos los lugares que han. Por ejemplo, ¡Longrim ha viajado incluso hasta Bel'ashir con su grupo! "],
     "specialReq": {
       "petition": "¡Esta noche voy a preparar mi famoso estofado de piedra! Necesito 5 raíces. ¡Va a quedar delicioso!",
       "expectedItem": "i3",
@@ -231,11 +231,11 @@ const townsfolk = [
       "Antes he visto a un enano muy apuesto que olía a albahaca, este mundo está repleto de cosas interesantes.",
       "Scoot es una ricura, ¡siempre correteando de allí para allá! Quizás te sorprenda, pero otrora fui una chavalita igual de inquieta.",
       "Que encantadora es Amely, ¡el otro día me instaló una mecedora en la vieja biblioteca!",
-      ""],
+      "El señor Stonemantle me regaló un juego de cubertería el día de mi boda que seguimos usando tras tantos años."],
     "specialReq": {
-      "petition": "",
-      "expectedItem": "",
-      "quantity": 0
+      "petition": "Hoy voy a hacer una gran comida para mi familia, pero la leña que tenemos en casa no creo que sea suficiente para calentar toda la sala cuando vamos a estar tantas personas. ¿Serías tan amable de darme alguna poción para calentar el salón de mi casa?  ",
+      "expectedItem": "18",
+      "quantity": 1
     }
   },
   {
@@ -255,9 +255,9 @@ const townsfolk = [
     "name": "Tombo, Pombo y Finnz - 'Duque Beraaz'", "greeting": "¡Maravillosos días! Soy el Duque Beraaz y preciso de los suministros que distribuye usted.", "type": "town", "dialogs": [
       "No tengo tiempo para cháchara, tengo asuntos de barón muy importantes que atender. <br> (Pombo): ¡Somos duque, mendrugo! <br> (Beraaz): Quiero decir, ¡asuntos de duque barón, hehe!",
       "Así es, estás en presencia del Duque Biraaz- quiero decir, ¡El duque Beraaz! <br> (Tombo): Vaya nombre más birria. <br> (Finnz): ¡Ciñete al papel!",
-      "",
-      "",
-      ""],
+      "Las cosas de palacio van despacio, pero date prisa, soy un magnate muy ocupado. <br> (Pombo): ¡Actúas fatal! <br> (Finnz): Pero es el más ligero.",
+      "¿Mi secreto para ser un buen burgués? ¡Juntate con buena asesoría! <br> (Finnz): Si, tres cabezas piensan más que una... <br> (Pombo): ¡En la cabeza si que te voy a dar!",
+      "Aunque no lo creas, formar parte de la alta sociedad resulta agotador. <br> (Pombo): ¡Agotador es sujetar tus pies malolientes! <br> (Finnz): Y lo dices tú que no eres el de abajo."],
     "specialReq": {
       "petition": "Necesitamos... ¡Necesito! Necesito algo que haga ver formas y colores donde no las hay. No preguntes el porqué, son asuntos de duque.",
       "expectedItem": "31", 
