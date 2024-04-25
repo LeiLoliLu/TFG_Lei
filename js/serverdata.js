@@ -1,24 +1,264 @@
 const townsfolk = [
-  { "name": "Caelynn - Aventurera Escurridiza", "greeting": "Hola, necesito unos suministros.", "type": "adventurer" },
-  { "name": "Cawbett - Cuervo Parlanchín", "greeting": "¡Buen día cawmarada Herborista! Necesito tu ayuda para cawntinuar con mis aventuras.", "type": "adventurer" },
-  { "name": "Gin - Pícaro Kobold", "greeting": "Pssst. ¡Hola! Necesito una cosita.", "type": "adventurer" },
-  { "name": "Longrim Wymberforged - Druida Viajero", "greeting": "Buenas tardes, rapaz. Hoy hace un día mágico, ¿No le parece?", "type": "adventurer" },
-  { "name": "Maccon Iceblood - Cazador del pueblo", "greeting": "¿Tienes mucho lío? Intentaré pedir rápido.", "type": "adventurer" },
-  { "name": "Witchette Aeterna - El sombrero es la bruja", "greeting": "Hola, ¿Me puedes ayudar? Necesito unas cositas.", "type": "mage" },
-  { "name": "Maeve Silvermoon - Oráculo Lunar", "greeting": "Muy buen dia, Herborista. ¿Saldrás por la noche? La luna va a estar preciosa.", "type": "mage" },
-  { "name": "Palmeadus Pico de Rubí - Gran Archimago", "greeting": "Saludos, joven mortal. Requiero tus servicios una vez más.", "type": "mage" },
-  { "name": "Stretch y Stitches - Gemelos Ilusionistas", "greeting": "(ambos a la vez) ¡Hola, hola!", "type": "mage" },
-  { "name": "Eloise Sapeye - Médica Errante", "greeting": "Hola... Estoy de paso. Tu tienda es realmente preciosa.", "type": "merchant" },
-  { "name": "Glob - Mercader Gelatinoso", "greeting": "Uy...Te he llenado la entrada de babas. Lo siento.", "type": "merchant" },
-  { "name": "Solor Maeafin - Vendedor de Micelio", "greeting": "¡Buenos días! Necesito un favorcillo. ¡Será rápido!", "type": "merchant" },
-  { "name": "Amely Lawkin - Alcaldesa Nerviosa", "greeting": "¡Muy buenos dias! Me alegra verte por aquí. Aunque, siendo sinceros, sería raro que no lo estuvieras, jaja.", "type": "town" },
-  { "name": "Daph Swiftstride - Mensajero Centauro", "greeting": "¡Tengo prisa y mucho trabajo así que vamos al grano!", "type": "town" },
-  { "name": "Eldric Stonemantle - Forjador Enano", "greeting": "Buenas tardes. ¿Te pillo en buen momento?", "type": "town" },
-  { "name": "Helga Barbafresca - Dueña de la taberna del pueblo", "greeting": "¡Buenos días por la mañana! Espero que hayas desayunado.", "type": "town" },
-  { "name": "Isabel Hojaoliva - Abuelita Adorable", "greeting": "Hola, joven. Hace un día precioso en el pueblo.", "type": "town" },
-  { "name": "Scoot - Pequeño Alborotador", "greeting": "¡Herborista! ¡Buenos días! Mi madre me ha dicho que venga.", "type": "town" },
-  { "name": "Tombo, Pombo y Finnz - 'Duque Beraaz'", "greeting": "¡Maravillosos días! Soy el Duque Beraaz y preciso de los suministros que distribuye usted.", "type": "town" },
-  { "name": "Michael - Joven Extraño", "greeting": "¿Qué tal va la jornada, Herborista? ¿Muchos clientes? ¿Te aburres?", "type": "wildcard" }
+  {
+    "name": "Caelynn Summersun- Aventurera Escurridiza", "greeting": "Hola, necesito unos suministros.", "type": "adventurer", "dialogs": [
+      "",
+      "",
+      "",
+      "",
+      ""],
+    "specialReq": {
+      "petition": "",
+      "expectedItem": "",
+      "quantity": 0
+    }
+  },
+  {
+    "name": "Cawbett - Cuervo Parlanchín", "greeting": "¡Buen día cawmarada Herborista! Necesito tu ayuda para cawntinuar con mis aventuras.", "type": "adventurer", "dialogs": [
+      "",
+      "",
+      "",
+      "",
+      ""],
+    "specialReq": {
+      "petition": "",
+      "expectedItem": "",
+      "quantity": 0
+    }
+  },
+  {
+    "name": "Gin - Pícaro Kobold", "greeting": "Pssst. ¡Hola! Necesito una cosita.", "type": "adventurer", "dialogs": [
+      "No soy un lagarto. ¡Soy un Kobold! Se que soy chiquitín, pero no tanto como un lagarto.",
+      "Vengo de las regiones del norte. Cuando era una cría, un tabernero me acogió a mi y a mi hermano. Nos diferenciaba por las botellas en las que dormiamos: Una de Gin-ebra y una de Ron.",
+      "Mi hermano aún se encarga del bar de nuestro padre. A mi me gusta más la aventura. ¡Mi grupo es mi segunda familia!",
+      "¿Desde cuándo tienes esta tienda? ¿Las cosas de la estantería son valiosas? ... ¿Puedo coger una un ratito?",
+      "¿Como llevas lo de la frontera? Solía tener un amigo que se hubiera alistado automáticamente, jaja... Y mientras yo aquí como un cobarde."],
+    "specialReq": {
+      "petition": "Voy a gastarle una broma a alguien... Y he pensado que podría hacer polvos picapica con algo de polen activo. ¿Te sobran 5 saquitos?",
+      "expectedItem": "i4a",
+      "quantity": 5
+    }
+  },
+  {
+    "name": "Longrim Wymberforged - Druida Viajero", "greeting": "Buenas tardes, rapaz. Hoy hace un día mágico, ¿No le parece?", "type": "adventurer", "dialogs": [
+      "",
+      "",
+      "",
+      "",
+      ""],
+    "specialReq": {
+      "petition": "",
+      "expectedItem": "",
+      "quantity": 0
+    }
+  },
+  {
+    "name": "Maccon Iceblood - Cazador del pueblo", "greeting": "¿Tienes mucho lío? Intentaré pedir rápido.", "type": "adventurer", "dialogs": [
+      "",
+      "",
+      "",
+      "",
+      ""],
+    "specialReq": {
+      "petition": "",
+      "expectedItem": "",
+      "quantity": 0
+    }
+  },
+  {
+    "name": "Witchette Aeterna - El sombrero es la bruja", "greeting": "Hola, ¿Me puedes ayudar? Necesito unas cositas.", "type": "mage", "dialogs": [
+      "",
+      "",
+      "",
+      "",
+      ""],
+    "specialReq": {
+      "petition": "",
+      "expectedItem": "",
+      "quantity": 0
+    }
+  },
+  {
+    "name": "Maeve Silvermoon - Oráculo Lunar", "greeting": "Muy buen dia, Herborista. ¿Saldrás por la noche? La luna va a estar preciosa.", "type": "mage", "dialogs": [
+      "",
+      "",
+      "",
+      "",
+      ""],
+    "specialReq": {
+      "petition": "",
+      "expectedItem": "",
+      "quantity": 0
+    }
+  },
+  {
+    "name": "Palmeadus Pico de Rubí - Gran Archimago", "greeting": "Saludos, joven mortal. Requiero tus servicios una vez más.", "type": "mage", "dialogs": [
+      "",
+      "",
+      "",
+      "",
+      ""],
+    "specialReq": {
+      "petition": "",
+      "expectedItem": "",
+      "quantity": 0
+    }
+  },
+  {
+    "name": "Stretch y Stitches - Gemelos Ilusionistas", "greeting": "(ambos a la vez) ¡Hola, hola!", "type": "mage", "dialogs": [
+      "",
+      "",
+      "",
+      "",
+      ""],
+    "specialReq": {
+      "petition": "",
+      "expectedItem": "",
+      "quantity": 0
+    }
+  },
+  {
+    "name": "Eloise Sapeye - Médica Errante", "greeting": "Hola... Estoy de paso. Tu tienda es realmente preciosa.", "type": "merchant", "dialogs": [
+      "",
+      "",
+      "",
+      "",
+      ""],
+    "specialReq": {
+      "petition": "",
+      "expectedItem": "",
+      "quantity": 0
+    }
+  },
+  {
+    "name": "Glob - Mercader Gelatinoso", "greeting": "Uy...Te he llenado la entrada de babas. Lo siento.", "type": "merchant", "dialogs": [
+      "",
+      "",
+      "",
+      "",
+      ""],
+    "specialReq": {
+      "petition": "",
+      "expectedItem": "",
+      "quantity": 0
+    }
+  },
+  {
+    "name": "Solor Maeafin - Vendedor de Micelio", "greeting": "¡Buenos días! Necesito un favorcillo. ¡Será rápido!", "type": "merchant", "dialogs": [
+      "Soy un druida de las esporas. ¡Me crecen setas en las manos! Tengo un vivero en mi carro donde las planto y las mezclo. Más o menos como tus pociones.",
+      "Si algún día te apetece experimentar podrías poner una de mis setas en una de tus pociones.",
+      "¿Has visto hoy a Longrim? He coincidido con su grupo unas cuantas veces. Me pregunto si Dunons sigue siendo de color verde, jajaja.",
+      "Dentro de unos dias voy a moverme de asentamiento con mi grupo de mercaderes. ¡Calma, no te vas a librar de mi tan facilmente!",
+      "¿Mi cara?...No, jaja, eso es privado. Ja-jaja...um... "],
+    "specialReq": {
+      "petition": "Necesito de forma urgente una poción de rejuvenización. No tengo tiempo de explicarlo, te compro todas las que tengas. ¡Todo mi vivero depende de esto!",
+      "expectedItem": "34",
+      "quantity": "all"
+    }
+  },
+  {
+    "name": "Amely Lawkin - Alcaldesa Nerviosa", "greeting": "¡Muy buenos dias! Me alegra verte por aquí. Aunque, siendo sinceros, sería raro que no lo estuvieras, jaja.", "type": "town", "dialogs": [
+      "",
+      "",
+      "",
+      "",
+      ""],
+    "specialReq": {
+      "petition": "",
+      "expectedItem": "",
+      "quantity": 0
+    }
+  },
+  {
+    "name": "Daph Swiftstride - Mensajero Centauro", "greeting": "¡Tengo prisa y mucho trabajo así que vamos al grano!", "type": "town", "dialogs": [
+      "",
+      "",
+      "",
+      "",
+      ""],
+    "specialReq": {
+      "petition": "",
+      "expectedItem": "",
+      "quantity": 0
+    }
+  },
+  {
+    "name": "Eldric Stonemantle - Forjador Enano", "greeting": "Buenas tardes. ¿Te pillo en buen momento?", "type": "town", "dialogs": [
+      "Mi herrería está hasta arriba de encargos de la frontera últimamente. Nunca voy a quejarme de poder vender productos, pero... Me apena la razón.",
+      "Yo también tengo a familia al otro lado de la frontera. Si algún dia necesitas hablar con alguien, mi forja está abierta.",
+      "Haces un buen trabajo llevando la tienda. Recuerda descansar de vez en cuando, ¿Vale?",
+      "El otro día Maccon me comisionó una nueva espada. Espero que no planee ir al frente.",
+      "Esta noche Helga va a hacer estofado de piedras. Si puedes, pásate, siempre le queda delicioso."],
+    "specialReq": {
+      "petition": "El calor de la fragua puede ser muy fatigador. ¿Tienes pociones de área de frio? Te compro las que tengas.",
+      "expectedItem": "19",
+      "quantity": "all"
+    }
+  },
+  {
+    "name": "Helga Barbafresca - Dueña de la taberna del pueblo", "greeting": "¡Buenos días por la mañana! Espero que hayas desayunado.", "type": "town", "dialogs": [
+      "",
+      "",
+      "",
+      "",
+      ""],
+    "specialReq": {
+      "petition": "",
+      "expectedItem": "",
+      "quantity": 0
+    }
+  },
+  {
+    "name": "Isabel Hojaoliva - Abuelita Adorable", "greeting": "Hola, joven. Hace un día precioso en el pueblo.", "type": "town", "dialogs": [
+      "",
+      "",
+      "",
+      "",
+      ""],
+    "specialReq": {
+      "petition": "",
+      "expectedItem": "",
+      "quantity": 0
+    }
+  },
+  {
+    "name": "Scoot - Pequeño Alborotador", "greeting": "¡Herborista! ¡Buenos días! Mi madre me ha dicho que venga.", "type": "town", "dialogs": [
+      "No me apetecia venir, la verdad, pero Mamá está malita y no puede venir ella.",
+      "Papá se ha ido a la frontera. Estoy ayudando a Mamá por casa. No se me da bien cocinar, pero al menos lo hago mejor que Papá.",
+      "¿Has jugado alguna vez a los dados mentirosos? ¡Gin me enseñó a jugar el otro día!",
+      "De mayor, me gustaría ser un druida como Longrim. ¿O quizás un cazador como Maccon? ¡Ya sé, un pato! Como Palmeadus.",
+      "El otro día me escapé hasta la frontera para ver si veía a Papá. ¡Le vi ayudando a mover cajas muy grandes!"],
+    "specialReq": {
+      "petition": "Me he tomado sin querer la medicina de Mamá, me ha dicho que necesito comprar un...¿'antedoto'? No se que es un antedoto.",
+      "expectedItem": "13",
+      "quantity": 1
+    }
+  },
+  {
+    "name": "Tombo, Pombo y Finnz - 'Duque Beraaz'", "greeting": "¡Maravillosos días! Soy el Duque Beraaz y preciso de los suministros que distribuye usted.", "type": "town", "dialogs": [
+      "",
+      "",
+      "",
+      "",
+      ""],
+    "specialReq": {
+      "petition": "",
+      "expectedItem": "", 
+      "quantity": 0
+    }
+  },
+  {
+    "name": "Michael - Joven Extraño", "greeting": "¿Qué tal va la jornada, Herborista? ¿Muchos clientes? ¿Te aburres?", "type": "wildcard", "dialogs": [
+      "Me alegra ver que tu tienda va bien. Debe de ser duro sin la ayuda de tus padres. No te preocupes, seguro que están bien.",
+      "¿Que a qué me dedico? Bueno... Un poco de todo.",
+      "¿No te cansas de estar aquí todo el dia? Puedo darte un salvoconducto fuera si me lo pides.",
+      "Las pociones extrañas tienen propiedades magníficas. Es una pena que se descarten como a basura, asique prefiero comprartelas.",
+      "Tu tienda es preciosa. Muy colorida. Últimamente hay muchas cosas a las que les falta color, asique es una alegria para los ojos."],
+    "specialReq": {
+      "petition": "Escucha... No necesito una poción extraña hoy. Un... amigo ha tenido un accidente. Necesito todas las pociones contra ceguera que tengas.",
+      "expectedItem": "30",
+      "quantity": "all"
+    }
+  }
 ];
 
 const items = [
@@ -534,10 +774,10 @@ const items = [
 ]
 
 var upgradesData = [
-  { id: 'hasPetalos', imgroute: 'ruta1.jpg', title: 'Flor de Luna', text: 'Se dice que sus pétalos fueron bendecidos por la diosa de los sueños. <br> Comprar este ingrediente lo añade al jardín. Tarda 5 segundos en crecer una vez se recoge.', price: 10 },
-  { id: 'hasRaices', imgroute: 'ruta2.jpg', title: 'Raíces de Piedra', text: 'Pequeñas raíces conocidas por sus propiedades de endurecimiento. <br> Comprar este ingrediente lo añade al jardín. Tarda 15 segundos en crecer una vez se recoge.', price: 20 },
-  { id: 'hasPolen', imgroute: 'ruta3.jpg', title: 'Flores Vulcano', text: 'Una flor que produce polen de dos tipos, relacionado de forma común con la temperatura. <br> Comprar este ingrediente lo añade al jardín. Tarda 30 segundos en crecer una vez se recoge. Se añade un interruptor para cosechar un polen u otro.', price: 30 },
-  { id: 'hasAurora', imgroute: 'ruta4.jpg', title: 'Frutos de Aurora', text: 'Un fruto escaso por su difícil y costosa germinación. Podrás cosechar sus hojas o el fruto entero. <br> Comprar este ingrediente lo añade al jardín. Las hojas tardan 45 segundos en crecer una vez se recogen, y si se recoge el fruto entero, 60 segundos. Se añade un interruptor para cosechar un las hojas o los frutos enteros.', price: 40 }
+  { id: 'hasPetalos', imgroute: 'ruta1.jpg', title: 'Flor de Luna', text: 'Se dice que sus pétalos fueron bendecidos por la diosa de los sueños. <br> Comprar este ingrediente lo añade al jardín. Tarda 5 segundos en crecer una vez se recoge.', price: 25 },
+  { id: 'hasRaices', imgroute: 'ruta2.jpg', title: 'Raíces de Piedra', text: 'Pequeñas raíces conocidas por sus propiedades de endurecimiento. <br> Comprar este ingrediente lo añade al jardín. Tarda 15 segundos en crecer una vez se recoge.', price: 150 },
+  { id: 'hasPolen', imgroute: 'ruta3.jpg', title: 'Flores Vulcano', text: 'Una flor que produce polen de dos tipos, relacionado de forma común con la temperatura. <br> Comprar este ingrediente lo añade al jardín. Tarda 30 segundos en crecer una vez se recoge. Se añade un interruptor para cosechar un polen u otro.', price: 275 },
+  { id: 'hasAurora', imgroute: 'ruta4.jpg', title: 'Frutos de Aurora', text: 'Un fruto escaso por su difícil y costosa germinación. Podrás cosechar sus hojas o el fruto entero. <br> Comprar este ingrediente lo añade al jardín. Las hojas tardan 45 segundos en crecer una vez se recogen, y si se recoge el fruto entero, 60 segundos. Se añade un interruptor para cosechar un las hojas o los frutos enteros.', price: 400 }
 ];
 
 const recetas = {

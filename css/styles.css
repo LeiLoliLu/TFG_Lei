@@ -73,6 +73,24 @@ background-color: #d4a074;
   text-align: center;
 }
 
+.upgradebutton:hover{
+  background-color: #d19564;
+}
+.recipeButton:hover{
+  background-color: #d19564;
+}
+
+.recipeButton{
+  background-color: #c58d5f;
+  text-align: center;
+  min-width: fit-content;
+  max-width: fit-content;
+  padding: 20px;
+  margin-top: 10px;
+  font-size: larger;
+  transition: 0.3s;
+}
+
 .title{
   background-color: #bb8559;
   text-align: center;
@@ -304,6 +322,32 @@ hr{
 }
 
 .upgradeText{
+  max-width: 450px;
+}
+
+.recipe{
+  display: flex;
+  flex-direction: row;
+  background-color: #d4a074;
+  width: calc(100% - 50px);
+  min-height: 110px;
+  padding: 10px;
+  align-items: center;
+  justify-content: space-around;
+  margin-top: 10px;
+  margin-bottom:10px;
+}
+
+.recipe img{
+  width: 100px;
+  height: 100px;
+}
+
+.recipeTitle{
+  font-size:larger;
+}
+
+.recipeText{
   max-width: 450px;
 }
 

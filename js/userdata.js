@@ -51,5 +51,6 @@ var progress = {
   "hasRaices": false,
   "hasPolen": false,
   "hasAurora": false,
-  "gold":50
-};
+  "gold":0,
+  "recipesUnlocked":[]
+}
