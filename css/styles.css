@@ -58,6 +58,27 @@ background-color: #d4a074;
   width: 100%;
   justify-content: space-around;
 }
+.talkbutton{
+  background-color: #c58d5f;
+  text-align: center;
+  min-width: 200px;
+  max-width: 200px;
+  padding: 30px;
+  margin-top: 10px;
+  font-size: larger;
+  transition: 0.3s;
+}
+.talkbutton:hover{
+background-color: #d4a074;
+}
+
+.talkbuttons{
+  display:flex;
+  flex-direction: row;
+  align-items: center;
+  width: 100%;
+  justify-content: space-around;
+}
 
 .upgradebutton{
   background-color: #c58d5f;
@@ -78,6 +99,14 @@ background-color: #d4a074;
 }
 .recipeButton:hover{
   background-color: #d19564;
+}
+.itemsquare p {
+  position: absolute; /* Establecer el párrafo como absoluto */
+  bottom: 0; /* Posición en la parte inferior */
+  right: 0; /* Posición en la derecha */
+  margin: 0; /* Quitar márgenes para un mejor ajuste */
+  padding: 5px;
+  font-size: x-large;
 }
 
 .recipeButton{
@@ -175,8 +204,11 @@ hr{
 }
 
 .itemsquare{
-  width: 100px;
-  height: 100px;
+  position:relative;
+  min-width: 100px;
+  min-height: 100px;
+  max-width: 100px;
+  max-height: 100px;
   background-color: #d4a074;
   margin: 10px;
 }
@@ -354,12 +386,26 @@ hr{
 .tinycupboard{
   min-height: 120px;
   height: fit-content;
-  width: calc(100% - 25px);
+  max-width: calc(100% - 25px); 
   display:flex;
-  overflow: auto;
   background-color: #bb8559;
   justify-content: center;
+  align-items: center;
 }
+
+.tinycupboard img{
+  min-width: 90px;
+  min-height: 90px;
+  max-width: 90px;
+  max-height: 90px;
+}
+.tinycupboard .itemsquare{
+  min-width: 90px !important;
+  min-height: 90px !important;
+  max-width: 90px !important;
+  max-height: 90px !important;
+}
+
 .mesa{
   margin:auto;
   background-color: #cab3da;

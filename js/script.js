@@ -1,6 +1,6 @@
 //#region VARIABLES
 var hasClient = false;
-var lastClient = 10;
+var lastClient = 20;
 var clientObj;
 var matchingItems;
 var selectedItem;
@@ -9,6 +9,9 @@ var cooldownPolen = false;
 var cooldownAurora = false;
 var aurorapart = 1; //1 hojas, 2 fruto
 var lastHarvestTime = {};
+var targetPetition = "";
+var multiplier = 1;
+var all=false;
 const cooldowns = {
     'i1': 0.1,  // No cooldown for i1
     'i2': 5,
@@ -43,6 +46,7 @@ var boxContinueText = document.getElementById("continuetext");
 var textbox = document.getElementById("textbox");
 var screen = document.getElementById("screen");
 var boxButtons = document.getElementById("boxButtons")
+var talkButtons = document.getElementById("talkbuttons")
 var bJardin = document.getElementById("bJardin");
 var bMostrador = document.getElementById("bMostrador");
 var bTrastienda = document.getElementById("bTrastienda");
@@ -163,25 +167,67 @@ async function clientActions() {
     toggleClientOptions();
 }
 
+function talkToClient(){
+    boxButtons.classList.add("hidden");
+    toggleDialogs();
+}
+
+async function talk1(){
+    talkButtons.classList.add("hidden");
+    boxP.classList.remove('hidden');
+    boxP.innerHTML=targetPetition;
+    await waitForClick();
+    await waitForClick();
+    toggleClientOptions();
+}
+async function talk2(){
+    talkButtons.classList.add("hidden");
+    boxP.classList.remove('hidden');
+    var randomNumber = Math.floor(Math.random() * 5);
+    boxP.innerHTML= clientObj.dialogs[randomNumber];
+    await waitForClick();
+    await waitForClick();
+    toggleClientOptions();
+}
+
 function clientPetition() {
+    if (Math.random() == 0.1){
+        var specialReq = clientObj.specialReq;
+        boxP.innerHTML = specialReq.petition;
+        targetPetition = specialReq.petition;
+        matchingItems = specialReq.expectedItem;
+        if(specialReq.quantity=="all"){
+            all = true;
+            multiplier = 1;
+        }else{
+            all = false;
+            multiplier = specialReq.quantity;
+        }
+    }else{
+    all = false;
+    multiplier=1;
     //ver que objetos puede pedir por su tipo
     var objetosPedibles = items.filter(item => item.archetype.includes(clientObj.type));
-
     //pick random item
     var targetItem = objetosPedibles[Math.floor(Math.random() * objetosPedibles.length)];
-
     //pick random petition
-    var targetPetition = targetItem.petitions[Math.floor(Math.random() * targetItem.petitions.length)];
+    targetPetition = targetItem.petitions[Math.floor(Math.random() * targetItem.petitions.length)];
     boxP.innerHTML = targetPetition;
-
     //filter objects that can be given to client with that petition too
     matchingItems = items.filter(item => item.petitions.includes(targetPetition)).filter(item => item.archetype.includes(clientObj.type));
-
+    }
 }
 
 function toggleClientOptions() {
     boxP.classList.add("hidden");
     boxButtons.classList.remove("hidden");
+}
+
+
+
+function toggleDialogs(){
+    boxP.classList.add("hidden");
+    talkButtons.classList.remove("hidden");
 }
 
 function openInvFromClient() {
@@ -201,13 +247,25 @@ function openInvFromClient() {
         var square = document.createElement('itemsquare');
         square.classList.add('itemsquare');
         square.setAttribute('item-id', item.id);
-        square.innerHTML = item.item + "<br> Cantidad: " + currentInv[item.id];
-        //var squareimg = document.createElement('img');
-        //squareimg.setAttribute('src',item.imgroute);
-        //square.appendChild(squareimg);
-        square.addEventListener('click', function () {
+        
+        var c = document.createElement('p');
+        c.innerHTML = currentInv[item.id];
+        
+        var squareimg = document.createElement('img');
+        squareimg.setAttribute('src', '../assets/items/' + item.id + '.png');
+        
+        square.appendChild(c);
+        square.appendChild(squareimg);
+        
+        // Función para manejar el evento de clic en el square
+        function handleClick() {
             selectItemFromInvClient(item.id);
-        });
+        }
+        
+        // Asignar la misma función al square y a la imagen
+        square.addEventListener('click', handleClick);
+        squareimg.addEventListener('click', handleClick);
+        
         screen.appendChild(square);
     });
 
@@ -238,13 +296,16 @@ async function sellItem(item) {
     }
 
     // Comprobar si está bien
-    if (matchingItems.includes(item)) {
+    if (matchingItems.includes(item)||matchingItems.includes(item.id)) {
         // Sumar oro
-        progress.gold += item.price;
+        if(all){
+            progress.gold += item.price*currentInv[item.id];
+            currentInv[item.id] = 0;
+        }else{
+        progress.gold += item.price*multiplier;
+        currentInv[item.id] -= 1*multiplier;
+        }
         goldmeter.innerHTML = "Oro: " + progress.gold;
-
-        //Eliminar poción del inventario
-        currentInv[item.id] -= 1;
 
         // Responder
         respuestas = [
@@ -456,13 +517,21 @@ function openInvFromBackshop() {
         var square = document.createElement('itemsquare');
         square.classList.add('itemsquare');
         square.setAttribute('item-id', item.id);
-        square.innerHTML = item.item + "<br> Cantidad: " + currentInv[item.id];
-        //var squareimg = document.createElement('img');
-        //squareimg.setAttribute('src',item.imgroute);
-        //square.appendChild(squareimg);
-        square.addEventListener('click', function () {
+        var c = document.createElement('p');
+        c.innerHTML = currentInv[item.id];
+        square.appendChild(c);
+        var squareimg = document.createElement('img');
+        squareimg.setAttribute('src', '../assets/items/' + item.id + '.png');
+        square.appendChild(squareimg);
+        
+        // Función para manejar el evento de clic en el square
+        function handleClick() {
             selectItemFromInvBackdrop(item.id);
-        });
+        }
+        
+        // Asignar la función al square para manejar el evento de clic
+        square.addEventListener('click', handleClick);
+        
         screen.appendChild(square);
     });
 }
@@ -551,35 +620,37 @@ function openMagicPot() {
         var square = document.createElement('itemsquare');
         square.classList.add('itemsquare');
         square.setAttribute('item-id', item.id);
-        square.setAttribute('quantity', currentInv[item.id]);
-        square.innerHTML = item.item + "<br> Cantidad: " + currentInv[item.id];
-        //var squareimg = document.createElement('img');
-        //squareimg.setAttribute('src',item.imgroute);
-        //square.appendChild(squareimg);
+        var c = document.createElement('p');
+        c.innerHTML = currentInv[item.id];
+        square.appendChild(c);
+        var squareimg = document.createElement('img');
+        squareimg.setAttribute('src', '../assets/items/' + item.id + '.png');
+        square.appendChild(squareimg);
+        square.setAttribute('quantity', currentInv[item.id]); // Establecer la cantidad inicial
+        
         square.addEventListener('click', function () {
-
             var clickedItemId = item.id;
             var clickedItemQuantity = parseInt(square.getAttribute('quantity'));
+            
             if (clickedItemQuantity > 0) {
-                if (chosen1.getAttribute('item-id') === null) {
-                    chosen1.innerHTML = item.item;
-                    chosen1.setAttribute('item-id', clickedItemId);
+                // Buscar un lugar designado disponible para el artículo seleccionado
+                var chosenSlots = [chosen1, chosen2, chosen3];
+                var chosenSlot = chosenSlots.find(slot => slot.getAttribute('item-id') === null);
+                
+                if (chosenSlot) {
+                    var image = squareimg.cloneNode(true);
+                    chosenSlot.appendChild(image);
+                    chosenSlot.setAttribute('item-id', clickedItemId);
+                    
+                    // Actualizar la cantidad en el itemsquare
                     square.setAttribute('quantity', clickedItemQuantity - 1);
-                    square.innerHTML = item.item + "<br> Cantidad: " + (clickedItemQuantity - 1);
-                } else if (chosen2.getAttribute('item-id') === null) {
-                    chosen2.innerHTML = item.item;
-                    chosen2.setAttribute('item-id', clickedItemId);
-                    square.setAttribute('quantity', clickedItemQuantity - 1);
-                    square.innerHTML = item.item + "<br> Cantidad: " + (clickedItemQuantity - 1);
-                } else if (chosen3.getAttribute('item-id') === null) {
-                    chosen3.innerHTML = item.item;
-                    chosen3.setAttribute('item-id', clickedItemId);
-                    square.setAttribute('quantity', clickedItemQuantity - 1);
-                    square.innerHTML = item.item + "<br> Cantidad: " + (clickedItemQuantity - 1);
+                    square.childNodes[0].innerHTML = (clickedItemQuantity - 1);
                 }
-                verificarChosen();
+                
+                verificarChosen(); // Verificar los lugares designados
             }
         });
+        
         tinycupboard.appendChild(square);
     });
 }
@@ -605,7 +676,7 @@ function resetChosenSquares(opt) {
                         if (square.getAttribute('item-id') === itemId) {
                             var quantity = parseInt(square.getAttribute('quantity'));
                             square.setAttribute('quantity', quantity + 1);
-                            square.innerHTML = item.item + "<br> Cantidad: " + (quantity + 1);
+                            square.firstChild.innerHTML = (quantity + 1);
                         }
                     });
                 }
@@ -624,7 +695,7 @@ function resetChosenSquares(opt) {
                         if (square.getAttribute('item-id') === itemId) {
                             var quantity = parseInt(square.getAttribute('quantity'));
                             square.setAttribute('quantity', quantity + 1);
-                            square.innerHTML = item.item + "<br> Cantidad: " + (quantity + 1);
+                            square.firstChild.innerHTML = (quantity + 1);
                         }
                     });
                 }
@@ -643,7 +714,8 @@ function resetChosenSquares(opt) {
                         if (square.getAttribute('item-id') === itemId) {
                             var quantity = parseInt(square.getAttribute('quantity'));
                             square.setAttribute('quantity', quantity + 1);
-                            square.innerHTML = item.item + "<br> Cantidad: " + (quantity + 1);
+                            square.firstChild.innerHTML = (quantity + 1);
+
                         }
                     });
                 }
@@ -760,7 +832,7 @@ function loadRecetas() {
 
         //img
         var squareimg = document.createElement('img');
-        squareimg.setAttribute('src', targetItem.imgroute);
+        squareimg.setAttribute('src', '../assets/items/'+itemid+'.png');
         recipesquare.appendChild(squareimg);
 
         //texdiv

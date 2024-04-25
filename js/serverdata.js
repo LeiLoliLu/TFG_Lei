@@ -14,14 +14,14 @@ const townsfolk = [
   },
   {
     "name": "Cawbett - Cuervo Parlanchín", "greeting": "¡Buen día cawmarada Herborista! Necesito tu ayuda para cawntinuar con mis aventuras.", "type": "adventurer", "dialogs": [
-      "",
-      "",
-      "",
-      "",
-      ""],
+      "Caw buen día hace fuera, te recomiendo ir dar una vuelta, igual incluso podrías encontrar inspiración para nuevas pociones.",
+      "Tienes una cawbaña de lo más agradable, casi me haces replantearme hacerme herbolista si se puede vivir con tanta tranquilidad como tú.",
+      "¿A caw viene esa cawra? ¿Nunca has visto a un pájaro hablar? ... ¿No? Oh, bueno, siempre hay una primera vez para todo.",
+      "¿Por algún cawsual no tendrás una planta caw se parezca a un ajo? Es mil veces mejor porcaw cuando lo pones en pan, es cawmo comer un pedazo de gloria... Es una bendición caw exista... Caw rico estaba ese pan, necesito preparar más...",
+      "Te ves bien hoy, Herbolista. No caw no te vea bien otros días, pero hoy te ves muy feliz y una sonrisa ilumina cawlquier cawra."],
     "specialReq": {
       "petition": "",
-      "expectedItem": "",
+      "expectedItem": "i6",
       "quantity": 0
     }
   },
@@ -40,108 +40,118 @@ const townsfolk = [
   },
   {
     "name": "Longrim Wymberforged - Druida Viajero", "greeting": "Buenas tardes, rapaz. Hoy hace un día mágico, ¿No le parece?", "type": "adventurer", "dialogs": [
-      "",
-      "",
-      "",
-      "",
-      ""],
+      "¿Día duro en la tienda? Corre como un caracol y nunca te torcerás un tobillo.",
+      "¿No habrán pasado por aquí un draconido rojo con una elfa a la espalda, no? Mi grupo es un tanto... peculiar.",
+      "Te daré un consejo, cuando un árbol te golpee, ¡escuchalo!",
+      "En otro momento me encantaría poder pasarme a ver ese huertecillo tuyo. Aunque no sea común, soy un enano al que le fascinan las plantas.",
+      "Herbolista, tienes buen ojo. Te confirmo que esto que llevo enredado en la barba es albahaca."],
     "specialReq": {
-      "petition": "",
-      "expectedItem": "",
-      "quantity": 0
+      "petition": "Verás Herbolista, esta noche tendré una cita en la taberna y me gustaría estar despierto el máximo tiempo posible haciendole compañía. Dame un par.",
+      "expectedItem": "9",
+      "quantity": 2
     }
   },
   {
     "name": "Maccon Iceblood - Cazador del pueblo", "greeting": "¿Tienes mucho lío? Intentaré pedir rápido.", "type": "adventurer", "dialogs": [
-      "",
-      "",
-      "",
-      "",
-      ""],
+      "El silencio del bosque puede ser inquietante, pero también revelador. A veces, es en la quietud donde se ocultan los mayores peligros.",
+      "Mi trabajo como cazador va más allá de traer comida a la mesa. También protejo al pueblo de posibles amenazas y garantizo la seguridad de nuestros hogares.",
+      "Hubo una vez, en las profundidades del bosque, que me vi rodeado por una manada de lobos hambrientos. Fue un recordatorio brutal de que en la naturaleza, incluso el cazador puede convertirse en presa.",
+      "¿Ha venido Maeve hoy a la tienda? ¿Q-qué por qué pregunto? Por nada. Pura curiosidad-.",
+      "Le he pedido a Eldric una espada nueva... quizas debería haber esperado, estoy convencido de que ahora cree que me voy a unir a los guerrilleros de la frontera."],
     "specialReq": {
-      "petition": "",
-      "expectedItem": "",
-      "quantity": 0
+      "petition": "Hoy hay caza. Necesito 5 pociones de curación. Estimo que va a ser peligroso.",
+      "expectedItem": "1",
+      "quantity": 5
     }
   },
   {
     "name": "Witchette Aeterna - El sombrero es la bruja", "greeting": "Hola, ¿Me puedes ayudar? Necesito unas cositas.", "type": "mage", "dialogs": [
-      "",
-      "",
-      "",
-      "",
-      ""],
+      "Mis ojos están aquí arriba. Esos de ahi abajo no sirven, solo tengo esto para poder caminar.",
+      "¡Oh, Herbolista! Hoy me he topado con un joven mago que intentaba convocar a un dragón. ¡Fue un espectáculo! Aunque francamente, podría haberlo hecho mejor.",
+      "Es agotador cómo la gente me mira con desconfianza solo por haber tomado un cuerpo prestado. Como si no pudieran entender que necesito interactuar con el mundo de alguna manera. ¡Ah, la ignorancia humana!",
+      "Hoy has escogido una vestimenta encantadora. ¿Te importaría prestármela para un paseo mágico por el pueblo? ...No me mires así, ¡Me refiero a tomar la ropa prestada, no tu cuerpo!",
+      "A veces, echo de menos mi antiguo cuerpo etéreo. Era tan ligero como una pluma y podía deslizarme entre los rincones más oscuros de la noche. Pero supongo que este cuerpo humano tiene sus ventajas... aunque sea un poco torpe a veces."],
     "specialReq": {
-      "petition": "",
-      "expectedItem": "",
-      "quantity": 0
+      "petition": "Mi Herborista, debes salvarme. Necesito una poción de amor, ¡esto es URGENTE! Te prometo que valdrá la pena.",
+      "expectedItem": "20",
+      "quantity": 1
     }
   },
   {
     "name": "Maeve Silvermoon - Oráculo Lunar", "greeting": "Muy buen dia, Herborista. ¿Saldrás por la noche? La luna va a estar preciosa.", "type": "mage", "dialogs": [
-      "",
-      "",
-      "",
-      "",
-      ""],
+      "Dicen que mis visiones son un regalo, pero a veces siento que son una maldición. Ver el destino de los demás puede ser una carga pesada, especialmente cuando sé que no puedo cambiarlo",
+      "Anoche, las estrellas me hablaron en susurros sombríos sobre las fronteras. Vi nubes oscuras acechando más allá de la línea que separa la seguridad del peligro. Algo inquietante se avecina en el horizonte y temo que su sombra se extienda hacia nuestro pueblo.",
+      "La Tierra y la Luna, como amantes eternos, se acompañan en un baile celestial. A menudo me pregunto si sus secretos guardan también los misterios del amor verdadero.",
+      "Suelo coincidir con Maccon por las noches. Es realmente encantador. Sus ojos son del color de la luz de la luna, es un tanto hipnótico.",
+      "No suelo hablar con la gente del pueblo. Usualmente cuando salgo a la calle es en plena noche, asique no he coincidido demasiado con el resto de vecinos."],
     "specialReq": {
-      "petition": "",
-      "expectedItem": "",
-      "quantity": 0
+      "petition": "Hoy celebro un ritual muy importante, necesito todos los pétalos de luna que tengas. La diosa te lo agradecerá.",
+      "expectedItem": "i2",
+      "quantity": "all"
     }
   },
   {
-    "name": "Palmeadus Pico de Rubí - Gran Archimago", "greeting": "Saludos, joven mortal. Requiero tus servicios una vez más.", "type": "mage", "dialogs": [
-      "",
-      "",
-      "",
-      "",
-      ""],
+    "name": "Palmeadus Pico de Rubí - Gran Archimago","greeting": "Saludos, joven mortal. Requiero tus servicios una vez más.","type": "mage",
+    "dialogs": [
+      "¿Qué? ¿Por qué me miras así? Detente. Es una orden.",
+      "Hace siglos solía tener otra forma. Sin embargo descubrí que esta apariencia es claramente superior. Deberías sentirte honrado de estar en mi presencia.",
+      "Deja de perder el tiempo y prepara mi pedido, mortal. Mi tiempo es oro.",
+      "¿Aprendiz? No, no busco aprendices. No estoy interesado en la alquimia tampoco, así que no, guarda tus indirectas.",
+      "Esos malditos gemelos me escondieron mi sombrero de poder esta mañana. Casi no consigo encontrarlo."
+    ],
     "specialReq": {
-      "petition": "",
-      "expectedItem": "",
-      "quantity": 0
+      "petition": "La orden de las sombras ha entrado en una guerra mágica contra mí. Necesito escudos protectores para defenderme de sus ataques mientras preparo mi ofensiva. Dame un par.",
+      "expectedItem": "17",
+      "quantity": 2
     }
   },
   {
     "name": "Stretch y Stitches - Gemelos Ilusionistas", "greeting": "(ambos a la vez) ¡Hola, hola!", "type": "mage", "dialogs": [
-      "",
-      "",
-      "",
-      "",
-      ""],
+      "(Stretch) Herbolista, ¿Te gustan los trucos de magia? <br> (Stitches) ¿A quién no le gustan los trucos de magia? ¡Seguro que le encantan! <br> (Stretch) ¡Podríamos enseñarte un par de trucos si quieres!",
+      "¡Oh! ¡Qué bonita es esta tienda! ¿La has decorado totalmente tú, Herbolista?",
+      "(Stretch) ¿Te imaginas la cara de Palmeadus cuando descubra que le hemos escondido su piedra de poder? <br> (Stitches) ¡Jaja! Tu no digas ni palabra, ¿Eh, Herbolista? Guardanos el secreto.",
+      "¡Vamos a preguntarle a Amely si podemos hacer un espectáculo en la plaza, tienes que venir!",
+      "(Stitches) ¿No te asusta la frontera, Herbolista? <br> (Stretch) No hay que tener miedo. ¡Maccon y Eldric nos cuidan!"],
     "specialReq": {
-      "petition": "",
-      "expectedItem": "",
-      "quantity": 0
+      "petition": "¡Necesitamos dos pociones de invisibilidad!",
+      "expectedItem": "27",
+      "quantity": 2
     }
   },
   {
-    "name": "Eloise Sapeye - Médica Errante", "greeting": "Hola... Estoy de paso. Tu tienda es realmente preciosa.", "type": "merchant", "dialogs": [
-      "",
-      "",
-      "",
-      "",
-      ""],
-    "specialReq": {
-      "petition": "",
-      "expectedItem": "",
-      "quantity": 0
-    }
-  },
-  {
-    "name": "Glob - Mercader Gelatinoso", "greeting": "Uy...Te he llenado la entrada de babas. Lo siento.", "type": "merchant", "dialogs": [
-      "",
-      "",
-      "",
-      "",
-      ""],
-    "specialReq": {
-      "petition": "",
-      "expectedItem": "",
-      "quantity": 0
-    }
-  },
+  "name": "Eloise Sapeye - Médica Errante",
+  "greeting": "Hola... Estoy de paso. Tu tienda es realmente preciosa.",
+  "type": "merchant",
+  "dialogs": [
+    "Disculpa si parezco un poco nerviosa, es que no estoy acostumbrada a estar en el centro de atención. Solo quiero hacer mi trabajo y ayudar a los que lo necesitan. Siempre me pregunto si debería haber estudiado más medicina o si mi ayuda en la frontera es suficiente...",
+    "La gente aquí es muy amable... a veces me sorprende cómo se preocupan unos por otros. Me siento agradecida por poder contribuir, aunque sea de manera modesta.",
+    "¿De dónde vengo? Bueno, soy de un pueblo no muy lejano de aquí. Pero últimamente he estado viajando mucho, especialmente hacia la frontera. Mi familia siempre ha sido muy solidaria, así que sentí que era mi deber ayudar en tiempos difíciles.",
+    "¿Has visto a Glob últimamente? Siempre viene a la clínica con sus pequeños problemas gelatinosos. Es curioso cómo incluso los seres más inusuales necesitan cuidado médico.",
+    "He escuchado que tus padres están en el otro lado de la frontera. Me pregunto cómo están y si necesitan algo. ¿Has recibido alguna noticia reciente sobre ellos?"
+  ],
+  "specialReq": {
+    "petition": "Hoy tengo un día muy largo... Necesito hacerme una infusión... ¿20 hierbas evergreen bastarán?",
+    "expectedItem": "i1",
+    "quantity": 20
+  }
+},
+{
+  "name": "Glob - Mercader Gelatinoso",
+  "greeting": "Uy... Glob te ha llenado la entrada de babas. Glob lo siente.",
+  "type": "merchant",
+  "dialogs": [
+    "Glob vio una planta muy brillante en el bosque anoche. Era tan brillante como las luciérnagas. ¿Sabes qué planta podría ser?",
+    "¡Ugh, lluvia mal! Glob no gusta. Mojar a Glob mucho y hacer resbalar. ¿Tú tener poción para parar lluvia?",
+    "¡Hoy Glob tener día muy divertido! ¡Glob jugar con Scoot! ¡Scoot ser muy rápido! ¡Glob correr mucho para alcanzar a Scoot!",
+    "Hoy muchos clientes visitar a Glob. Ellos querer gelatina para sus problemas. Glob ayudar con remedios. ¿Tú tener más clientes hoy?",
+    "¡Glob comer en taberna de Helga! Comida de Helga ser muy buena, aunque un poco... pegajosa. Glob preferir gelatina, pero comida de Helga no estar mal."
+  ],
+  "specialReq": {
+    "petition": "Glob quiere frutos de aurora para gelatina. Gelatina arcoiris. 3 frutos aurora.",
+    "expectedItem": "i6",
+    "quantity": 3
+  }
+},
   {
     "name": "Solor Maeafin - Vendedor de Micelio", "greeting": "¡Buenos días! Necesito un favorcillo. ¡Será rápido!", "type": "merchant", "dialogs": [
       "Soy un druida de las esporas. ¡Me crecen setas en las manos! Tengo un vivero en mi carro donde las planto y las mezclo. Más o menos como tus pociones.",
@@ -156,29 +166,37 @@ const townsfolk = [
     }
   },
   {
-    "name": "Amely Lawkin - Alcaldesa Nerviosa", "greeting": "¡Muy buenos dias! Me alegra verte por aquí. Aunque, siendo sinceros, sería raro que no lo estuvieras, jaja.", "type": "town", "dialogs": [
-      "",
-      "",
-      "",
-      "",
-      ""],
+    "name": "Amely Lawkin - Alcaldesa Nerviosa",
+    "greeting": "¡Muy buenos días! Me alegra verte por aquí. Aunque, siendo sinceros, sería raro que no lo estuvieras, jaja.",
+    "type": "town",
+    "dialogs": [
+      "Yo... um... si necesitas algo de la alcaldía... aquí estoy... para ayudar... supongo.",
+      "Estoy tratando de organizar un... un evento para la comunidad. P-pero no sé si es una buena idea... ¿Tú crees que sería útil?",
+      "¿Has visto a Daph? ...Tengo un paquete que... Debería entregar pronto.",
+      "Siento interrumpir, pero ¿has escuchado si hay novedades sobre la frontera últimamente? La incertidumbre me está afectando un poco...",
+      "Um, ¿sabes? A veces siento que... tal vez la alcaldía me queda un poco grande. Intento hacer lo mejor que puedo, pero... es abrumador."
+    ],
     "specialReq": {
-      "petition": "",
-      "expectedItem": "",
-      "quantity": 0
+      "petition": "¿Tienes algo que pueda hacerme... más fuerte? ¡Más, más- dura! Um... ¿Algo de raíces?",
+      "expectedItem": "12",
+      "quantity": 1
     }
   },
   {
-    "name": "Daph Swiftstride - Mensajero Centauro", "greeting": "¡Tengo prisa y mucho trabajo así que vamos al grano!", "type": "town", "dialogs": [
-      "",
-      "",
-      "",
-      "",
-      ""],
+    "name": "Daph Swiftstride - Mensajero Centauro",
+    "greeting": "¡Tengo prisa y mucho trabajo así que vamos al grano!",
+    "type": "town",
+    "dialogs": [
+      "Solo vine por un pedido. Tengo que irme enseguida.",
+      "¡Amo mi trabajo! No hay nada como la emoción de entregar paquetes y ver la sonrisa en el rostro de los clientes cuando reciben lo que esperaban.",
+      "Amely siempre manda y recibe muchos paquetes, y debo asegurarme de que lleguen a tiempo. No hay descanso para los repartidores.",
+      "Solo espero que Palmeadus no esté involucrado en la entrega de hoy. Nunca me ha caído bien y sus encargos siempre terminan siendo un dolor de cabeza.",
+      "Sabes, como repartidor, a veces siento que soy el núcleo de muchas relaciones. Entregar paquetes no es solo entregar objetos, sino también conectar a las personas y mantener esos lazos fuertes."
+    ],
     "specialReq": {
-      "petition": "",
-      "expectedItem": "",
-      "quantity": 0
+      "petition": "He perdido un paquete de Palmeadus y va a convertirme en un pato como no lo encuentre. ¿Tienes algo que pueda ayudarme a encontrarlo?",
+      "expectedItem": "37",
+      "quantity": 1
     }
   },
   {
@@ -202,17 +220,17 @@ const townsfolk = [
       "",
       ""],
     "specialReq": {
-      "petition": "",
-      "expectedItem": "",
-      "quantity": 0
+      "petition": "¡Esta noche voy a preparar mi famoso estofado de piedra! Necesito 5 raíces. ¡Va a quedar delicioso!",
+      "expectedItem": "i3",
+      "quantity": 6
     }
   },
   {
     "name": "Isabel Hojaoliva - Abuelita Adorable", "greeting": "Hola, joven. Hace un día precioso en el pueblo.", "type": "town", "dialogs": [
-      "",
-      "",
-      "",
-      "",
+      "Las temperaturas suelen bajar en esta epoca del año, ¡recuerda abrigarte bien antes de salir!",
+      "Antes he visto a un enano muy apuesto que olía a albahaca, este mundo está repleto de cosas interesantes.",
+      "Scoot es una ricura, ¡siempre correteando de allí para allá! Quizás te sorprenda, pero otrora fui una chavalita igual de inquieta.",
+      "Que encantadora es Amely, ¡el otro día me instaló una mecedora en la vieja biblioteca!",
       ""],
     "specialReq": {
       "petition": "",
@@ -235,15 +253,15 @@ const townsfolk = [
   },
   {
     "name": "Tombo, Pombo y Finnz - 'Duque Beraaz'", "greeting": "¡Maravillosos días! Soy el Duque Beraaz y preciso de los suministros que distribuye usted.", "type": "town", "dialogs": [
-      "",
-      "",
+      "No tengo tiempo para cháchara, tengo asuntos de barón muy importantes que atender. <br> (Pombo): ¡Somos duque, mendrugo! <br> (Beraaz): Quiero decir, ¡asuntos de duque barón, hehe!",
+      "Así es, estás en presencia del Duque Biraaz- quiero decir, ¡El duque Beraaz! <br> (Tombo): Vaya nombre más birria. <br> (Finnz): ¡Ciñete al papel!",
       "",
       "",
       ""],
     "specialReq": {
-      "petition": "",
-      "expectedItem": "", 
-      "quantity": 0
+      "petition": "Necesitamos... ¡Necesito! Necesito algo que haga ver formas y colores donde no las hay. No preguntes el porqué, son asuntos de duque.",
+      "expectedItem": "31", 
+      "quantity": 1
     }
   },
   {
