@@ -73,6 +73,7 @@ var opt1button = document.getElementById("opt1");
 var opt2button = document.getElementById("opt2");
 var opt3button = document.getElementById("opt3");
 var opt4button = document.getElementById("opt4");
+var settings = document.getElementById("settings");
 
 const clientela = setInterval(summonClient, 5000);
 const guardadoAutomatico = setInterval(guardarEnLocalStorage, 10000);
@@ -883,6 +884,7 @@ function changeScreen(option) {
     recipesquares = document.getElementsByTagName("recipesquare");
     while (recipesquares[0]) recipesquares[0].parentNode.removeChild(recipesquares[0]);
     boxP.innerHTML = "...";
+    settings.classList.add("hidden");
     clearMagicPot();
     clearBackshop();
     clearGarden();
@@ -914,6 +916,7 @@ function changeScreen(option) {
             break;
         case 5:
             title.innerHTML = "Ajustes";
+            settings.classList.remove("hidden");
             break;
         case 6:
             title.innerHTML = "Almacén";
