@@ -253,7 +253,7 @@ function openInvFromClient() {
         c.innerHTML = currentInv[item.id];
         
         var squareimg = document.createElement('img');
-        squareimg.setAttribute('src', '../assets/items/' + item.id + '.png');
+        squareimg.setAttribute('src', 'assets/items/' + item.id + '.png');
         
         square.appendChild(c);
         square.appendChild(squareimg);
@@ -265,6 +265,7 @@ function openInvFromClient() {
         
         // Asignar la misma función al square y a la imagen
         square.addEventListener('click', handleClick);
+        //hola?
         squareimg.addEventListener('click', handleClick);
         
         screen.appendChild(square);
@@ -397,9 +398,9 @@ function harvest(id, elemid) {
     var cooldown = cooldowns[id];
 
     if (cooldown && lastHarvestTime[id] && (currentTime - lastHarvestTime[id]) < cooldown * 1000) {
-        console.log("This item is still on cooldown. Please wait before harvesting again.");
         return;
     }
+    textFloat(id);
     if (elemid == "i4") {
         cooldownPolen = true;
     }
@@ -522,7 +523,7 @@ function openInvFromBackshop() {
         c.innerHTML = currentInv[item.id];
         square.appendChild(c);
         var squareimg = document.createElement('img');
-        squareimg.setAttribute('src', '../assets/items/' + item.id + '.png');
+        squareimg.setAttribute('src', 'assets/items/' + item.id + '.png');
         square.appendChild(squareimg);
         
         // Función para manejar el evento de clic en el square
@@ -625,7 +626,7 @@ function openMagicPot() {
         c.innerHTML = currentInv[item.id];
         square.appendChild(c);
         var squareimg = document.createElement('img');
-        squareimg.setAttribute('src', '../assets/items/' + item.id + '.png');
+        squareimg.setAttribute('src', 'assets/items/' + item.id + '.png');
         square.appendChild(squareimg);
         square.setAttribute('quantity', currentInv[item.id]); // Establecer la cantidad inicial
         
@@ -833,7 +834,7 @@ function loadRecetas() {
 
         //img
         var squareimg = document.createElement('img');
-        squareimg.setAttribute('src', '../assets/items/'+itemid+'.png');
+        squareimg.setAttribute('src', 'assets/items/'+itemid+'.png');
         recipesquare.appendChild(squareimg);
 
         //texdiv
@@ -990,9 +991,20 @@ function activarMenuLateral() {
     bAjustes.addEventListener("click", listenerajustes);
 }
 
+function encodeBase64(data) {
+    return btoa(unescape(encodeURIComponent(JSON.stringify(data))));
+}
+
+function decodeBase64(encodedData) {
+    return JSON.parse(decodeURIComponent(escape(atob(encodedData))));
+}
+
 function guardarEnLocalStorage() {
-    localStorage.setItem('currentInv', JSON.stringify(currentInv));
-    localStorage.setItem('progress', JSON.stringify(progress));
+    const encodedCurrentInv = encodeBase64(currentInv);
+    const encodedProgress = encodeBase64(progress);
+
+    localStorage.setItem('currentInv', encodedCurrentInv);
+    localStorage.setItem('progress', encodedProgress);
 }
 
 function cargarDesdeLocalStorage() {
@@ -1000,11 +1012,36 @@ function cargarDesdeLocalStorage() {
     var storedProgress = localStorage.getItem('progress');
 
     if (storedCurrentInv) {
-        currentInv = JSON.parse(storedCurrentInv);
+        currentInv = decodeBase64(storedCurrentInv);
+        console.log(currentInv);
     }
 
     if (storedProgress) {
-        progress = JSON.parse(storedProgress);
+        progress = decodeBase64(storedProgress);
     }
 }
 //#endregion
+
+function textFloat(ingredientId){
+   var targetitem =  items.filter(item => item.id==ingredientId);
+   const floatingText = document.createElement('div');
+   floatingText.className = 'floatingText';
+   floatingText.textContent = "+1 "+targetitem[0].item;
+   
+   // Establecer la posición del texto en el lugar del clic
+   floatingText.style.left = `${event.clientX}px`;
+   floatingText.style.top = `${event.clientY}px`;
+   
+   screen.appendChild(floatingText);
+   
+   // Iniciar la animación
+   setTimeout(() => {
+       floatingText.style.animation = 'floatUp 2s forwards';
+   }, 10);
+   
+   // Eliminar el elemento después de que termine la animación
+   floatingText.addEventListener('animationend', () => {
+       screen.removeChild(floatingText);
+   });
+
+}
