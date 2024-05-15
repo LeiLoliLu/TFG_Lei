@@ -41,7 +41,7 @@ var listenerajustes = function () {
 var title = document.getElementById("title");
 var texttitle = document.getElementById("texttitle");
 var box = document.getElementById("box");
-var boxP = box.firstChild;
+var boxP = document.getElementById("boxP");
 var boxContinueText = document.getElementById("continuetext");
 var textbox = document.getElementById("textbox");
 var screen = document.getElementById("screen");
@@ -79,6 +79,7 @@ const clientela = setInterval(summonClient, 5000);
 const guardadoAutomatico = setInterval(guardarEnLocalStorage, 10000);
 
 changeScreen(2);
+console.log("CAMBIOS");
 activarMenuLateral();
 goldmeter.innerHTML = "Oro: " + progress.gold;
 cargarDesdeLocalStorage();
@@ -265,7 +266,6 @@ function openInvFromClient() {
         
         // Asignar la misma función al square y a la imagen
         square.addEventListener('click', handleClick);
-        //hola?
         squareimg.addEventListener('click', handleClick);
         
         screen.appendChild(square);
@@ -524,22 +524,14 @@ function openInvFromBackshop() {
         square.appendChild(c);
         var squareimg = document.createElement('img');
         squareimg.setAttribute('src', 'assets/items/' + item.id + '.png');
+        squareimg.setAttribute('onclick', "selectItemFromInvBackdrop(\""+item.id+"\")");
         square.appendChild(squareimg);
-        
-        // Función para manejar el evento de clic en el square
-        function handleClick() {
-            selectItemFromInvBackdrop(item.id);
-        }
-        
-        // Asignar la función al square para manejar el evento de clic
-        square.addEventListener('click', handleClick);
-        
         screen.appendChild(square);
     });
 }
 
-function selectItemFromInvBackdrop(id) {
-    selectedItem = items.find(item => item.id === id);
+function selectItemFromInvBackdrop(itemId) {
+    selectedItem = items.find(item => item.id === itemId);
     boxP.innerHTML = selectedItem.item + " - Precio: " + selectedItem.price + " de oro." + " <hr> " + selectedItem.desc;
 }
 
