@@ -254,7 +254,7 @@ function openInvFromClient() {
         c.innerHTML = currentInv[item.id];
         
         var squareimg = document.createElement('img');
-        squareimg.setAttribute('src', 'assets/items/' + item.id + '.png');
+        squareimg.setAttribute('src', '/assets/items/' + item.id + '.png');
         
         square.appendChild(c);
         square.appendChild(squareimg);
@@ -523,7 +523,7 @@ function openInvFromBackshop() {
         c.innerHTML = currentInv[item.id];
         square.appendChild(c);
         var squareimg = document.createElement('img');
-        squareimg.setAttribute('src', 'assets/items/' + item.id + '.png');
+        squareimg.setAttribute('src', '/assets/items/' + item.id + '.png');
         squareimg.setAttribute('onclick', "selectItemFromInvBackdrop(\""+item.id+"\")");
         square.appendChild(squareimg);
         screen.appendChild(square);
@@ -618,7 +618,7 @@ function openMagicPot() {
         c.innerHTML = currentInv[item.id];
         square.appendChild(c);
         var squareimg = document.createElement('img');
-        squareimg.setAttribute('src', 'assets/items/' + item.id + '.png');
+        squareimg.setAttribute('src', '/assets/items/' + item.id + '.png');
         square.appendChild(squareimg);
         square.setAttribute('quantity', currentInv[item.id]); // Establecer la cantidad inicial
         
@@ -826,7 +826,7 @@ function loadRecetas() {
 
         //img
         var squareimg = document.createElement('img');
-        squareimg.setAttribute('src', 'assets/items/'+itemid+'.png');
+        squareimg.setAttribute('src', '/assets/items/'+itemid+'.png');
         recipesquare.appendChild(squareimg);
 
         //texdiv

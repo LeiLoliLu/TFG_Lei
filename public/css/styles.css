@@ -170,17 +170,16 @@ background-color: #d4a074;
 
 .jardin{
   margin:auto;
-  background-image:url("../assets/bgs/jardin.png");
+  background-image:url("/assets/bgs/jardin.png");
   background-size: 100% 100%;
 }
 .mostrador{
   margin:auto;
-  background-image:url("../assets/bgs/shop.png");
+  background-image:url("/assets/bgs/shop.png");
   background-size: 100% 100%;
 }
 .trastienda{
   margin:auto;
-  background-image:url("../assets/bgs/trastienda.png");
   background-size: 100% 100%;
 }
 

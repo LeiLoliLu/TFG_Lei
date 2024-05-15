@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="/css/styles.css">
   <style>
 
   </style>
@@ -34,30 +34,31 @@
       <div class="button" id="createbutton" onclick="createPotion()">Crear Poción</div>
       <div class="hidden" id="settings">
         <h2>Registro</h2>
-        <form id="registroForm">
-            <label for="emailRegistro">Correo electrónico:</label><br>
-            <input type="email" id="emailRegistro" name="emailRegistro" required><br>
-            
-            <label for="usernameRegistro">Nombre de usuario:</label><br>
-            <input type="text" id="usernameRegistro" name="usernameRegistro" required><br>
-            
-            <label for="passwordRegistro">Contraseña:</label><br>
-            <input type="password" id="passwordRegistro" name="passwordRegistro" required><br>
-            
-            <button type="submit">Registrarse</button>
+        <form action="/registro" method="post">
+          <label for="emailRegistro">Correo Electrónico:</label>
+          <input type="email" id="emailRegistro" name="emailRegistro" required><br>
+
+          <label for="usuarioRegistro">Nombre de Usuario:</label>
+          <input type="text" id="usuarioRegistro" name="usuarioRegistro" required><br>
+
+          <label for="contrasenaRegistro">Contraseña:</label>
+          <input type="password" id="contrasenaRegistro" name="contrasenaRegistro" required><br>
+
+          <button type="submit">Registrarse</button>
         </form>
-    
-        <h2>Iniciar sesión</h2>
-        <form id="loginForm">
-            <label for="emailLogin">Correo electrónico o nombre de usuario:</label><br>
-            <input type="text" id="textLogin" name="textLogin" required><br>
-            
-            <label for="passwordLogin">Contraseña:</label><br>
-            <input type="password" id="passwordLogin" name="passwordLogin" required><br>
-            
-            <button type="submit">Iniciar sesión</button>
+
+        <!-- Formulario de Inicio de Sesión -->
+        <h2>Iniciar Sesión</h2>
+        <form action="/inicio-sesion" method="post">
+          <label for="emailUsuarioInicioSesion">Correo Electrónico o Nombre de Usuario:</label>
+          <input type="text" id="emailUsuarioInicioSesion" name="emailUsuarioInicioSesion" required><br>
+
+          <label for="contrasenaInicioSesion">Contraseña:</label>
+          <input type="password" id="contrasenaInicioSesion" name="contrasenaInicioSesion" required><br>
+
+          <button type="submit">Iniciar Sesión</button>
         </form>
-    </div>
+      </div>
     </div>
     <div class="textbox" id="textbox">
       <div class="texttitle" id="texttitle">No hay nadie en tu tienda</div>
@@ -88,8 +89,8 @@
     <div class="button toggler" id="toggleraurora" onclick="toggleAurora()">Recogiendo Hojas de Aurora</div>
   </aside>
 </body>
-<script src="../private/js/userdata.js"></script>
-<script src="../private/js/serverdata.js"></script>
-<script src="../private/js/mainscript.js"></script>
+<script src="/js/userdata.js"></script>
+<script src="/js/serverdata.js"></script>
+<script src="/js/mainscript.js"></script>
 
 </html>
