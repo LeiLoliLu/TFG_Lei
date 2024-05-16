@@ -439,3 +439,46 @@ hr{
       opacity: 0;
   }
 }
+
+/* Títulos */
+.settings-title {
+  text-align: center;
+  color: #000000;
+}
+
+/* Formularios */
+.settings-form {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Etiquetas */
+.settings-label {
+  color: #000000;
+}
+
+/* Campos de entrada */
+.settings-input {
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+/* Botones */
+.settings-button {
+  padding: 0.75rem;
+  background-color: #8a6b52;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.settings-button:hover {
+  background-color: #5f4b3a;
+}
+
+.settings-input:focus {
+  border-color: #8a6b52;
+  outline: none;
+}

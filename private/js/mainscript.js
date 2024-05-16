@@ -79,10 +79,10 @@ const clientela = setInterval(summonClient, 5000);
 const guardadoAutomatico = setInterval(guardarEnLocalStorage, 10000);
 
 changeScreen(2);
-console.log("CAMBIOS");
 activarMenuLateral();
-goldmeter.innerHTML = "Oro: " + progress.gold;
 cargarDesdeLocalStorage();
+goldmeter.innerHTML = "Oro: " + progress.gold;
+
 
 //#endregion
 
@@ -910,6 +910,7 @@ function changeScreen(option) {
         case 5:
             title.innerHTML = "Ajustes";
             settings.classList.remove("hidden");
+            screen.classList.add("almacen");
             break;
         case 6:
             title.innerHTML = "Almacén";
