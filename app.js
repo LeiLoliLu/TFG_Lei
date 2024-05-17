@@ -5,8 +5,6 @@ const mysql = require('mysql');
 const bodyParser = require('body-parser');
 const app = express();
 
-
-// Configuración de la conexión a la base de datos
 const connection = mysql.createConnection({
     host: 'localhost',
     user: 'root',
@@ -22,12 +20,10 @@ connection.connect(err => {
     console.log('Conexión establecida con la base de datos');
 });
 
-// Middleware para el manejo de datos en formato JSON
 app.use(express.json());
 
 app.use(bodyParser.urlencoded({ extended: true }));
 
-// Ruta para el registro de usuarios
 app.post('/registro', async (req, res) => {
     const { emailRegistro, usuarioRegistro, contrasenaRegistro, progressRegistro } = req.body;
     console.log(emailRegistro);
@@ -53,7 +49,6 @@ app.post('/registro', async (req, res) => {
     }
 });
 
-// Ruta para el inicio de sesión de usuarios
 app.post('/inicio-sesion', (req, res) => {
     const { emailUsuarioInicioSesion, contrasenaInicioSesion } = req.body;
     const query = 'SELECT * FROM usuario WHERE email = ? OR username = ?';
@@ -77,31 +72,34 @@ app.post('/inicio-sesion', (req, res) => {
             return;
         }
         
-        // Enviar el progreso del usuario al cliente
-        res.json({ username: user.username, progress: user.progress });
+        res.json({ username: user.username, progressjson: user.progress });
+    });
+});
+
+app.post('/actualizar-progreso', (req, res) => {
+    const { username, progress } = req.body;
+    const query = 'UPDATE usuario SET progress = ? WHERE username = ?';
+
+    connection.query(query, [JSON.stringify(progress), username], (err, results) => {
+        if (err) {
+            console.error('Error al actualizar el progreso:', err);
+            res.status(500).send('Error al actualizar el progreso');
+            return;
+        }
+        res.status(200).send('Progreso actualizado exitosamente');
     });
 });
 
 
-
-// Configura el directorio de archivos estáticos
 app.use(express.static(path.join(__dirname, 'public')));
-
-// Configura el directorio de archivos JavaScript
 app.use('/js', express.static(path.join(__dirname, 'private/js')));
-
-// Configura el directorio de archivos CSS
 app.use('/css', express.static(path.join(__dirname, 'public/css')));
-
-// Configura el directorio de archivos assets
 app.use('/assets', express.static(path.join(__dirname, 'public/assets')));
 
-// Ruta para servir el archivo HTML
 app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
-// Inicia el servidor
 const port = process.env.PORT || 80;
 app.listen(port, () => {
     console.log(`Servidor escuchando en el puerto ${port}`);

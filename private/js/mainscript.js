@@ -882,6 +882,7 @@ function changeScreen(option) {
     clearBackshop();
     clearGarden();
     clearBackground();
+    clearSettings();
     toggleClient("OFF");
     switch (option) {
         case 1:
@@ -909,7 +910,7 @@ function changeScreen(option) {
             break;
         case 5:
             title.innerHTML = "Ajustes";
-            settings.classList.remove("hidden");
+            loadSettings();
             screen.classList.add("almacen");
             break;
         case 6:

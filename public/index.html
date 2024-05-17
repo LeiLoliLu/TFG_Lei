@@ -35,34 +35,39 @@
       <div class="hidden settings" id="settings">
         <h2 class="settings-title">Registro</h2>
         <form id="formularioRegistro" action="/registro" method="post" class="settings-form">
-            <label for="emailRegistro" class="settings-label">Correo Electrónico:</label>
-            <input type="email" id="emailRegistro" name="emailRegistro" class="settings-input" required><br>
-    
-            <label for="usuarioRegistro" class="settings-label">Nombre de Usuario:</label>
-            <input type="text" id="usuarioRegistro" name="usuarioRegistro" class="settings-input" required><br>
-    
-            <label for="contrasenaRegistro" class="settings-label">Contraseña:</label>
-            <input type="password" id="contrasenaRegistro" name="contrasenaRegistro" class="settings-input" required><br>
-    
-            <button type="submit" class="settings-button">Registrarse</button>
+          <label for="emailRegistro" class="settings-label">Correo Electrónico:</label>
+          <input type="email" id="emailRegistro" name="emailRegistro" class="settings-input" required><br>
+
+          <label for="usuarioRegistro" class="settings-label">Nombre de Usuario:</label>
+          <input type="text" id="usuarioRegistro" name="usuarioRegistro" class="settings-input" required><br>
+
+          <label for="contrasenaRegistro" class="settings-label">Contraseña:</label>
+          <input type="password" id="contrasenaRegistro" name="contrasenaRegistro" class="settings-input" required><br>
+
+          <button type="submit" class="settings-button">Registrarse</button>
         </form>
-    
+
         <h2 class="settings-title">Iniciar Sesión</h2>
         <form id="formularioInicioSesion" action="/inicio-sesion" method="post" class="settings-form">
-            <label for="emailUsuarioInicioSesion" class="settings-label">Correo Electrónico o Nombre de Usuario:</label>
-            <input type="text" id="emailUsuarioInicioSesion" name="emailUsuarioInicioSesion" class="settings-input" required><br>
-    
-            <label for="contrasenaInicioSesion" class="settings-label">Contraseña:</label>
-            <input type="password" id="contrasenaInicioSesion" name="contrasenaInicioSesion" class="settings-input" required><br>
-    
-            <button type="submit" class="settings-button">Iniciar Sesión</button>
+          <label for="emailUsuarioInicioSesion" class="settings-label">Correo Electrónico o Nombre de Usuario:</label>
+          <input type="text" id="emailUsuarioInicioSesion" name="emailUsuarioInicioSesion" class="settings-input"
+            required><br>
+
+          <label for="contrasenaInicioSesion" class="settings-label">Contraseña:</label>
+          <input type="password" id="contrasenaInicioSesion" name="contrasenaInicioSesion" class="settings-input"
+            required><br>
+
+          <button type="submit" class="settings-button">Iniciar Sesión</button>
         </form>
-    </div>
-    <div id="usuario"></div>
-    <div id="acciones" class="hidden">
-        <button onclick="guardarDatos()">Guardar Datos</button>
-        <button onclick="borrarDatos()">Borrar Datos</button>
-    </div>
+      </div>
+      <div style="flex-direction: column;" id="usersection">
+        <div id="usuario"></div>
+        <div id="acciones" class="hidden">
+          <button onclick="guardarDatos()">Guardar Datos</button>
+          <button onclick="cerrarSesion()">Guardar y Cerrar Sesión</button>
+          <button onclick="borrarDatos()">Borrar Cuenta</button>
+        </div>
+      </div>
     </div>
     <div class="textbox" id="textbox">
       <div class="texttitle" id="texttitle">No hay nadie en tu tienda</div>
