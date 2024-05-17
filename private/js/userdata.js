@@ -63,7 +63,7 @@ document.getElementById("formularioRegistro").addEventListener("submit", functio
   const contrasena = document.getElementById("contrasenaRegistro").value;
   
   // Llamar a la función registrarUsuario con los datos del formulario
-  registrarUsuario(email, usuario, contrasena, progress);
+  registrarUsuario(email, usuario, contrasena, progress, currentInv);
 });
 
 document.getElementById("formularioInicioSesion").addEventListener("submit", function(event) {
@@ -94,7 +94,6 @@ function iniciarSesion(email, contrasena) {
   })
   .then(data => {
       progress = JSON.parse(data.progressjson);
-      progress = JSON.parse(progress);
       localStorage.setItem('username', data.username);
       loadSettings();
       guardarEnLocalStorage();
@@ -130,7 +129,7 @@ function clearSettings(){
 }
 
 // Función para registrar un nuevo usuario
-function registrarUsuario(email, usuario, contrasena, progressJSON) {
+function registrarUsuario(email, usuario, contrasena, progressJSON, currentInvJSON) {
   progressJSON = JSON.stringify(progressJSON);
   // Realizar la solicitud de registro al servidor
   fetch('/registro', {
@@ -138,7 +137,7 @@ function registrarUsuario(email, usuario, contrasena, progressJSON) {
       headers: {
           'Content-Type': 'application/json'
       },
-      body: JSON.stringify({ emailRegistro: email, usuarioRegistro: usuario, contrasenaRegistro: contrasena, progressRegistro: progressJSON })
+      body: JSON.stringify({ emailRegistro: email, usuarioRegistro: usuario, contrasenaRegistro: contrasena, progressRegistro: progressJSON, currentInvRegistro: currentInvJSON})
   })
   .then(response => {
       if (!response.ok) {
@@ -160,7 +159,7 @@ function guardarDatos() {
       headers: {
           'Content-Type': 'application/json'
       },
-      body: JSON.stringify({ username: username, progress: progressJSON })
+      body: JSON.stringify({ username: username, progress: progressJSON, currentInv:currentInv})
   })
   .then(response => {
       if (!response.ok) {
