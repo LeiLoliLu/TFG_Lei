@@ -115,6 +115,8 @@ function summonClient() {
         console.log("Trying to summon Client...");
         if (Math.random() > 0.5) {
             console.log("Summon Success!");
+            var audio = new Audio('/assets/ding.mp3');
+            audio.play();
             var clientElement = createClient();
             screen.appendChild(clientElement);
             hasClient = true;

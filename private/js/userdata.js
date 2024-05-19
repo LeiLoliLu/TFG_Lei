@@ -93,7 +93,8 @@ function iniciarSesion(email, contrasena) {
       return response.json();
   })
   .then(data => {
-      progress = JSON.parse(data.progressjson);
+      progress = JSON.parse(data.progress);
+      currentInv = data.inventory;
       localStorage.setItem('username', data.username);
       loadSettings();
       guardarEnLocalStorage();
@@ -172,6 +173,94 @@ function guardarDatos() {
   });
 }
 
+function reiniciarProgreso(){
+    let con = confirm("¿Estas seguro? Esto borrará todo tu progreso e inventario.");
+    if(con){
+        progress = {
+            "hasPetalos": false,
+            "hasRaices": false,
+            "hasPolen": false,
+            "hasAurora": false,
+            "gold":0,
+            "recipesUnlocked":[]
+          }
+        currentInv = {
+            "i1": 0,
+            "i2": 0,
+            "i3": 0,
+            "i4a": 0,
+            "i4b": 0,
+            "i5": 0,
+            "i6": 0,
+            "1": 0,
+            "2": 0,
+            "3": 0,
+            "4": 0,
+            "5": 0,
+            "6": 0,
+            "7": 0,
+            "8": 0,
+            "9": 0,
+            "10": 0,
+            "11": 0,
+            "12": 0,
+            "13": 0,
+            "14": 0,
+            "15": 0,
+            "16": 0,
+            "17": 0,
+            "18": 0,
+            "19": 0,
+            "20": 0,
+            "21": 0,
+            "22": 0,
+            "23": 0,
+            "24": 0,
+            "25": 0,
+            "26": 0,
+            "27": 0,
+            "28": 0,
+            "29": 0,
+            "30": 0,
+            "31": 0,
+            "32": 0,
+            "33": 0,
+            "34": 0,
+            "35": 0,
+            "36": 0,
+            "37": 0,
+            "38": 0
+          };
+          guardarDatos();
+          guardarEnLocalStorage();
+          cargarDesdeLocalStorage();
+    }
+}
+
+function borrarDatos() {
+    const confirmacion = confirm("¿Estás seguro de que quieres borrar tu cuenta? Esta acción no se puede deshacer.");
+    if (confirmacion) {
+        // Realizar la solicitud de borrado al servidor
+        fetch('/borrar-cuenta', {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ username: localStorage.getItem('username') }) // Envía el nombre de usuario almacenado localmente
+        })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Error al borrar la cuenta');
+            }
+            // Borrar los datos almacenados localmente y redirigir a la página de inicio de sesión
+            cerrarSesion();
+        })
+        .catch(error => {
+            console.error('Error al borrar la cuenta:', error);
+            // Manejar el error de borrado de la cuenta
+        });
+    }
+}
 
 function cerrarSesion(){
     guardarDatos();
@@ -232,4 +321,6 @@ function cerrarSesion(){
         "38": 0
       };
       location.reload();
+
+    
 }
