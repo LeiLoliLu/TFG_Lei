@@ -194,12 +194,23 @@ hr{
 }
 
 
-.client{
-  width: 70px;
-  height: 100px;
-  margin:0;
-  background-color: aqua;
+/* Clase para el estado normal del contenedor */
+.client {
+  width: 450px;
+  height: 400px;
+  margin: 0;
+  background-size: 100% 100%;
+  background-position: center;
   position: absolute;
+  top: 117px;
+  transition: height 0.2s ease, top 0.2s ease; /* Transición de altura y posición superior */
+}
+
+/* Clase para el estado aplastado del contenedor */
+.client-background-squashed {
+  height: calc(400px - 15px)!important;
+  top: 132px; /* Añade 10px de espacio en la parte superior */
+  transition: height 0.2s ease, top 0.2s ease; /* Transición de altura y posición superior */
 }
 
 .itemsquare{

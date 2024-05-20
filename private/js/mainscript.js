@@ -1,5 +1,6 @@
 //#region VARIABLES
 var hasClient = false;
+var guaranteedPotions = 0;
 var lastClient = 20;
 var clientObj;
 var matchingItems;
@@ -21,6 +22,7 @@ const cooldowns = {
     'i5': 45,
     'i6': 60
 };
+
 
 var listenerjardin = function () {
     changeScreen(1);
@@ -75,14 +77,35 @@ var opt3button = document.getElementById("opt3");
 var opt4button = document.getElementById("opt4");
 var settings = document.getElementById("settings");
 
-const clientela = setInterval(summonClient, 5000);
-const guardadoAutomatico = setInterval(guardarEnLocalStorage, 10000);
-
 changeScreen(2);
 activarMenuLateral();
 cargarDesdeLocalStorage();
 goldmeter.innerHTML = "Oro: " + progress.gold;
+if(areObjectsEmpty(currentInv,progress,emptycurrentInv,emptyprogress)){
+    setTimeout(function () {
+        tutorial();
+        guaranteedPotions = 5;
+    }, 5000);
+}
+const clientela = setInterval(summonClient, 5000);
+const guardadoAutomatico = setInterval(guardarEnLocalStorage, 10000);
 
+function tutorial(){
+    //Crear Michael
+    console.log("Summon Success!");
+    var audio = new Audio('/assets/ding.mp3');
+    audio.play();
+    var clientElement = createMichael();
+    screen.appendChild(clientElement);
+    hasClient = true;
+    squashAndRestore();
+    texttitle.innerHTML = "Hay alguien en tu tienda";
+    texttitle.classList.add("alert");
+    setTimeout(function () {
+        texttitle.classList.remove("alert");
+    }, 500);
+
+}
 
 //#endregion
 
@@ -120,6 +143,7 @@ function summonClient() {
             var clientElement = createClient();
             screen.appendChild(clientElement);
             hasClient = true;
+            squashAndRestore();
             texttitle.innerHTML = "Hay alguien en tu tienda";
             texttitle.classList.add("alert");
             setTimeout(function () {
@@ -139,6 +163,7 @@ function createClient() {
 
     //classlist
     clientElement.classList.add("client");
+    
     if (title.innerHTML != "Mostrador") {
         clientElement.classList.add("hidden");
     }
@@ -151,9 +176,58 @@ function createClient() {
         randomint = Math.floor(Math.random() * 20);
         console.log(randomint);
     }
+    clientElement.style.backgroundImage='url("/assets/town/'+randomint+'.png")';
     clientObj = townsfolk[randomint];
     lastClient = randomint;
     return clientElement;
+}
+
+function createMichael() {
+    //crear elemento
+    var clientElement = document.createElement("Client");
+
+    //classlist
+    clientElement.classList.add("client");
+    if (title.innerHTML != "Mostrador") {
+        clientElement.classList.add("hidden");
+    }
+    //attributes
+    clientElement.setAttribute("id", "currentClient");
+    clientElement.setAttribute("onclick", "michaelActions()");
+    clientElement.style.backgroundImage='url("/assets/town/'+19+'.png")';
+    clientObj = townsfolk[19];
+    lastClient = 19;
+    return clientElement;
+}
+
+async function michaelActions(){
+    desactivarMenuLateral();
+    desactivarMenuLateral();
+    var client = document.getElementById("currentClient");
+    client.removeAttribute("onclick");
+    squashAndRestore();
+    texttitle.innerHTML = clientObj.name;
+    boxP.innerHTML = "Buenos dias, herborista. ¿Te has asentado bien?";
+    await waitForClick();
+    boxP.innerHTML = "Me alegro, me alegro. Escucha, vas a tener mucho trabajo dentro de poco.";
+    await waitForClick();
+    boxP.innerHTML = "¿Recuerdas como se hacen las pociones? Tus padres han hecho un buen trabajo enseñandote.";
+    await waitForClick();
+    boxP.innerHTML = "Vas al jardín, coges ingredientes, vas a tu trastienda y en la mesa de alquimia haces combinaciones para crear pociones nuevas.";
+    await waitForClick();
+    boxP.innerHTML = "Y luego vendes las pociones en el mostrador, y vuelta a empezar.";
+    await waitForClick();
+    boxP.innerHTML = "Cuando crees una poción su receta se te añade al recetario, donde puedes crear las pociones de forma instantánea siempre que tengas sus ingredientes.";
+    await waitForClick();
+    boxP.innerHTML = "Puedes ver lo que tienes en el almacén en la trastienda, y ver que mejoras puedes comprarte en el tablón de mejoras.";
+    await waitForClick();
+    boxP.innerHTML = "¿Qué como sé todo esto?";
+    await waitForClick();
+    boxP.innerHTML = "Jaja, no es importante.";
+    await waitForClick();
+    boxP.innerHTML = "Ten una buena jornada, herborista.";
+    await waitForClick();
+    deleteClient();
 }
 
 async function clientActions() {
@@ -161,7 +235,7 @@ async function clientActions() {
     desactivarMenuLateral();
     var client = document.getElementById("currentClient");
     client.removeAttribute("onclick");
-
+    squashAndRestore()
     texttitle.innerHTML = clientObj.name;
     boxP.innerHTML = clientObj.greeting;
 
@@ -195,6 +269,7 @@ async function talk2(){
 }
 
 function clientPetition() {
+    if(guaranteedPotions==0){
     if (Math.random() == 0.1){
         var specialReq = clientObj.specialReq;
         boxP.innerHTML = specialReq.petition;
@@ -220,6 +295,18 @@ function clientPetition() {
     //filter objects that can be given to client with that petition too
     matchingItems = items.filter(item => item.petitions.includes(targetPetition)).filter(item => item.archetype.includes(clientObj.type));
     }
+}else{
+    all = false;
+    multiplier=1;
+        var objetosPedibles = items.filter(item => item.id == 1);
+        var targetItem = objetosPedibles[Math.floor(Math.random() * objetosPedibles.length)];
+        //pick random petition
+        targetPetition = targetItem.petitions[Math.floor(Math.random() * targetItem.petitions.length)];
+        boxP.innerHTML = targetPetition;
+        //filter objects that can be given to client with that petition too
+        matchingItems = items.filter(item => item.petitions.includes(targetPetition)).filter(item => item.archetype.includes(clientObj.type));
+        guaranteedPotions--;
+}
 }
 
 function toggleClientOptions() {
@@ -247,6 +334,11 @@ function openInvFromClient() {
         }
     });
 
+    if(inventory.length==0){
+        changeScreen(2);
+        alert("Tu almacén está vacio. ¡Crea pociones o recoge ingredientes para llenarlo!");
+        toggleClientOptions();
+    }else{
     inventory.forEach(item => {
         var square = document.createElement('itemsquare');
         square.classList.add('itemsquare');
@@ -272,7 +364,7 @@ function openInvFromClient() {
         
         screen.appendChild(square);
     });
-
+    }
 }
 
 function selectItemFromInvClient(id) {
@@ -489,12 +581,6 @@ function clearGarden() {
 //#endregion
 
 //#region BACKSHOP FUNCTIONS
-/**TODO:
- * backshop3 - magicpot-> openMagicPot() -> vista nueva, mostrar solo ingredientes, seleccionar 3 ingredientes, crear pocion por esos ingredientes, sumar pocion a inv, restar ingredientes
- *          Si receta no descubierta, descubrir recetas.
- * 
- * recetario: listar recetas descubiertas, if click -> instant potion at magic pot
- */
 function loadBackshop() {
     backshop1.classList.remove("hidden");
     backshop2.classList.remove("hidden");
@@ -854,10 +940,7 @@ function loadRecetas() {
         var button = document.createElement('div');
         button.innerHTML = "Crear";
         button.classList.add('recipeButton');
-
-        button.addEventListener('click', function () {
-            autoPotion(targetItem.id);
-        });
+        button.setAttribute("onclick","autoPotion("+targetItem.id+")");
 
         recipesquare.appendChild(textDiv);
         recipesquare.appendChild(button);
@@ -897,6 +980,9 @@ function changeScreen(option) {
             title.innerHTML = "Mostrador";
             screen.classList.add("mostrador");
             toggleClient("ON");
+            if(hasClient){
+                squashAndRestore();
+            }
             break;
         case 3:
             title.innerHTML = "Trastienda";
@@ -963,12 +1049,23 @@ function waitForClick() {
             box.removeEventListener('click', boxClicked)
             boxContinueText.classList.remove("pulsing");
             boxContinueText.classList.add("hidden");
+            if(hasClient){
+                squashAndRestore();
+            }
             resolve();
         }
         boxContinueText.classList.remove("hidden");
         boxContinueText.classList.add("pulsing");
         box.addEventListener('click', boxClicked);
     });
+}
+
+function squashAndRestore(){
+    var client = document.getElementById("currentClient");
+    client.classList.add('client-background-squashed');
+    setTimeout(function() {
+        client.classList.remove('client-background-squashed');
+      }, 100);
 }
 
 function desactivarMenuLateral() {
@@ -1009,35 +1106,54 @@ function cargarDesdeLocalStorage() {
 
     if (storedCurrentInv) {
         currentInv = decodeBase64(storedCurrentInv);
-        console.log(currentInv);
     }
 
     if (storedProgress) {
         progress = decodeBase64(storedProgress);
     }
 }
-//#endregion
 
 function textFloat(ingredientId){
-   var targetitem =  items.filter(item => item.id==ingredientId);
-   const floatingText = document.createElement('div');
-   floatingText.className = 'floatingText';
-   floatingText.textContent = "+1 "+targetitem[0].item;
-   
-   // Establecer la posición del texto en el lugar del clic
-   floatingText.style.left = `${event.clientX}px`;
-   floatingText.style.top = `${event.clientY}px`;
-   
-   screen.appendChild(floatingText);
-   
-   // Iniciar la animación
-   setTimeout(() => {
-       floatingText.style.animation = 'floatUp 2s forwards';
-   }, 10);
-   
-   // Eliminar el elemento después de que termine la animación
-   floatingText.addEventListener('animationend', () => {
-       screen.removeChild(floatingText);
-   });
+    var targetitem =  items.filter(item => item.id==ingredientId);
+    const floatingText = document.createElement('div');
+    floatingText.className = 'floatingText';
+    floatingText.textContent = "+1 "+targetitem[0].item;
+    
+    // Establecer la posición del texto en el lugar del clic
+    floatingText.style.left = `${event.clientX}px`;
+    floatingText.style.top = `${event.clientY}px`;
+    
+    screen.appendChild(floatingText);
+    
+    // Iniciar la animación
+    setTimeout(() => {
+        floatingText.style.animation = 'floatUp 2s forwards';
+    }, 10);
+    
+    // Eliminar el elemento después de que termine la animación
+    floatingText.addEventListener('animationend', () => {
+        screen.removeChild(floatingText);
+    });
+ 
+ }
 
+ function areObjectsEmpty(currentInv, progress, emptyInventory, emptyProgress) {
+
+    function isEqual(obj, emptyObj) {
+        return Object.keys(emptyObj).every(key => obj[key] === emptyObj[key]);
+    }
+
+    function isProgressEqual(progress, emptyProgress) {
+        return progress.hasPetalos === emptyProgress.hasPetalos &&
+               progress.hasRaices === emptyProgress.hasRaices &&
+               progress.hasPolen === emptyProgress.hasPolen &&
+               progress.hasAurora === emptyProgress.hasAurora &&
+               progress.gold === emptyProgress.gold &&
+               Array.isArray(progress.recipesUnlocked) &&
+               progress.recipesUnlocked.length === emptyProgress.recipesUnlocked.length;
+    }
+
+    return isEqual(currentInv, emptyInventory) && isProgressEqual(progress, emptyProgress);
 }
+//#endregion
+

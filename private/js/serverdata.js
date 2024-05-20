@@ -1,24 +1,24 @@
 const townsfolk = [
   {
-    "name": "Caelynn Summersun- Aventurera Escurridiza", "greeting": "Hola, necesito unos suministros.", "type": "adventurer", "dialogs": [
-      "placeholder",
-      "placeholder",
-      "placeholder",
-      "placeholder",
-      "placeholder"],
+    "name": "Caelynn Summersun- Aventurera Escurridiza", "greeting": "Hola, necesito unos suministros. No puedo decirte exactamente para que... Hagamoslo de forma discreta.", "type": "adventurer", "dialogs": [
+      "Una vez disparé a un osobúho que atacaba un almacén de grano, creía que estaba salvando el pueblo, pero murió gente.",
+      "Esta tienda está poco protegida, los cerrojos de las ventanas son un poco tristes, anoche pude colarme sin problema.",
+      "Si alguna vez necesitas de mis servicios puedes encontrarme en la taberna de Petra.",
+      "No me convence la decoración que tienes, deberías darle un aire más floral.",
+      "Ya te he dicho suficiente. Discreción, ¿Recuerdas? Venga, que no tengo todo el dia."],
     "specialReq": {
-      "petition": "placeholder",
-      "expectedItem": "i1",
-      "quantity": 1
+      "petition": "Me han hecho un encargo muy duro, no creo que haya nadie a la altura de la misión. Yo soy dura, pero mis compañeros no. Dame 4 pociones de Endurecimiento, las van a necesitar.",
+      "expectedItem": "12",
+      "quantity": 4
     }
   },
   {
     "name": "Cawbett - Cuervo Parlanchín", "greeting": "¡Buen día cawmarada Herborista! Necesito tu ayuda para cawntinuar con mis aventuras.", "type": "adventurer", "dialogs": [
       "Caw buen día hace fuera, te recomiendo ir dar una vuelta, igual incluso podrías encontrar inspiración para nuevas pociones.",
-      "Tienes una cawbaña de lo más agradable, casi me haces replantearme hacerme herbolista si se puede vivir con tanta tranquilidad cawmo tú.",
+      "Tienes una cawbaña de lo más agradable, casi me haces replantearme hacerme herborista si se puede vivir con tanta tranquilidad cawmo tú.",
       "¿A caw viene esa cawra? ¿Nunca has visto a un pájaro hablar? ... ¿No? Oh, bueno, siempre hay una primera vez para todo.",
       "¿Por algún cawsual no tendrás una planta caw se parezca a un ajo? Es mil veces mejor porcaw cuando lo pones en pan, es cawmo comer un pedazo de gloria... Es una bendición caw exista... Caw rico estaba ese pan, necesito preparar más...",
-      "Te ves bien hoy, Herbolista. No caw no te vea bien otros días, pero hoy te ves muy feliz y una sonrisa ilumina cawlquier cawra."],
+      "Te ves bien hoy, Herborista. No caw no te vea bien otros días, pero hoy te ves muy feliz y una sonrisa ilumina cawlquier cawra."],
     "specialReq": {
       "petition": "Herborista, escawchame bien porque necesito tu ayuda. Voy a preparar la mejor receta caw existe en este mundo; Pan de frutos de aurora. El único problema con esto es caw me falta la parte más esencial de todo esto, caw son 5 frutos de aurora. ¿Crees caw podrías ayudarme?",
       "expectedItem": "i6",
@@ -44,9 +44,9 @@ const townsfolk = [
       "¿No habrán pasado por aquí un draconido rojo con una elfa a la espalda, no? Mi grupo es un tanto... peculiar.",
       "Te daré un consejo, cuando un árbol te golpee, ¡escuchalo!",
       "En otro momento me encantaría poder pasarme a ver ese huertecillo tuyo. Aunque no sea común, soy un enano al que le fascinan las plantas.",
-      "Herbolista, tienes buen ojo. Te confirmo que esto que llevo enredado en la barba es albahaca."],
+      "Herborista, tienes buen ojo. Te confirmo que esto que llevo enredado en la barba es albahaca."],
     "specialReq": {
-      "petition": "Verás Herbolista, esta noche tendré una cita en la taberna y me gustaría estar despierto el máximo tiempo posible haciendole compañía. Dame un par.",
+      "petition": "Verás Herborista, esta noche tendré una cita en la taberna y me gustaría estar despierto el máximo tiempo posible haciendole compañía. Dame un par.",
       "expectedItem": "9",
       "quantity": 2
     }
@@ -67,7 +67,7 @@ const townsfolk = [
   {
     "name": "Witchette Aeterna - El sombrero es la bruja", "greeting": "Hola, ¿Me puedes ayudar? Necesito unas cositas.", "type": "mage", "dialogs": [
       "Mis ojos están aquí arriba. Esos de ahi abajo no sirven, solo tengo esto para poder caminar.",
-      "¡Oh, Herbolista! Hoy me he topado con un joven mago que intentaba convocar a un dragón. ¡Fue un espectáculo! Aunque francamente, podría haberlo hecho mejor.",
+      "¡Oh, Herborista! Hoy me he topado con un joven mago que intentaba convocar a un dragón. ¡Fue un espectáculo! Aunque francamente, podría haberlo hecho mejor.",
       "Es agotador cómo la gente me mira con desconfianza solo por haber tomado un cuerpo prestado. Como si no pudieran entender que necesito interactuar con el mundo de alguna manera. ¡Ah, la ignorancia humana!",
       "Hoy has escogido una vestimenta encantadora. ¿Te importaría prestármela para un paseo mágico por el pueblo? ...No me mires así, ¡Me refiero a tomar la ropa prestada, no tu cuerpo!",
       "A veces, echo de menos mi antiguo cuerpo etéreo. Era tan ligero como una pluma y podía deslizarme entre los rincones más oscuros de la noche. Pero supongo que este cuerpo humano tiene sus ventajas... aunque sea un poco torpe a veces."],
@@ -107,11 +107,11 @@ const townsfolk = [
   },
   {
     "name": "Stretch y Stitches - Gemelos Ilusionistas", "greeting": "(ambos a la vez) ¡Hola, hola!", "type": "mage", "dialogs": [
-      "(Stretch) Herbolista, ¿Te gustan los trucos de magia? <br> (Stitches) ¿A quién no le gustan los trucos de magia? ¡Seguro que le encantan! <br> (Stretch) ¡Podríamos enseñarte un par de trucos si quieres!",
-      "¡Oh! ¡Qué bonita es esta tienda! ¿La has decorado totalmente tú, Herbolista?",
-      "(Stretch) ¿Te imaginas la cara de Palmeadus cuando descubra que le hemos escondido su piedra de poder? <br> (Stitches) ¡Jaja! Tu no digas ni palabra, ¿Eh, Herbolista? Guardanos el secreto.",
+      "(Stretch) Herborista, ¿Te gustan los trucos de magia? <br> (Stitches) ¿A quién no le gustan los trucos de magia? ¡Seguro que le encantan! <br> (Stretch) ¡Podríamos enseñarte un par de trucos si quieres!",
+      "¡Oh! ¡Qué bonita es esta tienda! ¿La has decorado totalmente tú, Herborista?",
+      "(Stretch) ¿Te imaginas la cara de Palmeadus cuando descubra que le hemos escondido su piedra de poder? <br> (Stitches) ¡Jaja! Tu no digas ni palabra, ¿Eh, Herborista? Guardanos el secreto.",
       "¡Vamos a preguntarle a Amely si podemos hacer un espectáculo en la plaza, tienes que venir!",
-      "(Stitches) ¿No te asusta la frontera, Herbolista? <br> (Stretch) No hay que tener miedo. ¡Maccon y Eldric nos cuidan!"],
+      "(Stitches) ¿No te asusta la frontera, Herborista? <br> (Stretch) No hay que tener miedo. ¡Maccon y Eldric nos cuidan!"],
     "specialReq": {
       "petition": "¡Necesitamos dos pociones de invisibilidad!",
       "expectedItem": "27",
@@ -839,3 +839,59 @@ const recetas = {
   "i4b,i6,i6": 36,
   "i5,i6,i6": 37,
 };
+var emptycurrentInv = {
+  "i1": 0,
+  "i2": 0,
+  "i3": 0,
+  "i4a": 0,
+  "i4b": 0,
+  "i5": 0,
+  "i6": 0,
+  "1": 0,
+  "2": 0,
+  "3": 0,
+  "4": 0,
+  "5": 0,
+  "6": 0,
+  "7": 0,
+  "8": 0,
+  "9": 0,
+  "10": 0,
+  "11": 0,
+  "12": 0,
+  "13": 0,
+  "14": 0,
+  "15": 0,
+  "16": 0,
+  "17": 0,
+  "18": 0,
+  "19": 0,
+  "20": 0,
+  "21": 0,
+  "22": 0,
+  "23": 0,
+  "24": 0,
+  "25": 0,
+  "26": 0,
+  "27": 0,
+  "28": 0,
+  "29": 0,
+  "30": 0,
+  "31": 0,
+  "32": 0,
+  "33": 0,
+  "34": 0,
+  "35": 0,
+  "36": 0,
+  "37": 0,
+  "38": 0
+};
+
+var emptyprogress = {
+  "hasPetalos": false,
+  "hasRaices": false,
+  "hasPolen": false,
+  "hasAurora": false,
+  "gold":0,
+  "recipesUnlocked":[]
+}
