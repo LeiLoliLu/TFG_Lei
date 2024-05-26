@@ -1,4 +1,5 @@
 //#region VARIABLES
+
 var hasClient = false;
 var guaranteedPotions = 0;
 var lastClient = 20;
@@ -13,14 +14,16 @@ var lastHarvestTime = {};
 var targetPetition = "";
 var multiplier = 1;
 var all=false;
+var audioactive=true;
+var interacted=false;
 const cooldowns = {
-    'i1': 0.1,  // No cooldown for i1
-    'i2': 5,
-    'i3': 15,
-    'i4a': 30,
-    'i4b': 30,
-    'i5': 45,
-    'i6': 60
+    'i1': 0.1,  //0.1
+    'i2': 5,    //5
+    'i3': 5,   //15
+    'i4a': 5,  //30
+    'i4b': 5,  //30
+    'i5': 5,   //45
+    'i6': 5    //60
 };
 
 
@@ -76,6 +79,7 @@ var opt2button = document.getElementById("opt2");
 var opt3button = document.getElementById("opt3");
 var opt4button = document.getElementById("opt4");
 var settings = document.getElementById("settings");
+var talkTobutton = document.getElementById("talkToButton");
 
 changeScreen(2);
 activarMenuLateral();
@@ -84,17 +88,19 @@ goldmeter.innerHTML = "Oro: " + progress.gold;
 if(areObjectsEmpty(currentInv,progress,emptycurrentInv,emptyprogress)){
     setTimeout(function () {
         tutorial();
-        guaranteedPotions = 5;
     }, 5000);
 }
 const clientela = setInterval(summonClient, 5000);
 const guardadoAutomatico = setInterval(guardarEnLocalStorage, 10000);
 
 function tutorial(){
+    guaranteedPotions = 5;
     //Crear Michael
     console.log("Summon Success!");
-    var audio = new Audio('/assets/ding.mp3');
-    audio.play();
+    if(audioactive){
+        var audio = new Audio('/assets/ding.mp3');
+        audio.play();
+    }
     var clientElement = createMichael();
     screen.appendChild(clientElement);
     hasClient = true;
@@ -138,8 +144,10 @@ function summonClient() {
         console.log("Trying to summon Client...");
         if (Math.random() > 0.5) {
             console.log("Summon Success!");
-            var audio = new Audio('/assets/ding.mp3');
-            audio.play();
+            if(audioactive){
+                var audio = new Audio('/assets/ding.mp3');
+                audio.play();
+            }
             var clientElement = createClient();
             screen.appendChild(clientElement);
             hasClient = true;
@@ -166,7 +174,11 @@ function createClient() {
     
     if (title.innerHTML != "Mostrador") {
         clientElement.classList.add("hidden");
+        talkTobutton.classList.add("hidden");
+    }else{
+        talkTobutton.classList.remove("hidden");
     }
+    talkTobutton.setAttribute("onclick","clientActions(event)")
     //attributes
     clientElement.setAttribute("id", "currentClient");
     clientElement.setAttribute("onclick", "clientActions()");
@@ -190,19 +202,27 @@ function createMichael() {
     clientElement.classList.add("client");
     if (title.innerHTML != "Mostrador") {
         clientElement.classList.add("hidden");
+        talkTobutton.classList.add("hidden");
+    }else{
+        talkTobutton.classList.remove("hidden");
     }
+    talkTobutton.setAttribute("onclick","michaelActions(event)");
     //attributes
     clientElement.setAttribute("id", "currentClient");
-    clientElement.setAttribute("onclick", "michaelActions()");
+    clientElement.setAttribute("onclick", 'michaelActions()');
     clientElement.style.backgroundImage='url("/assets/town/'+19+'.png")';
     clientObj = townsfolk[19];
     lastClient = 19;
     return clientElement;
 }
 
-async function michaelActions(){
+async function michaelActions(e = null){
+    if(e!=null){
+        e.stopPropagation();
+    }
     desactivarMenuLateral();
-    desactivarMenuLateral();
+    talkTobutton.removeAttribute("onclick");
+    talkTobutton.classList.add("hidden");
     var client = document.getElementById("currentClient");
     client.removeAttribute("onclick");
     squashAndRestore();
@@ -228,11 +248,17 @@ async function michaelActions(){
     boxP.innerHTML = "Ten una buena jornada, herborista.";
     await waitForClick();
     deleteClient();
+    guaranteedPotions = 5;
 }
 
-async function clientActions() {
-
+async function clientActions(e = null){
+    if(e!=null){
+        e.stopPropagation();
+    }
+    interacted = true;
     desactivarMenuLateral();
+    talkTobutton.classList.add("hidden");
+    talkTobutton.removeAttribute("onclick");
     var client = document.getElementById("currentClient");
     client.removeAttribute("onclick");
     squashAndRestore()
@@ -246,11 +272,13 @@ async function clientActions() {
 }
 
 function talkToClient(){
+    desactivarMenuLateral();
     boxButtons.classList.add("hidden");
     toggleDialogs();
 }
 
 async function talk1(){
+    desactivarMenuLateral();
     talkButtons.classList.add("hidden");
     boxP.classList.remove('hidden');
     boxP.innerHTML=targetPetition;
@@ -259,6 +287,7 @@ async function talk1(){
     toggleClientOptions();
 }
 async function talk2(){
+    desactivarMenuLateral();
     talkButtons.classList.add("hidden");
     boxP.classList.remove('hidden');
     var randomNumber = Math.floor(Math.random() * 5);
@@ -310,18 +339,20 @@ function clientPetition() {
 }
 
 function toggleClientOptions() {
+    activarMenuLateral();
+    texttitle.innerHTML = clientObj.name;
     boxP.classList.add("hidden");
     boxButtons.classList.remove("hidden");
 }
 
-
-
 function toggleDialogs(){
+    desactivarMenuLateral();
     boxP.classList.add("hidden");
     talkButtons.classList.remove("hidden");
 }
 
 function openInvFromClient() {
+    desactivarMenuLateral();
     changeScreen(6);
     boxP.classList.remove("hidden");
     boxP.innerHTML = "...";
@@ -436,6 +467,7 @@ async function sellItem(item) {
 }
 
 function deleteClient() {
+    interacted = false;
     var client = document.getElementById("currentClient");
     if (client != null) {
         client.remove();
@@ -655,9 +687,7 @@ function openUpgrades() {
             var button = document.createElement('div');
             button.innerHTML = "Comprar";
             button.classList.add('upgradebutton');
-            button.addEventListener('click', function () {
-                buyUpgrade(upgrade.id, upgradesData.indexOf(upgrade));
-            });
+            button.setAttribute("onclick",'buyUpgrade("'+upgrade.id+'",'+upgradesData.indexOf(upgrade)+')');
             dButton.appendChild(pPrice);
             dButton.appendChild(button);
 
@@ -674,7 +704,8 @@ function buyUpgrade(id, index) {
         progress[id] = true;
         progress.gold = progress.gold - upgradesData[index].price;
         goldmeter.innerHTML = "Oro: " + progress.gold;
-        changeScreen(7);
+        guardarEnLocalStorage();
+
     } else {
         alert("No tienes suficiente oro para esta mejora.")
     }
@@ -840,7 +871,7 @@ function createPotion() {
     if (recetas.hasOwnProperty(combinacionIngredientes)) {
         currentInv[recetas[combinacionIngredientes]]++;
         i = items.find(item => item.id == recetas[combinacionIngredientes]);
-        alert("Has creado una " + i.item);
+        textFloat(recetas[combinacionIngredientes]);
 
         if (!progress.recipesUnlocked.includes(recetas[combinacionIngredientes])) {
             progress.recipesUnlocked.push(recetas[combinacionIngredientes]);
@@ -848,7 +879,7 @@ function createPotion() {
     } else {
         currentInv[38]++;
         i = items.find(item => item.id == '38')
-        alert("Has creado una " + i.item);
+        textFloat('38');
     }
     openMagicPot();
 }
@@ -885,10 +916,9 @@ function autoPotion(itemid) {
             currentInv[ingredient]--;
         });
         currentInv[itemid]++;
-        i = items.find(item => item.id == itemid);
-        alert("Has creado una " + i.item);
+        textFloat(itemid);
     }
-
+    changeScreen(4);
 }
 
 function autoCheckIngredients(ingredientsneeded) {
@@ -933,8 +963,10 @@ function loadRecetas() {
         textDiv.classList.add('recipeText');
 
 
+        ingredientsstring = obtenerReceta(itemid); 
+
         var pPrice = document.createElement('p');
-        pPrice.innerHTML = 'Precio de Venta: ' + targetItem.price;
+        pPrice.innerHTML = 'Precio de Venta: ' + targetItem.price+' de Oro.<br><br>Ingredientes necesarios:<br>'+ingredientsstring;
         textDiv.appendChild(pPrice);
 
         var button = document.createElement('div');
@@ -950,11 +982,30 @@ function loadRecetas() {
 
 }
 
+function obtenerReceta(numeroReceta) {
+    const receta = Object.entries(recetas).find(([clave, valor]) => valor == numeroReceta);
+
+    const ingredientes = receta[0].split(',');
+    const contadorIngredientes = {};
+
+    ingredientes.forEach(id => {
+        const nombreIngrediente = items.find(item => item.id == id).item;
+        contadorIngredientes[nombreIngrediente] = (contadorIngredientes[nombreIngrediente] || 0) + 1;
+    });
+
+    const ingredientesCadena = Object.entries(contadorIngredientes).map(([ingrediente, cantidad]) => {
+        const inventario = currentInv[items.find(item => item.item == ingrediente).id];
+        return `${cantidad} x ${ingrediente} (Tienes ${inventario})`;
+    }).join('<br>');
+    return ingredientesCadena;
+}
+
 //#endregion
 
 //#region CHANGE SCREEN FUNCTIONS
 function changeScreen(option) {
     resetChosenSquares(4);
+    talkTobutton.classList.add("hidden");
     itemsquares = document.getElementsByTagName("itemsquare");
     while (itemsquares[0]) itemsquares[0].parentNode.removeChild(itemsquares[0]);
     upgradesquares = document.getElementsByTagName("upgradesquare");
@@ -962,7 +1013,11 @@ function changeScreen(option) {
     recipesquares = document.getElementsByTagName("recipesquare");
     while (recipesquares[0]) recipesquares[0].parentNode.removeChild(recipesquares[0]);
     boxP.innerHTML = "...";
+    boxButtons.classList.add("hidden");
     settings.classList.add("hidden");
+    if(hasClient){
+        texttitle.innerHTML = "Hay alguien en tu tienda";
+    }
     clearMagicPot();
     clearBackshop();
     clearGarden();
@@ -982,6 +1037,11 @@ function changeScreen(option) {
             toggleClient("ON");
             if(hasClient){
                 squashAndRestore();
+                if(!interacted){
+                    talkTobutton.classList.remove("hidden");
+                }else{
+                    toggleClientOptions();
+                }
             }
             break;
         case 3:
@@ -1154,6 +1214,17 @@ function textFloat(ingredientId){
     }
 
     return isEqual(currentInv, emptyInventory) && isProgressEqual(progress, emptyProgress);
+}
+
+function toggleAudio(){
+    button = document.getElementById("audiobutton");
+    if(audioactive){
+        audioactive=false;
+        button.innerHTML="Activar Sonido";
+    }else{
+        audioactive=true;
+        button.innerHTML="Desactivar Sonido"
+    }
 }
 //#endregion
 

@@ -96,6 +96,7 @@ function iniciarSesion(email, contrasena) {
       progress = JSON.parse(data.progress);
       currentInv = data.inventory;
       localStorage.setItem('username', data.username);
+      guaranteedPotions = 0;
       loadSettings();
       guardarEnLocalStorage();
       cargarDesdeLocalStorage();
@@ -103,6 +104,7 @@ function iniciarSesion(email, contrasena) {
   })
   .catch(error => {
       console.error('Error al iniciar sesión:', error);
+      alert('Error al iniciar sesión:', error);
   });
 }
 
@@ -144,11 +146,12 @@ function registrarUsuario(email, usuario, contrasena, progressJSON, currentInvJS
       if (!response.ok) {
           throw new Error('Error al registrar usuario');
       }
+      alert("Usuario Registrado de forma correcta. ¡Inicia sesión para guardar tu progreso!");
       // Continuar con otras acciones después del registro exitoso
   })
   .catch(error => {
       console.error('Error al registrar usuario:', error);
-      // Manejar el error de registro
+      alert('Error al registrar usuario:', error);
   });
 }
 
@@ -170,6 +173,8 @@ function guardarDatos() {
   })
   .catch(error => {
       console.error('Error al guardar datos:', error);
+      alert('Error al guardar datos:', error);
+      
   });
 }
 
@@ -234,6 +239,7 @@ function reiniciarProgreso(){
           guardarDatos();
           guardarEnLocalStorage();
           cargarDesdeLocalStorage();
+          location.reload();
     }
 }
 
@@ -257,7 +263,7 @@ function borrarDatos() {
         })
         .catch(error => {
             console.error('Error al borrar la cuenta:', error);
-            // Manejar el error de borrado de la cuenta
+            alert('Error al borrar la cuenta:', error);
         });
     }
 }
@@ -320,6 +326,7 @@ function cerrarSesion(){
         "37": 0,
         "38": 0
       };
+      alert("Sesión cerrada satisfactoriamente.");
       location.reload();
 
     

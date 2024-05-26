@@ -2,6 +2,7 @@ body {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 10px;
+    user-select: none;
 }
 
 main {
@@ -33,6 +34,7 @@ aside {
     margin-top: 10px;
     font-size: larger;
     transition: 0.3s;
+    border:none;
 }
 .button:hover{
   background-color: #d4a074;
@@ -148,6 +150,8 @@ background-color: #d4a074;
 }
 .box p{
   font-size: larger;
+  margin-left: 30px;
+  margin-right: 30px;
 }
 .box span{
   font-size: smaller;
@@ -226,10 +230,31 @@ hr{
 .crop{
   width: 150px;
   height: 150px;
-  background-color: #86cc7c;
   margin: 10px;
   visibility: visible;
 }
+
+#i1{
+  background-image: url("/assets/garden/i1.png");
+  background-size:100% 100%;
+}
+#i2{
+  background-image: url("/assets/garden/i2.png");
+  background-size:100% 100%;
+}
+#i3{
+  background-image: url("/assets/garden/i3.png");
+  background-size:100% 100%;
+}
+#i4{
+  background-image: url("/assets/garden/i4.png");
+  background-size:100% 100%;
+}
+#i56{
+  background-image: url("/assets/garden/i56.png");
+  background-size:100% 100%;
+}
+
 .hiddencrops{
   visibility: hidden;
   position:absolute;
@@ -281,22 +306,20 @@ hr{
 
 @keyframes cooldownAnimation {
   0% {
-    background-color: #53854b;
     transform: scale(0);
   }
   100% {
     transform: scale(1);
-    background-color: #86cc7c;
   }
 }
 
 @keyframes cooldownAnimation1 {
   0% {
-    background-color: #53854b;
+    transform: scale(0);
     
   }
   100% {
-    background-color: #86cc7c;
+    transform: scale(1);
   }
 }
 
@@ -493,3 +516,53 @@ hr{
   border-color: #8a6b52;
   outline: none;
 }
+
+.guardar-datos {
+    background-color: #4CAF50;
+}
+
+    .guardar-datos:hover {
+        background-color: #45a049;
+    }
+
+.guardar-cerrar-sesion {
+    background-color: #8BC34A;
+}
+
+    .guardar-cerrar-sesion:hover {
+        background-color: #7cb342;
+    }
+
+.reiniciar-progreso {
+    background-color: #FF9800;
+}
+
+    .reiniciar-progreso:hover {
+        background-color: #fb8c00;
+    }
+
+.borrar-datos {
+    background-color: #f44336;
+}
+
+    .borrar-datos:hover {
+        background-color: #e53935;
+    }
+
+    #usersection{
+        display:flex;
+        flex-direction:column;
+        align-content:center;
+        text-align:center;
+    }
+    #acciones {
+        display: flex;
+        flex-direction: column;
+    }
+#audiobutton {
+    background-color: #a3744d !important;
+    
+}
+    #audiobutton:hover {
+        background-color: #d4a074 !important;
+    }

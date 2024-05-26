@@ -34,6 +34,7 @@
       </div>
       <div class="button" id="createbutton" onclick="createPotion()">Crear Poción</div>
       <div class="hidden settings" id="settings">
+        <div class="button" id="audiobutton" onclick="toggleAudio()">Desactivar Sonido</div>
         <h2 class="settings-title">Registro</h2>
         <form id="formularioRegistro" action="/registro" method="post" class="settings-form">
           <label for="emailRegistro" class="settings-label">Correo Electrónico:</label>
@@ -62,12 +63,13 @@
         </form>
       </div>
       <div style="flex-direction: column;" id="usersection">
-        <div id="usuario"></div>
+        <h2 id="usuario"></h2>
+        <div class="button" id="audiobutton" onclick="toggleAudio()">Desactivar Sonido</div>
         <div id="acciones" class="hidden">
-          <button onclick="guardarDatos()">Guardar Datos</button>
-          <button onclick="cerrarSesion()">Guardar y Cerrar Sesión</button>
-          <button onclick="reiniciarProgreso()">Reiniciar Progreso</button>
-          <button onclick="borrarDatos()">Borrar Cuenta</button>
+          <button class="button guardar-datos" onclick="guardarDatos()">Guardar Datos</button>
+          <button class="button guardar-cerrar-sesion" onclick="cerrarSesion()">Guardar y Cerrar Sesión</button>
+          <button class="button reiniciar-progreso" onclick="reiniciarProgreso()">Reiniciar Progreso</button>
+          <button class="button borrar-datos" onclick="borrarDatos()">Borrar Cuenta</button>
         </div>
       </div>
     </div>
@@ -85,9 +87,9 @@
           <div class="talkbutton" id="talk2" onclick="talk2()">Conversemos.</div>
         </div>
         <div class="boxbutton hidden" id="opt4" onclick="sellItem(selectedItem)">Confirmar</div>
+        <div class="boxbutton" id="talkToButton">Hablar</div>
       </div>
     </div>
-
   </main>
   <aside class="content">
     <div class="button" id="bJardin">Jardín</div>

@@ -1,6 +1,6 @@
 const townsfolk = [
   {
-    "name": "Caelynn Summersun- Aventurera Escurridiza", "greeting": "Hola, necesito unos suministros. No puedo decirte exactamente para que... Hagamoslo de forma discreta.", "type": "adventurer", "dialogs": [
+    "name": "Caelynn Summersun- Aventurera Escurridiza", "greeting": "Hola, necesito unos suministros. No puedo decirte exactamente para que... Hagámoslo de forma discreta.", "type": "adventurer", "dialogs": [
       "Una vez disparé a un osobúho que atacaba un almacén de grano, creía que estaba salvando el pueblo, pero murió gente.",
       "Esta tienda está poco protegida, los cerrojos de las ventanas son un poco tristes, anoche pude colarme sin problema.",
       "Si alguna vez necesitas de mis servicios puedes encontrarme en la taberna de Petra.",
@@ -28,10 +28,10 @@ const townsfolk = [
   {
     "name": "Gin - Pícaro Kobold", "greeting": "Pssst. ¡Hola! Necesito una cosita.", "type": "adventurer", "dialogs": [
       "No soy un lagarto. ¡Soy un Kobold! Se que soy chiquitín, pero no tanto como un lagarto.",
-      "Vengo de las regiones del norte. Cuando era una cría, un tabernero me acogió a mi y a mi hermano. Nos diferenciaba por las botellas en las que dormiamos: Una de Gin-ebra y una de Ron.",
+      "Vengo de las regiones del norte. Cuando era una cría, un tabernero me acogió a mí y a mi hermano. Nos diferenciaba por las botellas en las que dormíamos: Una de Gin-ebra y una de Ron.",
       "Mi hermano aún se encarga del bar de nuestro padre. A mi me gusta más la aventura. ¡Mi grupo es mi segunda familia!",
       "¿Desde cuándo tienes esta tienda? ¿Las cosas de la estantería son valiosas? ... ¿Puedo coger una un ratito?",
-      "¿Como llevas lo de la frontera? Solía tener un amigo que se hubiera alistado automáticamente, jaja... Y mientras yo aquí como un cobarde."],
+      "¿Cómo llevas lo de la frontera? Solía tener un amigo que se hubiera alistado automáticamente, jaja... Y mientras yo aquí como un cobarde."],
     "specialReq": {
       "petition": "Voy a gastarle una broma a alguien... Y he pensado que podría hacer polvos picapica con algo de polen activo. ¿Te sobran 5 saquitos?",
       "expectedItem": "i4a",
@@ -41,12 +41,12 @@ const townsfolk = [
   {
     "name": "Longrim Wymberforged - Druida Viajero", "greeting": "Buenas tardes, rapaz. Hoy hace un día mágico, ¿No le parece?", "type": "adventurer", "dialogs": [
       "¿Día duro en la tienda? Corre como un caracol y nunca te torcerás un tobillo.",
-      "¿No habrán pasado por aquí un draconido rojo con una elfa a la espalda, no? Mi grupo es un tanto... peculiar.",
+      "¿No habrán pasado por aquí un dracónido rojo con una elfa a la espalda, no? Mi grupo es un tanto... peculiar.",
       "Te daré un consejo, cuando un árbol te golpee, ¡escuchalo!",
       "En otro momento me encantaría poder pasarme a ver ese huertecillo tuyo. Aunque no sea común, soy un enano al que le fascinan las plantas.",
       "Herborista, tienes buen ojo. Te confirmo que esto que llevo enredado en la barba es albahaca."],
     "specialReq": {
-      "petition": "Verás Herborista, esta noche tendré una cita en la taberna y me gustaría estar despierto el máximo tiempo posible haciendole compañía. Dame un par.",
+      "petition": "Verás Herborista, esta noche tendré una cita en la taberna y me gustaría estar despierto el máximo tiempo posible haciéndole compañía. Dame un par.",
       "expectedItem": "9",
       "quantity": 2
     }
@@ -57,7 +57,7 @@ const townsfolk = [
       "Mi trabajo como cazador va más allá de traer comida a la mesa. También protejo al pueblo de posibles amenazas y garantizo la seguridad de nuestros hogares.",
       "Hubo una vez, en las profundidades del bosque, que me vi rodeado por una manada de lobos hambrientos. Fue un recordatorio brutal de que en la naturaleza, incluso el cazador puede convertirse en presa.",
       "¿Ha venido Maeve hoy a la tienda? ¿Q-qué por qué pregunto? Por nada. Pura curiosidad-.",
-      "Le he pedido a Eldric una espada nueva... quizas debería haber esperado, estoy convencido de que ahora cree que me voy a unir a los guerrilleros de la frontera."],
+      "Le he pedido a Eldric una espada nueva... quizás debería haber esperado, estoy convencido de que ahora cree que me voy a unir a los guerrilleros de la frontera."],
     "specialReq": {
       "petition": "Hoy hay caza. Necesito 5 pociones de curación. Estimo que va a ser peligroso.",
       "expectedItem": "1",
@@ -66,7 +66,7 @@ const townsfolk = [
   },
   {
     "name": "Witchette Aeterna - El sombrero es la bruja", "greeting": "Hola, ¿Me puedes ayudar? Necesito unas cositas.", "type": "mage", "dialogs": [
-      "Mis ojos están aquí arriba. Esos de ahi abajo no sirven, solo tengo esto para poder caminar.",
+      "Mis ojos están aquí arriba. Esos de ahí abajo no sirven, solo tengo esto para poder caminar.",
       "¡Oh, Herborista! Hoy me he topado con un joven mago que intentaba convocar a un dragón. ¡Fue un espectáculo! Aunque francamente, podría haberlo hecho mejor.",
       "Es agotador cómo la gente me mira con desconfianza solo por haber tomado un cuerpo prestado. Como si no pudieran entender que necesito interactuar con el mundo de alguna manera. ¡Ah, la ignorancia humana!",
       "Hoy has escogido una vestimenta encantadora. ¿Te importaría prestármela para un paseo mágico por el pueblo? ...No me mires así, ¡Me refiero a tomar la ropa prestada, no tu cuerpo!",
@@ -157,7 +157,7 @@ const townsfolk = [
       "Soy un druida de las esporas. ¡Me crecen setas en las manos! Tengo un vivero en mi carro donde las planto y las mezclo. Más o menos como tus pociones.",
       "Si algún día te apetece experimentar podrías poner una de mis setas en una de tus pociones.",
       "¿Has visto hoy a Longrim? He coincidido con su grupo unas cuantas veces. Me pregunto si Dunons sigue siendo de color verde, jajaja.",
-      "Dentro de unos dias voy a moverme de asentamiento con mi grupo de mercaderes. ¡Calma, no te vas a librar de mi tan facilmente!",
+      "Dentro de unos días voy a moverme de asentamiento con mi grupo de mercaderes. ¡Calma, no te vas a librar de mi tan facilmente!",
       "¿Mi cara?...No, jaja, eso es privado. Ja-jaja...um... "],
     "specialReq": {
       "petition": "Necesito de forma urgente una poción de rejuvenización. No tengo tiempo de explicarlo, te compro todas las que tengas. ¡Todo mi vivero depende de esto!",
@@ -200,14 +200,14 @@ const townsfolk = [
     }
   },
   {
-    "name": "Eldric Stonemantle - Forjador Enano", "greeting": "Buenas tardes. ¿Te pillo en buen momento?", "type": "town", "dialogs": [
+    "name": "Eldric Stonemantle - Forjador Curtido", "greeting": "Buenas tardes. ¿Te pillo en buen momento?", "type": "town", "dialogs": [
       "Mi herrería está hasta arriba de encargos de la frontera últimamente. Nunca voy a quejarme de poder vender productos, pero... Me apena la razón.",
       "Yo también tengo a familia al otro lado de la frontera. Si algún dia necesitas hablar con alguien, mi forja está abierta.",
       "Haces un buen trabajo llevando la tienda. Recuerda descansar de vez en cuando, ¿Vale?",
       "El otro día Maccon me comisionó una nueva espada. Espero que no planee ir al frente.",
       "Esta noche Helga va a hacer estofado de piedras. Si puedes, pásate, siempre le queda delicioso."],
     "specialReq": {
-      "petition": "El calor de la fragua puede ser muy fatigador. ¿Tienes pociones de área de frio? Te compro las que tengas.",
+      "petition": "El calor de la fragua puede ser muy fatigador. ¿Tienes pociones de área de frío? Te compro las que tengas.",
       "expectedItem": "19",
       "quantity": "all"
     }
@@ -216,7 +216,7 @@ const townsfolk = [
     "name": "Helga Barbafresca - Dueña de la taberna del pueblo", "greeting": "¡Buenos días por la mañana! Espero que hayas desayunado.", "type": "town", "dialogs": [
       "Espero que estés teniendo un día entretenido. Yo tengo que volver rápido a la taberna para ver si Daph me trae un paquete con las mejores sedas del país vecino, luego me pondré a hilarla y tras eso me pondré a coser unas ropas de cama preciosas.",
       "Si algún día te entra la curiosidad por comer un buen desayuno de la taberna, puedes hacer un pedido el día de antes y estaré encantada de traértelo antes de que abras. Solo por ser tú, te pondré extra de mermelada casera.",
-      "Te voy a contar un secretito, pero que quede entre tú y yo, hay gente que ya ha empezado a hablar muy bien de tí y de tu tienda por la taberna. Así que vengo con unas espectativas altas, pero confío en que estarás más que a la altura.",
+      "Te voy a contar un secretito, pero que quede entre tú y yo, hay gente que ya ha empezado a hablar muy bien de tí y de tu tienda por la taberna. Así que vengo con unas expectativas altas, pero confío en que estarás más que a la altura.",
       "He visto a Maeve saliendo más por el día desde que abriste tu tiendita. ¿Has tenido la oportunidad de conocerla ya? Es una persona muy enigmática pero es agradable, de hecho es tan agradable que incluso parece iluminarle los ojos a Maccon cuando coinciden a la luz de la luna.",
       "Ay, estos aventureros son tan increíbles, estaría a todas horas escuchando todas sus historias y a todos los lugares que han. Por ejemplo, ¡Longrim ha viajado incluso hasta Bel'ashir con su grupo! "],
     "specialReq": {
@@ -227,20 +227,20 @@ const townsfolk = [
   },
   {
     "name": "Isabel Hojaoliva - Abuelita Adorable", "greeting": "Hola, joven. Hace un día precioso en el pueblo.", "type": "town", "dialogs": [
-      "Las temperaturas suelen bajar en esta epoca del año, ¡recuerda abrigarte bien antes de salir!",
+      "Las temperaturas suelen bajar en esta época del año, ¡recuerda abrigarte bien antes de salir!",
       "Antes he visto a un enano muy apuesto que olía a albahaca, este mundo está repleto de cosas interesantes.",
       "Scoot es una ricura, ¡siempre correteando de allí para allá! Quizás te sorprenda, pero otrora fui una chavalita igual de inquieta.",
       "Que encantadora es Amely, ¡el otro día me instaló una mecedora en la vieja biblioteca!",
-      "El señor Stonemantle me regaló un juego de cubertería el día de mi boda que seguimos usando tras tantos años."],
+      "¿Has comido, cielo? ¿Te preparo una tortilla y te la traigo?"],
     "specialReq": {
-      "petition": "Hoy voy a hacer una gran comida para mi familia, pero la leña que tenemos en casa no creo que sea suficiente para calentar toda la sala cuando vamos a estar tantas personas. ¿Serías tan amable de darme alguna poción para calentar el salón de mi casa?  ",
+      "petition": "Hoy voy a hacer una gran comida para mi familia, pero la leña que tenemos en casa no creo que sea suficiente para calentar toda la sala cuando vamos a estar tantas personas. ¿Serías tan amable de darme alguna poción para calentar el salón de mi casa?",
       "expectedItem": "18",
       "quantity": 1
     }
   },
   {
     "name": "Scoot - Pequeño Alborotador", "greeting": "¡Herborista! ¡Buenos días! Mi madre me ha dicho que venga.", "type": "town", "dialogs": [
-      "No me apetecia venir, la verdad, pero Mamá está malita y no puede venir ella.",
+      "No me apetecía venir, la verdad, pero Mamá está malita y no puede venir ella.",
       "Papá se ha ido a la frontera. Estoy ayudando a Mamá por casa. No se me da bien cocinar, pero al menos lo hago mejor que Papá.",
       "¿Has jugado alguna vez a los dados mentirosos? ¡Gin me enseñó a jugar el otro día!",
       "De mayor, me gustaría ser un druida como Longrim. ¿O quizás un cazador como Maccon? ¡Ya sé, un pato! Como Palmeadus.",
@@ -254,23 +254,23 @@ const townsfolk = [
   {
     "name": "Tombo, Pombo y Finnz - 'Duque Beraaz'", "greeting": "¡Maravillosos días! Soy el Duque Beraaz y preciso de los suministros que distribuye usted.", "type": "town", "dialogs": [
       "No tengo tiempo para cháchara, tengo asuntos de barón muy importantes que atender. <br> (Pombo): ¡Somos duque, mendrugo! <br> (Beraaz): Quiero decir, ¡asuntos de duque barón, hehe!",
-      "Así es, estás en presencia del Duque Biraaz- quiero decir, ¡El duque Beraaz! <br> (Tombo): Vaya nombre más birria. <br> (Finnz): ¡Ciñete al papel!",
+      "Así es, estás en presencia del Duque Biraaz- quiero decir, ¡El duque Beraaz! <br> (Tombo): Vaya nombre más birria. <br> (Finnz): ¡Cíñete al papel!",
       "Las cosas de palacio van despacio, pero date prisa, soy un magnate muy ocupado. <br> (Pombo): ¡Actúas fatal! <br> (Finnz): Pero es el más ligero.",
       "¿Mi secreto para ser un buen burgués? ¡Juntate con buena asesoría! <br> (Finnz): Si, tres cabezas piensan más que una... <br> (Pombo): ¡En la cabeza si que te voy a dar!",
       "Aunque no lo creas, formar parte de la alta sociedad resulta agotador. <br> (Pombo): ¡Agotador es sujetar tus pies malolientes! <br> (Finnz): Y lo dices tú que no eres el de abajo."],
     "specialReq": {
       "petition": "Necesitamos... ¡Necesito! Necesito algo que haga ver formas y colores donde no las hay. No preguntes el porqué, son asuntos de duque.",
-      "expectedItem": "31", 
+      "expectedItem": "31",
       "quantity": 1
     }
   },
   {
     "name": "Michael - Joven Extraño", "greeting": "¿Qué tal va la jornada, Herborista? ¿Muchos clientes? ¿Te aburres?", "type": "wildcard", "dialogs": [
       "Me alegra ver que tu tienda va bien. Debe de ser duro sin la ayuda de tus padres. No te preocupes, seguro que están bien.",
-      "¿Que a qué me dedico? Bueno... Un poco de todo.",
-      "¿No te cansas de estar aquí todo el dia? Puedo darte un salvoconducto fuera si me lo pides.",
+      "¿A qué me dedico? Bueno... Un poco de todo.",
+      "¿No te cansas de estar aquí todo el día? Puedo darte un salvoconducto fuera si me lo pides.",
       "Las pociones extrañas tienen propiedades magníficas. Es una pena que se descarten como a basura, asique prefiero comprartelas.",
-      "Tu tienda es preciosa. Muy colorida. Últimamente hay muchas cosas a las que les falta color, asique es una alegria para los ojos."],
+      "Tu tienda es preciosa. Muy colorida. Últimamente hay muchas cosas a las que les falta color, asique es una alegría para los ojos."],
     "specialReq": {
       "petition": "Escucha... No necesito una poción extraña hoy. Un... amigo ha tenido un accidente. Necesito todas las pociones contra ceguera que tengas.",
       "expectedItem": "30",
@@ -387,7 +387,8 @@ const items = [
     "price": 9,
     "petitions": [
       "Últimamente no puedo dormir bien. ¿Puedes darme algo que ayude?",
-      "No paro de tener pesadillas, no puedo pegar ojo."
+      "No paro de tener pesadillas, no puedo pegar ojo.",
+      "Casi todas las noches tengo un sueño con algo horrible, me gustaría dejar de hacerlo."
     ]
   },
   {
@@ -444,7 +445,6 @@ const items = [
     "price": 25,
     "petitions": [
       "Últimamente no puedo dormir bien. ¿Puedes darme algo que ayude?",
-      "No paro de tener pesadillas, no puedo pegar ojo.",
       "Necesito una buena noche de sueño, duermo fatal.",
       "Voy a ir de caza y quiero hacer dardos somníferos."
     ]
@@ -457,7 +457,6 @@ const items = [
     "price": 14,
     "petitions": [
       "Últimamente no puedo dormir bien. ¿Puedes darme algo que ayude?",
-      "No paro de tener pesadillas, no puedo pegar ojo.",
       "Necesito una buena noche de sueño, duermo fatal."
     ]
   },
@@ -482,7 +481,7 @@ const items = [
     "petitions": [
       "Hoy voy de misión a un lugar muy oscuro. No se si voy a poder ver de forma correcta.",
       "Algún graciosillo ha creado una bola de oscuridad en medio de mi casa y no puedo ver.",
-      "Voy a ir de caza y necesito poder bien a mis objetivos."
+      "Voy a ir de caza y necesito poder ver bien a mis objetivos."
     ]
   },
   {
@@ -551,7 +550,7 @@ const items = [
     "petitions": [
       "Hoy voy de misión a un lugar muy oscuro. No sé si voy a poder ver de forma correcta.",
       "Hoy veo todo muy borroso, no entiendo por qué.",
-      "Voy a ir de caza y necesito poder bien a mis objetivos."
+      "Voy a ir de caza y necesito poder ver bien a mis objetivos."
     ]
   },
   {
@@ -659,7 +658,7 @@ const items = [
     "price": 108,
     "petitions": [
       "Hoy voy de misión a un lugar muy oscuro. No sé si voy a poder ver de forma correcta.",
-      "Voy a ir de caza y necesito poder bien a mis objetivos."
+      "Voy a ir de caza y necesito poder ver bien a mis objetivos."
     ]
   },
   {
@@ -792,10 +791,10 @@ const items = [
 ]
 
 var upgradesData = [
-  { id: 'hasPetalos', imgroute: 'ruta1.jpg', title: 'Flor de Luna', text: 'Se dice que sus pétalos fueron bendecidos por la diosa de los sueños. <br> Comprar este ingrediente lo añade al jardín. Tarda 5 segundos en crecer una vez se recoge.', price: 25 },
-  { id: 'hasRaices', imgroute: 'ruta2.jpg', title: 'Raíces de Piedra', text: 'Pequeñas raíces conocidas por sus propiedades de endurecimiento. <br> Comprar este ingrediente lo añade al jardín. Tarda 15 segundos en crecer una vez se recoge.', price: 150 },
-  { id: 'hasPolen', imgroute: 'ruta3.jpg', title: 'Flores Vulcano', text: 'Una flor que produce polen de dos tipos, relacionado de forma común con la temperatura. <br> Comprar este ingrediente lo añade al jardín. Tarda 30 segundos en crecer una vez se recoge. Se añade un interruptor para cosechar un polen u otro.', price: 275 },
-  { id: 'hasAurora', imgroute: 'ruta4.jpg', title: 'Frutos de Aurora', text: 'Un fruto escaso por su difícil y costosa germinación. Podrás cosechar sus hojas o el fruto entero. <br> Comprar este ingrediente lo añade al jardín. Las hojas tardan 45 segundos en crecer una vez se recogen, y si se recoge el fruto entero, 60 segundos. Se añade un interruptor para cosechar un las hojas o los frutos enteros.', price: 400 }
+  { id: 'hasPetalos', imgroute: 'ruta1.jpg', title: 'Flor de Luna', text: 'Se dice que sus pétalos fueron bendecidos por la diosa de los sueños. <br> Comprar este ingrediente lo añade al jardín. Tarda 5 segundos en crecer una vez se recoge.', price: 25 }, //25
+  { id: 'hasRaices', imgroute: 'ruta2.jpg', title: 'Raíces de Piedra', text: 'Pequeñas raíces conocidas por sus propiedades de endurecimiento. <br> Comprar este ingrediente lo añade al jardín. Tarda 15 segundos en crecer una vez se recoge.', price: 75 }, //150
+  { id: 'hasPolen', imgroute: 'ruta3.jpg', title: 'Flores Vulcano', text: 'Una flor que produce polen de dos tipos, relacionado de forma común con la temperatura. <br> Comprar este ingrediente lo añade al jardín. Tarda 30 segundos en crecer una vez se recoge. Se añade un interruptor para cosechar un polen u otro.', price: 150 }, //275
+  { id: 'hasAurora', imgroute: 'ruta4.jpg', title: 'Frutos de Aurora', text: 'Un fruto escaso por su difícil y costosa germinación. Podrás cosechar sus hojas o el fruto entero. <br> Comprar este ingrediente lo añade al jardín. Las hojas tardan 45 segundos en crecer una vez se recogen, y si se recoge el fruto entero, 60 segundos. Se añade un interruptor para cosechar un las hojas o los frutos enteros.', price: 275 } //400
 ];
 
 const recetas = {
