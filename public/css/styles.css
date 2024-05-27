@@ -184,6 +184,7 @@ background-color: #d4a074;
 }
 .trastienda{
   margin:auto;
+  background-image:url("/assets/bgs/backshop.png");
   background-size: 100% 100%;
 }
 
@@ -339,22 +340,34 @@ hr{
 
 #backshop1{
   width: 40%;
-  background-color: #c58d5f;
+  background-image: url("/assets/bgs/armario.png");
   height: calc(100% - 50px);
   margin-right: 25px;
+  margin-top:20px;
+}
+
+#backshop1:hover{
+  background-image: url("/assets/bgs/armario2.png");
 }
 
 #backshop2{
   width: 100%;
-  background-color: #8a6b52;
+  background-image: url("/assets/bgs/tablon.png");
   height: 35%;
   margin-bottom: 25px;
+}
+#backshop2:hover{
+  background-image: url("/assets/bgs/tablon2.png");
 }
 
 #backshop3{
   width: 100%;
-  background-color: #e9c4a5;
+  background-image: url("/assets/bgs/alquimia.png");
   height: 60%;
+  margin-top:20px;
+}
+#backshop3:hover{
+  background-image: url("/assets/bgs/alquimia2.png");
 }
 
 .wrap{
@@ -441,7 +454,7 @@ hr{
 
 .mesa{
   margin:auto;
-  background-color: #cab3da;
+  background-image: url("/assets/bgs/mesa.png");
   background-size: 100% 100%;
   display: flex;
   flex-direction: column;

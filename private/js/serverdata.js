@@ -791,10 +791,10 @@ const items = [
 ]
 
 var upgradesData = [
-  { id: 'hasPetalos', imgroute: 'ruta1.jpg', title: 'Flor de Luna', text: 'Se dice que sus pétalos fueron bendecidos por la diosa de los sueños. <br> Comprar este ingrediente lo añade al jardín. Tarda 5 segundos en crecer una vez se recoge.', price: 25 }, //25
-  { id: 'hasRaices', imgroute: 'ruta2.jpg', title: 'Raíces de Piedra', text: 'Pequeñas raíces conocidas por sus propiedades de endurecimiento. <br> Comprar este ingrediente lo añade al jardín. Tarda 15 segundos en crecer una vez se recoge.', price: 75 }, //150
-  { id: 'hasPolen', imgroute: 'ruta3.jpg', title: 'Flores Vulcano', text: 'Una flor que produce polen de dos tipos, relacionado de forma común con la temperatura. <br> Comprar este ingrediente lo añade al jardín. Tarda 30 segundos en crecer una vez se recoge. Se añade un interruptor para cosechar un polen u otro.', price: 150 }, //275
-  { id: 'hasAurora', imgroute: 'ruta4.jpg', title: 'Frutos de Aurora', text: 'Un fruto escaso por su difícil y costosa germinación. Podrás cosechar sus hojas o el fruto entero. <br> Comprar este ingrediente lo añade al jardín. Las hojas tardan 45 segundos en crecer una vez se recogen, y si se recoge el fruto entero, 60 segundos. Se añade un interruptor para cosechar un las hojas o los frutos enteros.', price: 275 } //400
+  { id: 'hasPetalos', imgroute: '/assets/garden/i2.png', title: 'Flor de Luna', text: 'Se dice que sus pétalos fueron bendecidos por la diosa de los sueños. <br> Comprar este ingrediente lo añade al jardín. Tarda 5 segundos en crecer una vez se recoge.', price: 25 }, //25
+  { id: 'hasRaices', imgroute: '/assets/garden/i3.png', title: 'Raíces de Piedra', text: 'Pequeñas raíces conocidas por sus propiedades de endurecimiento. <br> Comprar este ingrediente lo añade al jardín. Tarda 15 segundos en crecer una vez se recoge.', price: 75 }, //150
+  { id: 'hasPolen', imgroute: '/assets/garden/i4.png', title: 'Flores Vulcano', text: 'Una flor que produce polen de dos tipos, relacionado de forma común con la temperatura. <br> Comprar este ingrediente lo añade al jardín. Tarda 30 segundos en crecer una vez se recoge. Se añade un interruptor para cosechar un polen u otro.', price: 150 }, //275
+  { id: 'hasAurora', imgroute: '/assets/garden/i56.png', title: 'Frutos de Aurora', text: 'Un fruto escaso por su difícil y costosa germinación. Podrás cosechar sus hojas o el fruto entero. <br> Comprar este ingrediente lo añade al jardín. Las hojas tardan 45 segundos en crecer una vez se recogen, y si se recoge el fruto entero, 60 segundos. Se añade un interruptor para cosechar un las hojas o los frutos enteros.', price: 275 } //400
 ];
 
 const recetas = {
