@@ -407,6 +407,7 @@ function selectItemFromInvClient(id) {
 }
 
 async function sellItem(item) {
+    desactivarMenuLateral();
     // Cambia a mostrador
     changeScreen(2);
 
@@ -846,6 +847,7 @@ function resetChosenSquares(opt) {
 }
 
 function createPotion() {
+    createPotionButton.classList.add("invisible");
     chosenIngredients = []; // Restablecer los ingredientes antes de agregar los nuevos
 
     // Obtener los ingredientes de los cuadrados chosen y almacenarlos en la variable chosenIngredients
@@ -1013,6 +1015,7 @@ function changeScreen(option) {
     recipesquares = document.getElementsByTagName("recipesquare");
     while (recipesquares[0]) recipesquares[0].parentNode.removeChild(recipesquares[0]);
     boxP.innerHTML = "...";
+    boxP.classList.remove("hidden");
     boxButtons.classList.add("hidden");
     settings.classList.add("hidden");
     if(hasClient){
